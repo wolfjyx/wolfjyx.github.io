@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 email: wolfjyx@gmail.com
 description: "博客的博，博客的客"
 keyword: ""
-url: "wolfjyx.github.com"              # your host, for absolute URL
+url: "https://wolfjyx.github.io"              # your host, for absolute URL
 baseurl: "/"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
