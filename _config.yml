@@ -1,6 +1,6 @@
 # Site settings
 title: 一杯咖啡☕️
-SEOTitle: 你的博客 | Your Blog
+SEOTitle: 一杯咖啡☕️
 header-img: img/home-bg.jpg
 email: wolfjyx@gmail.com
 description: "博客的博，博客的客"
@@ -80,9 +80,9 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 
 
 # Friends
-friends: [
-    # {
-    #     title: "Hux Blog",
-    #     href: "http://huangxuan.me"
-    # }
-]
+#friends: [
+#    # {
+#    #     title: "Hux Blog",
+#    #     href: "http://huangxuan.me"
+#    # }
+#]
