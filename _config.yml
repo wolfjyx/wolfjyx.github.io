@@ -13,10 +13,17 @@ baseurl: "/"         # for example, '/blog' if your blog hosted on 'host/blog'
 # SNS settings
 RSS: false
 # weibo_username:
+<<<<<<< HEAD
 # zhihu_username:     huxpro
 github_username:    wolfjyx
 #twitter_username:  huxpro
 # facebook_username:  huxpro
+=======
+# zhihu_username:
+github_username:    wolfjyx
+#twitter_username:
+# facebook_username:
+>>>>>>> 579a7f5258dfd0b3b7d5e9ca9def5b8f795e1c5b
 
 
 
