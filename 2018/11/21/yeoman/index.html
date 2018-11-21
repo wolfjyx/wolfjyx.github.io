@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>yeoman | wolfjyx&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="设置开发环境1.1 安装条件安装yeoman之前，你需要先安装如下内容  Nodejs v4 或者更高版本 npm git  通过以下命令检查是否安装 Node 环境以及 npm 管理工具。 $ node -v &amp;amp;&amp;amp; npm -v npm 默认随 Node 一起安装。有些 Node 版本可能安装的是旧版本的 npm，你可以通过以下命令更新 npm $ npm install -g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yeoman">
+<meta property="og:url" content="http://wolfjyx.github.com/2018/11/21/yeoman/index.html">
+<meta property="og:site_name" content="wolfjyx&#39;s blog">
+<meta property="og:description" content="设置开发环境1.1 安装条件安装yeoman之前，你需要先安装如下内容  Nodejs v4 或者更高版本 npm git  通过以下命令检查是否安装 Node 环境以及 npm 管理工具。 $ node -v &amp;amp;&amp;amp; npm -v npm 默认随 Node 一起安装。有些 Node 版本可能安装的是旧版本的 npm，你可以通过以下命令更新 npm $ npm install -g">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-21T15:28:49.834Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="yeoman">
+<meta name="twitter:description" content="设置开发环境1.1 安装条件安装yeoman之前，你需要先安装如下内容  Nodejs v4 或者更高版本 npm git  通过以下命令检查是否安装 Node 环境以及 npm 管理工具。 $ node -v &amp;amp;&amp;amp; npm -v npm 默认随 Node 一起安装。有些 Node 版本可能安装的是旧版本的 npm，你可以通过以下命令更新 npm $ npm install -g">
+  
+    <link rel="alternate" href="/atom.xml" title="wolfjyx&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">wolfjyx&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">博客的博，博客的客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wolfjyx.github.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-yeoman" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/21/yeoman/" class="article-date">
+  <time datetime="2018-11-21T15:28:17.000Z" itemprop="datePublished">2018-11-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      yeoman
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="设置开发环境"><a href="#设置开发环境" class="headerlink" title="设置开发环境"></a>设置开发环境</h1><h2 id="1-1-安装条件"><a href="#1-1-安装条件" class="headerlink" title="1.1 安装条件"></a>1.1 安装条件</h2><p>安装yeoman之前，你需要先安装如下内容</p>
+<ul>
+<li>Nodejs v4 或者更高版本</li>
+<li>npm</li>
+<li>git</li>
+</ul>
+<p>通过以下命令检查是否安装 Node 环境以及 npm 管理工具。</p>
+<pre><code>$ node -v &amp;&amp; npm -v
+</code></pre><p>npm 默认随 Node 一起安装。有些 Node 版本可能安装的是旧版本的 npm，你可以通过以下命令更新 npm</p>
+<pre><code>$ npm install -g npm@latest
+</code></pre><p>通过以下命名检查是否安装git</p>
+<pre><code>$ git --version
+</code></pre><h2 id="1-2-安装yeoman工具箱"><a href="#1-2-安装yeoman工具箱" class="headerlink" title="1.2 安装yeoman工具箱"></a>1.2 安装yeoman工具箱</h2><p>如果已经安装了 node 环境，可以通过以下命令安装 Yeoman</p>
+<pre><code>$ npm install -g yo
+</code></pre><p>##1.3 确认安装<br>首先确认 Yeoman 是否正确安装</p>
+<pre><code>$ yo --version
+</code></pre><h1 id="安装Yeoman生成器"><a href="#安装Yeoman生成器" class="headerlink" title="安装Yeoman生成器"></a>安装Yeoman生成器</h1><p>在传统的 web开发中，你需要花大量时间为你的 webapp 设置模板代码、下载依赖包以及手动创建文件目录结构。Yeoman 的生成器会帮你搞定这一切</p>
+<p>2.1安装生成器<br>你可以通过 npm 命令安装 Yeoman 生成器，目前可用的生成器超过了 3500 个，大多数都是开源社区贡献的。</p>
+<p>通过以下命令安装 generator-webpack-simple-static</p>
+<pre><code>$ npm install -g generator-webpack-simple-static
+</code></pre><p>该命令将安装生成器所需的node包。</p>
+<p>和使用 npm install 一样，你可以通过 Yeoman 的交互菜单搜索 generators。</p>
+<p>运行 yo 然后选择 Install a generator 来搜索发布的生成器。</p>
+<h1 id="使用生成器搭建app"><a href="#使用生成器搭建app" class="headerlink" title="使用生成器搭建app"></a>使用生成器搭建app</h1><p>我们已经使用多次“脚手架”这个词，但是你可能还不知道它是什么意思。在 Yeoman的 语境中，脚手架材料表示通过一些配置为你的 webapp 生成文件。在这一步中，你会看到 Yeoman 如何为你喜欢的库及框架生成文件，以及使用如 webpack/babel/Sass 等一些额外的库的配置。</p>
+<p>3.1 创建项目文件夹</p>
+<pre><code>$ mkdir mytodo &amp;&amp; cd mytodo
+</code></pre><p>生成器生成的脚手架文件会放在这个文件夹中。</p>
+<p>3.2 通过 Yeoman 菜单使用生成器<br>再次运行 yo</p>
+<pre><code>$ yo
+</code></pre><p>如果你已经安装了多个 generator，你需要从中选择一个。选中 generator-webpack-simple-static，按回车 enter 运行生成器。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2018/11/21/yeoman/" data-id="cjorbple60000vgjgv2kk8qi4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/21/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/21/yeoman/">yeoman</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 wolfjyx<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
