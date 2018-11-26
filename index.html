@@ -66,6 +66,158 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-跨域" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/26/跨域/" class="article-date">
+  <time datetime="2018-11-26T15:01:04.286Z" itemprop="datePublished">2018-11-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/26/跨域/">跨域</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##什么是跨域<br>协议，域名，端口任何一项不同都会引起跨域问题<br>注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力  </p>
+<p>##1.document.domain + iframe<br>只有主域相同才能使用  </p>
+<pre><code>//parent.domain.com/a.html
+document.doman = &apos;domain.com&apos;
+var ifr = document.createElement(&apos;iframe&apos;)
+ifr.src = &apos;child.domain.com/b.html&apos;
+ifr.display = none;
+document.body.appendChild(ifr);
+ifr.onload = function () {
+    var doc = ifr.contentDocument || ifr.contentWindow.document
+    //doc 
+     ifr.onload = null;
+}
+</code></pre><p>–</p>
+<pre><code>//child.domain.com/b.html
+document.domain = &apos;domain.com&apos;
+</code></pre><p>##2.动态创建script</p>
+<pre><code>function loadScript(url, func) {
+  var head = document.head || document.getElementByTagName(&apos;head&apos;)[0];
+  var script = document.createElement(&apos;script&apos;);
+  script.src = url;
+
+  script.onload = script.onreadystatechange = function(){
+    if(!this.readyState || this.readyState==&apos;loaded&apos; || this.readyState==&apos;complete&apos;){
+      func();
+      script.onload = script.onreadystatechange = null;
+    }
+  };
+
+  head.insertBefore(script, null);
+}
+window.baidu = {
+  sug: function(data){
+    console.log(data);
+  }
+}
+loadScript(&apos;http://suggestion.baidu.com/su?wd=w&apos;,function(){console.log(&apos;loaded&apos;)});    
+</code></pre><p>##3.loaction.hash+ iframe<br>        //a.com/a.html<br>    function startRequest(){<br>        var ifr = document.createElement(‘iframe’);<br>        ifr.style.display = ‘none’;<br>        ifr.src = ‘<a href="http://b.com/b.html#paramdo&#39;" target="_blank" rel="noopener">http://b.com/b.html#paramdo&#39;</a>;<br>            document.body.appendChild(ifr);<br>    }</p>
+<pre><code>function checkHash() {
+    try {
+        var data = location.hash ? location.hash.substring(1) : &apos;&apos;;
+        if (console.log) {
+            console.log(&apos;Now the data is &apos;+data);
+        }
+    } catch(e) {};
+}
+setInterval(checkHash, 2000);
+</code></pre><p>–<br>    //b.com/b.html<br>    //模拟一个简单的参数处理操作<br>    switch(location.hash){<br>        case ‘#paramdo’:<br>            callBack();<br>            break;<br>        case ‘#paramset’:<br>            //do something……<br>            break;<br>    }</p>
+<pre><code>function callBack(){
+    try {
+        parent.location.hash = &apos;somedata&apos;;
+    } catch (e) {
+        // ie、chrome的安全机制无法修改parent.location.hash，
+        // 所以要利用一个中间的cnblogs域下的代理iframe
+        var ifrproxy = document.createElement(&apos;iframe&apos;);
+        ifrproxy.style.display = &apos;none&apos;;
+        ifrproxy.src = &apos;http://a.com/c.html#somedata&apos;;    // 注意该文件在&quot;a.com&quot;域下
+        document.body.appendChild(ifrproxy);
+    }
+}    
+</code></pre><p>–<br>    //<a href="http://a.com/c.html" target="_blank" rel="noopener">http://a.com/c.html</a><br>    parent.parent.location.hash = self.location.hash.substring(1);</p>
+<p>##4.window.name + iframe<br>window.name :name 值在不同的页面（甚至不同域名）加载后依旧存在，并且可以支持非常长的 name 值（2MB)  </p>
+<pre><code>    //a.com/a/html
+            function proxy(url,func) {
+    var isFirst = true;
+    var ifr = document.createElement(&apos;iframe&apos;);
+    loadFunc = function() {
+        console.log(1,isFirst)
+        if(isFirst) {
+            ifr.src = &apos;a.com/cs1.html&apos;;
+            isFirst = false;
+        } else {
+            console.log(&apos;name&apos;,ifr.contentWindow.name)
+            func(ifr.contentWindow.name);
+            document.body.removeChild(ifr);
+            ifr.src = null;
+            ifr = &apos;&apos;;
+        }
+
+    }
+     ifr.src = url;
+    ifr.style.display = &apos;none&apos;;
+    if(ifr.attachEvent){ ifr.attachEvent(&apos;onload&apos;, loadFunc);
+}else {ifr.onload = loadFunc;}
+     document.body.appendChild(ifr);
+}
+
+ proxy(&apos;http://www.baidu.com/&apos;, function(data){
+      console.log(&apos;data&apos;,data);
+    });
+</code></pre><p>##5.    postMessage  </p>
+<pre><code>a.com/index.html中的代码：
+&lt;iframe id=&quot;ifr&quot; src=&quot;b.com/index.html&quot;&gt;&lt;/iframe&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    window.onload = function() {
+    var ifr = document.getElementById(&apos;ifr&apos;);
+       var targetOrigin = &apos;http://b.com&apos;;
+     // 若写成&apos;http://b.com/c/proxy.html&apos;效果一样
+      // 若写成&apos;http://c.com&apos;就不会执行postMessage了
+       ifr.contentWindow.postMessage(&apos;I was there!&apos;, targetOrigin);
+};
+&lt;/script&gt;
+
+//b.com/index.html
+window.addEventListener(&apos;message&apos;, function(event){
+        // 通过origin属性判断消息来源地址
+        if (event.origin == &apos;http://a.com&apos;) {
+            alert(event.data);    // 弹出&quot;I was there!&quot;
+            alert(event.source);  
+            // 对a.com、index.html中window对象的引用
+            // 但由于同源策略，这里event.source不可以访问window对象
+        }
+    }, false);
+</code></pre><p>##6.CORS  </p>
+<p>##7.JSONP<br>        function handleResponse(response){<br>        console.log(‘The responsed data is: ‘+response.data);<br>    }<br>    var script = document.createElement(‘script’);<br>    script.src = ‘<a href="http://www.baidu.com/json/?callback=handleResponse&#39;" target="_blank" rel="noopener">http://www.baidu.com/json/?callback=handleResponse&#39;</a>;<br>    document.body.insertBefore(script, document.body.firstChild);<br>    /<em>handleResonse({“data”: “zhe”})</em>/<br>    //原理如下：<br>    //当我们通过script标签请求时<br>    //后台就会根据相应的参数(json,handleResponse)<br>    //来生成相应的json数据(handleResponse({“data”: “zhe”}))<br>    //最后这个返回的json数据(代码)就会被放在当前js文件中被执行<br>    //至此跨域通信完成</p>
+<p>##8.web socket</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2018/11/26/跨域/" data-id="cjoyft7bp0000nljgn33pwduk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-flex&amp;grid" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/22/flex&grid/" class="article-date">
@@ -505,148 +657,6 @@ grid-auto-rows: 300px;
 
 
   
-    <article id="post-跨域" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/08/24/跨域/" class="article-date">
-  <time datetime="2017-08-24T02:51:38.000Z" itemprop="datePublished">2017-08-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##什么是跨域<br>协议，域名，端口任何一项不同都会引起跨域问题<br>注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力  </p>
-<p>##1.document.domain + iframe<br>只有主域相同才能使用  </p>
-<pre><code>//parent.domain.com/a.html
-document.doman = &apos;domain.com&apos;
-var ifr = document.createElement(&apos;iframe&apos;)
-ifr.src = &apos;child.domain.com/b.html&apos;
-ifr.display = none;
-document.body.appendChild(ifr);
-ifr.onload = function () {
-    var doc = ifr.contentDocument || ifr.contentWindow.document
-    //doc 
-     ifr.onload = null;
-}
-</code></pre><p>–</p>
-<pre><code>//child.domain.com/b.html
-document.domain = &apos;domain.com&apos;
-</code></pre><p>##2.动态创建script</p>
-<pre><code>function loadScript(url, func) {
-  var head = document.head || document.getElementByTagName(&apos;head&apos;)[0];
-  var script = document.createElement(&apos;script&apos;);
-  script.src = url;
-
-  script.onload = script.onreadystatechange = function(){
-    if(!this.readyState || this.readyState==&apos;loaded&apos; || this.readyState==&apos;complete&apos;){
-      func();
-      script.onload = script.onreadystatechange = null;
-    }
-  };
-
-  head.insertBefore(script, null);
-}
-window.baidu = {
-  sug: function(data){
-    console.log(data);
-  }
-}
-loadScript(&apos;http://suggestion.baidu.com/su?wd=w&apos;,function(){console.log(&apos;loaded&apos;)});    
-</code></pre><p>##3.loaction.hash+ iframe<br>        //a.com/a.html<br>    function startRequest(){<br>        var ifr = document.createElement(‘iframe’);<br>        ifr.style.display = ‘none’;<br>        ifr.src = ‘<a href="http://b.com/b.html#paramdo&#39;" target="_blank" rel="noopener">http://b.com/b.html#paramdo&#39;</a>;<br>            document.body.appendChild(ifr);<br>    }</p>
-<pre><code>function checkHash() {
-    try {
-        var data = location.hash ? location.hash.substring(1) : &apos;&apos;;
-        if (console.log) {
-            console.log(&apos;Now the data is &apos;+data);
-        }
-    } catch(e) {};
-}
-setInterval(checkHash, 2000);
-</code></pre><p>–<br>    //b.com/b.html<br>    //模拟一个简单的参数处理操作<br>    switch(location.hash){<br>        case ‘#paramdo’:<br>            callBack();<br>            break;<br>        case ‘#paramset’:<br>            //do something……<br>            break;<br>    }</p>
-<pre><code>function callBack(){
-    try {
-        parent.location.hash = &apos;somedata&apos;;
-    } catch (e) {
-        // ie、chrome的安全机制无法修改parent.location.hash，
-        // 所以要利用一个中间的cnblogs域下的代理iframe
-        var ifrproxy = document.createElement(&apos;iframe&apos;);
-        ifrproxy.style.display = &apos;none&apos;;
-        ifrproxy.src = &apos;http://a.com/c.html#somedata&apos;;    // 注意该文件在&quot;a.com&quot;域下
-        document.body.appendChild(ifrproxy);
-    }
-}    
-</code></pre><p>–<br>    //<a href="http://a.com/c.html" target="_blank" rel="noopener">http://a.com/c.html</a><br>    parent.parent.location.hash = self.location.hash.substring(1);</p>
-<p>##4.window.name + iframe<br>window.name :name 值在不同的页面（甚至不同域名）加载后依旧存在，并且可以支持非常长的 name 值（2MB)  </p>
-<pre><code>    //a.com/a/html
-            function proxy(url,func) {
-    var isFirst = true;
-    var ifr = document.createElement(&apos;iframe&apos;);
-    loadFunc = function() {
-        console.log(1,isFirst)
-        if(isFirst) {
-            ifr.src = &apos;a.com/cs1.html&apos;;
-            isFirst = false;
-        } else {
-            console.log(&apos;name&apos;,ifr.contentWindow.name)
-            func(ifr.contentWindow.name);
-            document.body.removeChild(ifr);
-            ifr.src = null;
-            ifr = &apos;&apos;;
-        }
-
-    }
-     ifr.src = url;
-    ifr.style.display = &apos;none&apos;;
-    if(ifr.attachEvent){ ifr.attachEvent(&apos;onload&apos;, loadFunc);
-}else {ifr.onload = loadFunc;}
-     document.body.appendChild(ifr);
-}
-
- proxy(&apos;http://www.baidu.com/&apos;, function(data){
-      console.log(&apos;data&apos;,data);
-    });
-</code></pre><p>##5.    postMessage  </p>
-<pre><code>a.com/index.html中的代码：
-&lt;iframe id=&quot;ifr&quot; src=&quot;b.com/index.html&quot;&gt;&lt;/iframe&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    window.onload = function() {
-    var ifr = document.getElementById(&apos;ifr&apos;);
-       var targetOrigin = &apos;http://b.com&apos;;
-     // 若写成&apos;http://b.com/c/proxy.html&apos;效果一样
-      // 若写成&apos;http://c.com&apos;就不会执行postMessage了
-       ifr.contentWindow.postMessage(&apos;I was there!&apos;, targetOrigin);
-};
-&lt;/script&gt;
-
-//b.com/index.html
-window.addEventListener(&apos;message&apos;, function(event){
-        // 通过origin属性判断消息来源地址
-        if (event.origin == &apos;http://a.com&apos;) {
-            alert(event.data);    // 弹出&quot;I was there!&quot;
-            alert(event.source);  
-            // 对a.com、index.html中window对象的引用
-            // 但由于同源策略，这里event.source不可以访问window对象
-        }
-    }, false);
-</code></pre><p>##6.CORS  </p>
-<p>##7.JSONP<br>        function handleResponse(response){<br>        console.log(‘The responsed data is: ‘+response.data);<br>    }<br>    var script = document.createElement(‘script’);<br>    script.src = ‘<a href="http://www.baidu.com/json/?callback=handleResponse&#39;" target="_blank" rel="noopener">http://www.baidu.com/json/?callback=handleResponse&#39;</a>;<br>    document.body.insertBefore(script, document.body.firstChild);<br>    /<em>handleResonse({“data”: “zhe”})</em>/<br>    //原理如下：<br>    //当我们通过script标签请求时<br>    //后台就会根据相应的参数(json,handleResponse)<br>    //来生成相应的json数据(handleResponse({“data”: “zhe”}))<br>    //最后这个返回的json数据(代码)就会被放在当前js文件中被执行<br>    //至此跨域通信完成</p>
-<p>##8.web socket</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wolfjyx.github.com/2017/08/24/跨域/" data-id="cjoyft7bp0000nljgn33pwduk" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-head-meta" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/08/24/head-meta/" class="article-date">
@@ -804,6 +814,10 @@ window.addEventListener(&apos;message&apos;, function(event){
       <ul>
         
           <li>
+            <a href="/2018/11/26/跨域/">跨域</a>
+          </li>
+        
+          <li>
             <a href="/2018/11/22/flex&grid/">flex &amp; grid 布局</a>
           </li>
         
@@ -813,10 +827,6 @@ window.addEventListener(&apos;message&apos;, function(event){
         
           <li>
             <a href="/2018/11/21/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/24/跨域/">(no title)</a>
           </li>
         
           <li>
