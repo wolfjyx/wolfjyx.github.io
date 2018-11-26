@@ -7,17 +7,17 @@
   
   <title>跨域 | wolfjyx&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##什么是跨域协议，域名，端口任何一项不同都会引起跨域问题注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力   ##1.document.domain + iframe只有主域相同才能使用   //parent.domain.com/a.html document.doman = &amp;apos;domain.com&amp;apos; var ifr = document.">
+  <meta name="description" content="什么是跨域协议，域名，端口任何一项不同都会引起跨域问题注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力   跨域解决方案1.document.domain + iframe只有主域相同才能使用   //parent.domain.com/a.html document.doman = &amp;apos;domain.com&amp;apos; var ifr = documen">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跨域">
 <meta property="og:url" content="http://wolfjyx.github.com/2018/11/26/跨域/index.html">
 <meta property="og:site_name" content="wolfjyx&#39;s blog">
-<meta property="og:description" content="##什么是跨域协议，域名，端口任何一项不同都会引起跨域问题注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力   ##1.document.domain + iframe只有主域相同才能使用   //parent.domain.com/a.html document.doman = &amp;apos;domain.com&amp;apos; var ifr = document.">
+<meta property="og:description" content="什么是跨域协议，域名，端口任何一项不同都会引起跨域问题注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力   跨域解决方案1.document.domain + iframe只有主域相同才能使用   //parent.domain.com/a.html document.doman = &amp;apos;domain.com&amp;apos; var ifr = documen">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-26T15:01:04.287Z">
+<meta property="og:updated_time" content="2018-11-26T15:04:04.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨域">
-<meta name="twitter:description" content="##什么是跨域协议，域名，端口任何一项不同都会引起跨域问题注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力   ##1.document.domain + iframe只有主域相同才能使用   //parent.domain.com/a.html document.doman = &amp;apos;domain.com&amp;apos; var ifr = document.">
+<meta name="twitter:description" content="什么是跨域协议，域名，端口任何一项不同都会引起跨域问题注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力   跨域解决方案1.document.domain + iframe只有主域相同才能使用   //parent.domain.com/a.html document.doman = &amp;apos;domain.com&amp;apos; var ifr = documen">
   
     <link rel="alternate" href="/atom.xml" title="wolfjyx&#39;s blog" type="application/atom+xml">
   
@@ -71,7 +71,7 @@
         <section id="main"><article id="post-跨域" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/26/跨域/" class="article-date">
-  <time datetime="2018-11-26T15:01:04.286Z" itemprop="datePublished">2018-11-26</time>
+  <time datetime="2018-11-26T15:04:04.999Z" itemprop="datePublished">2018-11-26</time>
 </a>
     
   </div>
@@ -90,8 +90,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##什么是跨域<br>协议，域名，端口任何一项不同都会引起跨域问题<br>注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力  </p>
-<p>##1.document.domain + iframe<br>只有主域相同才能使用  </p>
+        <h1 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h1><p>协议，域名，端口任何一项不同都会引起跨域问题<br>注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力  </p>
+<h1 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a>跨域解决方案</h1><h2 id="1-document-domain-iframe"><a href="#1-document-domain-iframe" class="headerlink" title="1.document.domain + iframe"></a>1.document.domain + iframe</h2><p>只有主域相同才能使用  </p>
 <pre><code>//parent.domain.com/a.html
 document.doman = &apos;domain.com&apos;
 var ifr = document.createElement(&apos;iframe&apos;)
@@ -106,8 +106,7 @@ ifr.onload = function () {
 </code></pre><p>–</p>
 <pre><code>//child.domain.com/b.html
 document.domain = &apos;domain.com&apos;
-</code></pre><p>##2.动态创建script</p>
-<pre><code>function loadScript(url, func) {
+</code></pre><h2 id="2-动态创建script"><a href="#2-动态创建script" class="headerlink" title="2.动态创建script"></a>2.动态创建script</h2><pre><code>function loadScript(url, func) {
   var head = document.head || document.getElementByTagName(&apos;head&apos;)[0];
   var script = document.createElement(&apos;script&apos;);
   script.src = url;
@@ -127,8 +126,15 @@ window.baidu = {
   }
 }
 loadScript(&apos;http://suggestion.baidu.com/su?wd=w&apos;,function(){console.log(&apos;loaded&apos;)});    
-</code></pre><p>##3.loaction.hash+ iframe<br>        //a.com/a.html<br>    function startRequest(){<br>        var ifr = document.createElement(‘iframe’);<br>        ifr.style.display = ‘none’;<br>        ifr.src = ‘<a href="http://b.com/b.html#paramdo&#39;" target="_blank" rel="noopener">http://b.com/b.html#paramdo&#39;</a>;<br>            document.body.appendChild(ifr);<br>    }</p>
-<pre><code>function checkHash() {
+</code></pre><h2 id="3-loaction-hash-iframe"><a href="#3-loaction-hash-iframe" class="headerlink" title="3.loaction.hash+ iframe"></a>3.loaction.hash+ iframe</h2><pre><code>    //a.com/a.html
+function startRequest(){
+    var ifr = document.createElement(&apos;iframe&apos;);
+    ifr.style.display = &apos;none&apos;;
+    ifr.src = &apos;http://b.com/b.html#paramdo&apos;;
+        document.body.appendChild(ifr);
+}
+
+function checkHash() {
     try {
         var data = location.hash ? location.hash.substring(1) : &apos;&apos;;
         if (console.log) {
@@ -151,7 +157,7 @@ setInterval(checkHash, 2000);
     }
 }    
 </code></pre><p>–<br>    //<a href="http://a.com/c.html" target="_blank" rel="noopener">http://a.com/c.html</a><br>    parent.parent.location.hash = self.location.hash.substring(1);</p>
-<p>##4.window.name + iframe<br>window.name :name 值在不同的页面（甚至不同域名）加载后依旧存在，并且可以支持非常长的 name 值（2MB)  </p>
+<h2 id="4-window-name-iframe"><a href="#4-window-name-iframe" class="headerlink" title="4.window.name + iframe"></a>4.window.name + iframe</h2><p>window.name :name 值在不同的页面（甚至不同域名）加载后依旧存在，并且可以支持非常长的 name 值（2MB)  </p>
 <pre><code>    //a.com/a/html
             function proxy(url,func) {
     var isFirst = true;
@@ -180,8 +186,7 @@ setInterval(checkHash, 2000);
  proxy(&apos;http://www.baidu.com/&apos;, function(data){
       console.log(&apos;data&apos;,data);
     });
-</code></pre><p>##5.    postMessage  </p>
-<pre><code>a.com/index.html中的代码：
+</code></pre><h2 id="5-postMessage"><a href="#5-postMessage" class="headerlink" title="5.    postMessage"></a>5.    postMessage</h2><pre><code>a.com/index.html中的代码：
 &lt;iframe id=&quot;ifr&quot; src=&quot;b.com/index.html&quot;&gt;&lt;/iframe&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
     window.onload = function() {
@@ -203,10 +208,20 @@ window.addEventListener(&apos;message&apos;, function(event){
             // 但由于同源策略，这里event.source不可以访问window对象
         }
     }, false);
-</code></pre><p>##6.CORS  </p>
-<p>##7.JSONP<br>        function handleResponse(response){<br>        console.log(‘The responsed data is: ‘+response.data);<br>    }<br>    var script = document.createElement(‘script’);<br>    script.src = ‘<a href="http://www.baidu.com/json/?callback=handleResponse&#39;" target="_blank" rel="noopener">http://www.baidu.com/json/?callback=handleResponse&#39;</a>;<br>    document.body.insertBefore(script, document.body.firstChild);<br>    /<em>handleResonse({“data”: “zhe”})</em>/<br>    //原理如下：<br>    //当我们通过script标签请求时<br>    //后台就会根据相应的参数(json,handleResponse)<br>    //来生成相应的json数据(handleResponse({“data”: “zhe”}))<br>    //最后这个返回的json数据(代码)就会被放在当前js文件中被执行<br>    //至此跨域通信完成</p>
-<p>##8.web socket</p>
-
+</code></pre><h2 id="6-CORS"><a href="#6-CORS" class="headerlink" title="6.CORS"></a>6.CORS</h2><h2 id="7-JSONP"><a href="#7-JSONP" class="headerlink" title="7.JSONP"></a>7.JSONP</h2><pre><code>    function handleResponse(response){
+    console.log(&apos;The responsed data is: &apos;+response.data);
+}
+var script = document.createElement(&apos;script&apos;);
+script.src = &apos;http://www.baidu.com/json/?callback=handleResponse&apos;;
+document.body.insertBefore(script, document.body.firstChild);
+/*handleResonse({&quot;data&quot;: &quot;zhe&quot;})*/
+//原理如下：
+//当我们通过script标签请求时
+//后台就会根据相应的参数(json,handleResponse)
+//来生成相应的json数据(handleResponse({&quot;data&quot;: &quot;zhe&quot;}))
+//最后这个返回的json数据(代码)就会被放在当前js文件中被执行
+//至此跨域通信完成
+</code></pre><h2 id="8-web-socket"><a href="#8-web-socket" class="headerlink" title="8.web socket"></a>8.web socket</h2>
       
     </div>
     <footer class="article-footer">
