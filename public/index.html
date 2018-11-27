@@ -66,6 +66,220 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-浏览器与内核" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/27/浏览器与内核/" class="article-date">
+  <time datetime="2018-11-27T14:14:58.200Z" itemprop="datePublished">2018-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/27/浏览器与内核/">浏览器与内核</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Trident"><a href="#Trident" class="headerlink" title="Trident"></a>Trident</h2><p>IE内核<br>IE9 开始用 Chakra，这两个版本区别很大，Chakra 无论是速度和标准化方面都很出色</p>
+<p>国内很多的双核浏览器的其中一核便是 Trident</p>
+<p>Window10 发布后，IE 将其内置浏览器命名为 Edge，Edge 最显著的特点就是新内核 EdgeHTML</p>
+<h2 id="Gecko"><a href="#Gecko" class="headerlink" title="Gecko"></a>Gecko</h2><p>Firefox 内核  </p>
+<h2 id="Webkit"><a href="#Webkit" class="headerlink" title="Webkit"></a>Webkit</h2><p>safari<br>早期chrome  </p>
+<h2 id="Chromium-Blink"><a href="#Chromium-Blink" class="headerlink" title="Chromium/Blink"></a>Chromium/Blink</h2><p>chrome<br>chromium fork 自开源引擎 webkit</p>
+<h2 id="Presto"><a href="#Presto" class="headerlink" title="Presto"></a>Presto</h2><p>早期oprea  </p>
+<h2 id="关于移动端"><a href="#关于移动端" class="headerlink" title="关于移动端"></a>关于移动端</h2><p>移动端的浏览器内核主要说的是系统内置浏览器的内核。</p>
+<p>目前移动设备浏览器上常用的内核有 Webkit，Blink，Trident，Gecko 等，其中 iPhone 和 iPad 等苹果 iOS 平台主要是 WebKit，Android 4.4 之前的 Android 系统浏览器内核是 WebKit，Android4.4 系统浏览器切换到了Chromium，内核是 Webkit 的分支 Blink，Windows Phone 8 系统浏览器内核是 Trident。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2018/11/27/浏览器与内核/" data-id="cjoztpcqa00002jjgqwxyq0u8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-跨域" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/26/跨域/" class="article-date">
+  <time datetime="2018-11-26T15:04:04.999Z" itemprop="datePublished">2018-11-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/26/跨域/">跨域</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h1><p>协议，域名，端口任何一项不同都会引起跨域问题<br>注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力  </p>
+<h1 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a>跨域解决方案</h1><h2 id="1-document-domain-iframe"><a href="#1-document-domain-iframe" class="headerlink" title="1.document.domain + iframe"></a>1.document.domain + iframe</h2><p>只有主域相同才能使用  </p>
+<pre><code>//parent.domain.com/a.html
+document.doman = &apos;domain.com&apos;
+var ifr = document.createElement(&apos;iframe&apos;)
+ifr.src = &apos;child.domain.com/b.html&apos;
+ifr.display = none;
+document.body.appendChild(ifr);
+ifr.onload = function () {
+    var doc = ifr.contentDocument || ifr.contentWindow.document
+    //doc 
+     ifr.onload = null;
+}
+</code></pre><p>–</p>
+<pre><code>//child.domain.com/b.html
+document.domain = &apos;domain.com&apos;
+</code></pre><h2 id="2-动态创建script"><a href="#2-动态创建script" class="headerlink" title="2.动态创建script"></a>2.动态创建script</h2><pre><code>function loadScript(url, func) {
+  var head = document.head || document.getElementByTagName(&apos;head&apos;)[0];
+  var script = document.createElement(&apos;script&apos;);
+  script.src = url;
+
+  script.onload = script.onreadystatechange = function(){
+    if(!this.readyState || this.readyState==&apos;loaded&apos; || this.readyState==&apos;complete&apos;){
+      func();
+      script.onload = script.onreadystatechange = null;
+    }
+  };
+
+  head.insertBefore(script, null);
+}
+window.baidu = {
+  sug: function(data){
+    console.log(data);
+  }
+}
+loadScript(&apos;http://suggestion.baidu.com/su?wd=w&apos;,function(){console.log(&apos;loaded&apos;)});    
+</code></pre><h2 id="3-loaction-hash-iframe"><a href="#3-loaction-hash-iframe" class="headerlink" title="3.loaction.hash+ iframe"></a>3.loaction.hash+ iframe</h2><pre><code>    //a.com/a.html
+function startRequest(){
+    var ifr = document.createElement(&apos;iframe&apos;);
+    ifr.style.display = &apos;none&apos;;
+    ifr.src = &apos;http://b.com/b.html#paramdo&apos;;
+        document.body.appendChild(ifr);
+}
+
+function checkHash() {
+    try {
+        var data = location.hash ? location.hash.substring(1) : &apos;&apos;;
+        if (console.log) {
+            console.log(&apos;Now the data is &apos;+data);
+        }
+    } catch(e) {};
+}
+setInterval(checkHash, 2000);
+</code></pre><p>–<br>    //b.com/b.html<br>    //模拟一个简单的参数处理操作<br>    switch(location.hash){<br>        case ‘#paramdo’:<br>            callBack();<br>            break;<br>        case ‘#paramset’:<br>            //do something……<br>            break;<br>    }</p>
+<pre><code>function callBack(){
+    try {
+        parent.location.hash = &apos;somedata&apos;;
+    } catch (e) {
+        // ie、chrome的安全机制无法修改parent.location.hash，
+        // 所以要利用一个中间的cnblogs域下的代理iframe
+        var ifrproxy = document.createElement(&apos;iframe&apos;);
+        ifrproxy.style.display = &apos;none&apos;;
+        ifrproxy.src = &apos;http://a.com/c.html#somedata&apos;;    // 注意该文件在&quot;a.com&quot;域下
+        document.body.appendChild(ifrproxy);
+    }
+}    
+</code></pre><p>–<br>    //<a href="http://a.com/c.html" target="_blank" rel="noopener">http://a.com/c.html</a><br>    parent.parent.location.hash = self.location.hash.substring(1);</p>
+<h2 id="4-window-name-iframe"><a href="#4-window-name-iframe" class="headerlink" title="4.window.name + iframe"></a>4.window.name + iframe</h2><p>window.name :name 值在不同的页面（甚至不同域名）加载后依旧存在，并且可以支持非常长的 name 值（2MB)  </p>
+<pre><code>    //a.com/a/html
+            function proxy(url,func) {
+    var isFirst = true;
+    var ifr = document.createElement(&apos;iframe&apos;);
+    loadFunc = function() {
+        console.log(1,isFirst)
+        if(isFirst) {
+            ifr.src = &apos;a.com/cs1.html&apos;;
+            isFirst = false;
+        } else {
+            console.log(&apos;name&apos;,ifr.contentWindow.name)
+            func(ifr.contentWindow.name);
+            document.body.removeChild(ifr);
+            ifr.src = null;
+            ifr = &apos;&apos;;
+        }
+
+    }
+     ifr.src = url;
+    ifr.style.display = &apos;none&apos;;
+    if(ifr.attachEvent){ ifr.attachEvent(&apos;onload&apos;, loadFunc);
+}else {ifr.onload = loadFunc;}
+     document.body.appendChild(ifr);
+}
+
+ proxy(&apos;http://www.baidu.com/&apos;, function(data){
+      console.log(&apos;data&apos;,data);
+    });
+</code></pre><h2 id="5-postMessage"><a href="#5-postMessage" class="headerlink" title="5.    postMessage"></a>5.    postMessage</h2><pre><code>a.com/index.html中的代码：
+&lt;iframe id=&quot;ifr&quot; src=&quot;b.com/index.html&quot;&gt;&lt;/iframe&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    window.onload = function() {
+    var ifr = document.getElementById(&apos;ifr&apos;);
+       var targetOrigin = &apos;http://b.com&apos;;
+     // 若写成&apos;http://b.com/c/proxy.html&apos;效果一样
+      // 若写成&apos;http://c.com&apos;就不会执行postMessage了
+       ifr.contentWindow.postMessage(&apos;I was there!&apos;, targetOrigin);
+};
+&lt;/script&gt;
+
+//b.com/index.html
+window.addEventListener(&apos;message&apos;, function(event){
+        // 通过origin属性判断消息来源地址
+        if (event.origin == &apos;http://a.com&apos;) {
+            alert(event.data);    // 弹出&quot;I was there!&quot;
+            alert(event.source);  
+            // 对a.com、index.html中window对象的引用
+            // 但由于同源策略，这里event.source不可以访问window对象
+        }
+    }, false);
+</code></pre><h2 id="6-CORS"><a href="#6-CORS" class="headerlink" title="6.CORS"></a>6.CORS</h2><h2 id="7-JSONP"><a href="#7-JSONP" class="headerlink" title="7.JSONP"></a>7.JSONP</h2><pre><code>    function handleResponse(response){
+    console.log(&apos;The responsed data is: &apos;+response.data);
+}
+var script = document.createElement(&apos;script&apos;);
+script.src = &apos;http://www.baidu.com/json/?callback=handleResponse&apos;;
+document.body.insertBefore(script, document.body.firstChild);
+/*handleResonse({&quot;data&quot;: &quot;zhe&quot;})*/
+//原理如下：
+//当我们通过script标签请求时
+//后台就会根据相应的参数(json,handleResponse)
+//来生成相应的json数据(handleResponse({&quot;data&quot;: &quot;zhe&quot;}))
+//最后这个返回的json数据(代码)就会被放在当前js文件中被执行
+//至此跨域通信完成
+</code></pre><h2 id="8-web-socket"><a href="#8-web-socket" class="headerlink" title="8.web socket"></a>8.web socket</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2018/11/26/跨域/" data-id="cjoyft7bp0000nljgn33pwduk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-flex&amp;grid" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/22/flex&grid/" class="article-date">
@@ -505,6 +719,118 @@ grid-auto-rows: 300px;
 
 
   
+    <article id="post-head-meta" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/24/head-meta/" class="article-date">
+  <time datetime="2017-08-24T02:23:03.000Z" itemprop="datePublished">2017-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用 HTML5 doctype，不区分大小写 </p>
+<pre><code>&lt;!DOCTYPE html&gt; 
+</code></pre><p>单一的 zh 和 zh-CN 均属于废弃用法。<br>问题主要在于，zh 现在不是语言code了，而是macrolang，能作为语言code的是cmn（国语）、yue（粤语）、wuu（吴语）等。<br>通常建议写成 zh-cmn 而不是光写 cmn，主要是考虑兼容性（至少可匹配 zh），有不少软件和框架还没有据此更新。zh-CN 的问题还在于，其实多数情况下标记的是简体中文，但是不恰当的使用了地区<br>所以其实应该使用 zh-Hans / zh-Hant 来表示简体和繁体。</p>
+<pre><code>&lt;html lang=&quot;zh-cmn-Hans&quot;&gt;
+</code></pre><p>  声明文档使用的字符编码   </p>
+<pre><code>&lt;meta charset=&apos;utf-8&apos;&gt;
+</code></pre><p>  优先使用 IE 最新版本和 Chrome  </p>
+<pre><code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;/&gt;
+</code></pre><p>页面描述    </p>
+<pre><code>&lt;meta name=&quot;description&quot; content=&quot;不超过150个字符&quot;/&gt;
+</code></pre><p> 页面关键词 </p>
+<pre><code>&lt;meta name=&quot;keywords&quot; content=&quot;&quot;/&gt;
+</code></pre><p> 网页作者 </p>
+<pre><code>&lt;meta name=&quot;author&quot; content=&quot;name, email@gmail.com&quot;/&gt;
+</code></pre><p> 搜索引擎抓取</p>
+<pre><code>&lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot;/&gt;
+</code></pre><p> 为移动设备添加 viewport</p>
+<pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no&quot;&gt;
+</code></pre><p>  <code>width=device-width</code> 会导致 iPhone 5 添加到主屏后以 WebApp 全屏模式打开页面时出现黑边 <a href="http://bigc.at/ios-webapp-viewport-meta.orz" target="_blank" rel="noopener">http://bigc.at/ios-webapp-viewport-meta.orz</a> </p>
+<p>  iOS 设备 begin<br>   添加到主屏后的标题（iOS 6 新增）</p>
+<pre><code>&lt;meta name=&quot;apple-mobile-web-app-title&quot; content=&quot;标题&quot;&gt;
+</code></pre><p>   是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 </p>
+<pre><code>&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;/&gt;
+</code></pre><p> 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari）</p>
+<pre><code>&lt;meta name=&quot;apple-itunes-app&quot; content=&quot;app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL&quot;&gt;
+</code></pre><p>设置苹果工具栏颜色<br>    <meta name="apple-mobile-web-app-status-bar-style" content="black"></p>
+<p>忽略页面中的数字识别为电话，忽略email识别 </p>
+<pre><code>&lt;meta name=&quot;format-detection&quot; content=&quot;telphone=no, email=no&quot;/&gt;
+</code></pre><p> 启用360浏览器的极速模式(webkit)<br>    <meta name="renderer" content="webkit"></p>
+<p>避免IE使用兼容模式 </p>
+<pre><code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+</code></pre><p>不让百度转码 </p>
+<pre><code>&lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;no-siteapp&quot; /&gt;
+</code></pre><p> 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓</p>
+<pre><code>&lt;meta name=&quot;HandheldFriendly&quot; content=&quot;true&quot;&gt;
+</code></pre><p>微软的老式浏览器 </p>
+<pre><code>&lt;meta name=&quot;MobileOptimized&quot; content=&quot;320&quot;&gt;
+</code></pre><p>   uc强制竖屏 </p>
+<pre><code>&lt;meta name=&quot;screen-orientation&quot; content=&quot;portrait&quot;&gt;
+</code></pre><p>  QQ强制竖屏</p>
+<pre><code>&lt;meta name=&quot;x5-orientation&quot; content=&quot;portrait&quot;&gt;
+</code></pre><p>   UC强制全屏</p>
+<pre><code>&lt;meta name=&quot;full-screen&quot; content=&quot;yes&quot;&gt;
+</code></pre><p> QQ强制全屏 </p>
+<pre><code>&lt;meta name=&quot;x5-fullscreen&quot; content=&quot;true&quot;&gt;
+</code></pre><p>   UC应用模式</p>
+<pre><code>&lt;meta name=&quot;browsermode&quot; content=&quot;application&quot;&gt;
+</code></pre><p>   QQ应用模式</p>
+<pre><code>&lt;meta name=&quot;x5-page-mode&quot; content=&quot;app&quot;&gt;
+</code></pre><p>  windows phone 点击无高光 </p>
+<pre><code>&lt;meta name=&quot;msapplication-tap-highlight&quot; content=&quot;no&quot;&gt;
+</code></pre><p> iOS 图标 begin<br> iPhone 和 iTouch，默认 57x57 像素，必须有 </p>
+<pre><code>&lt;link rel=&quot;apple-touch-icon-precomposed&quot; href=&quot;/apple-touch-icon-57x57-precomposed.png&quot;/&gt;
+</code></pre><p>Retina iPhone 和 Retina iTouch，114x114 像素，可以没有，但推荐有</p>
+<pre><code>&lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;114x114&quot; href=&quot;/apple-touch-icon-114x114-precomposed.png&quot;/&gt;
+</code></pre><p>Retina iPad，144x144 像素，可以没有，但推荐有 </p>
+<pre><code>&lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;144x144&quot; href=&quot;/apple-touch-icon-144x144-precomposed.png&quot;/&gt;
+</code></pre><p>iOS 图标</p>
+<p>  iOS 启动画面 begin<br>  iPad 竖屏 768 x 1004（标准分辨率）</p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;768x1004&quot; href=&quot;/splash-screen-768x1004.png&quot;/&gt;
+</code></pre><p>iPad 竖屏 1536x2008（Retina）</p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;1536x2008&quot; href=&quot;/splash-screen-1536x2008.png&quot;/&gt;
+</code></pre><p>iPad 横屏 1024x748（标准分辨率）</p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;1024x748&quot; href=&quot;/Default-Portrait-1024x748.png&quot;/&gt;
+</code></pre><p>iPad 横屏 2048x1496（Retina） </p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;2048x1496&quot; href=&quot;/splash-screen-2048x1496.png&quot;/&gt;
+</code></pre><p> iPhone/iPod Touch 竖屏 320x480 (标准分辨率)</p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; href=&quot;/splash-screen-320x480.png&quot;/&gt;
+</code></pre><p>iPhone/iPod Touch 竖屏 640x960 (Retina) </p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;640x960&quot; href=&quot;/splash-screen-640x960.png&quot;/&gt;
+</code></pre><p>iPhone 5/iPod Touch 5 竖屏 640x1136 (Retina) </p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;640x1136&quot; href=&quot;/splash-screen-640x1136.png&quot;/&gt;
+</code></pre><p> Windows 8 磁贴颜色</p>
+<pre><code>&lt;meta name=&quot;msapplication-TileColor&quot; content=&quot;#000&quot;/&gt;
+</code></pre><p> Windows 8 磁贴图标 </p>
+<pre><code>&lt;meta name=&quot;msapplication-TileImage&quot; content=&quot;icon.png&quot;/&gt;
+</code></pre><p>  添加 RSS 订阅<br>    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml"></p>
+<p>添加 favicon icon<br>    <link rel="shortcut icon" type="image/ico" href="/favicon.ico"></p>
+<p> sns 社交标签 begin<br> 参考微博API </p>
+<pre><code>&lt;meta property=&quot;og:type&quot; content=&quot;类型&quot; /&gt;
+&lt;meta property=&quot;og:url&quot; content=&quot;URL地址&quot; /&gt;
+&lt;meta property=&quot;og:title&quot; content=&quot;标题&quot; /&gt;
+&lt;meta property=&quot;og:image&quot; content=&quot;图片&quot; /&gt;
+&lt;meta property=&quot;og:description&quot; content=&quot;描述&quot; /&gt;
+</code></pre><p>sns 社交标签 end</p>
+<pre><code>&lt;title&gt;标题&lt;/title&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2017/08/24/head-meta/" data-id="cjou118i20000xijgczp7dy6a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
 
 
 </section>
@@ -518,7 +844,7 @@ grid-auto-rows: 300px;
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
     </div>
   </div>
 
@@ -528,7 +854,7 @@ grid-auto-rows: 300px;
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a>
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a>
     </div>
   </div>
 
@@ -537,7 +863,7 @@ grid-auto-rows: 300px;
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
     </div>
   </div>
 
@@ -548,6 +874,14 @@ grid-auto-rows: 300px;
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/11/27/浏览器与内核/">浏览器与内核</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/26/跨域/">跨域</a>
+          </li>
         
           <li>
             <a href="/2018/11/22/flex&grid/">flex &amp; grid 布局</a>

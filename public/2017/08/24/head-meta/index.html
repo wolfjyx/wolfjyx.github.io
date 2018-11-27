@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>wolfjyx&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用 HTML5 doctype，不区分大小写  &amp;lt;!DOCTYPE html&amp;gt;  单一的 zh 和 zh-CN 均属于废弃用法。问题主要在于，zh 现在不是语言code了，而是macrolang，能作为语言code的是cmn（国语）、yue（粤语）、wuu（吴语）等。通常建议写成 zh-cmn 而不是光写 cmn，主要是考虑兼容性（至少可匹配 zh），有不少软件和框架还没有据此更新。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wolfjyx&#39;s blog">
+<meta property="og:url" content="http://wolfjyx.github.com/2017/08/24/head-meta/index.html">
+<meta property="og:site_name" content="wolfjyx&#39;s blog">
+<meta property="og:description" content="使用 HTML5 doctype，不区分大小写  &amp;lt;!DOCTYPE html&amp;gt;  单一的 zh 和 zh-CN 均属于废弃用法。问题主要在于，zh 现在不是语言code了，而是macrolang，能作为语言code的是cmn（国语）、yue（粤语）、wuu（吴语）等。通常建议写成 zh-cmn 而不是光写 cmn，主要是考虑兼容性（至少可匹配 zh），有不少软件和框架还没有据此更新。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-08-24T02:23:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="wolfjyx&#39;s blog">
+<meta name="twitter:description" content="使用 HTML5 doctype，不区分大小写  &amp;lt;!DOCTYPE html&amp;gt;  单一的 zh 和 zh-CN 均属于废弃用法。问题主要在于，zh 现在不是语言code了，而是macrolang，能作为语言code的是cmn（国语）、yue（粤语）、wuu（吴语）等。通常建议写成 zh-cmn 而不是光写 cmn，主要是考虑兼容性（至少可匹配 zh），有不少软件和框架还没有据此更新。">
+  
+    <link rel="alternate" href="/atom.xml" title="wolfjyx&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">wolfjyx&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">博客的博，博客的客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wolfjyx.github.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-head-meta" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/24/head-meta/" class="article-date">
+  <time datetime="2017-08-24T02:23:03.000Z" itemprop="datePublished">2017-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用 HTML5 doctype，不区分大小写 </p>
+<pre><code>&lt;!DOCTYPE html&gt; 
+</code></pre><p>单一的 zh 和 zh-CN 均属于废弃用法。<br>问题主要在于，zh 现在不是语言code了，而是macrolang，能作为语言code的是cmn（国语）、yue（粤语）、wuu（吴语）等。<br>通常建议写成 zh-cmn 而不是光写 cmn，主要是考虑兼容性（至少可匹配 zh），有不少软件和框架还没有据此更新。zh-CN 的问题还在于，其实多数情况下标记的是简体中文，但是不恰当的使用了地区<br>所以其实应该使用 zh-Hans / zh-Hant 来表示简体和繁体。</p>
+<pre><code>&lt;html lang=&quot;zh-cmn-Hans&quot;&gt;
+</code></pre><p>  声明文档使用的字符编码   </p>
+<pre><code>&lt;meta charset=&apos;utf-8&apos;&gt;
+</code></pre><p>  优先使用 IE 最新版本和 Chrome  </p>
+<pre><code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;/&gt;
+</code></pre><p>页面描述    </p>
+<pre><code>&lt;meta name=&quot;description&quot; content=&quot;不超过150个字符&quot;/&gt;
+</code></pre><p> 页面关键词 </p>
+<pre><code>&lt;meta name=&quot;keywords&quot; content=&quot;&quot;/&gt;
+</code></pre><p> 网页作者 </p>
+<pre><code>&lt;meta name=&quot;author&quot; content=&quot;name, email@gmail.com&quot;/&gt;
+</code></pre><p> 搜索引擎抓取</p>
+<pre><code>&lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot;/&gt;
+</code></pre><p> 为移动设备添加 viewport</p>
+<pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no&quot;&gt;
+</code></pre><p>  <code>width=device-width</code> 会导致 iPhone 5 添加到主屏后以 WebApp 全屏模式打开页面时出现黑边 <a href="http://bigc.at/ios-webapp-viewport-meta.orz" target="_blank" rel="noopener">http://bigc.at/ios-webapp-viewport-meta.orz</a> </p>
+<p>  iOS 设备 begin<br>   添加到主屏后的标题（iOS 6 新增）</p>
+<pre><code>&lt;meta name=&quot;apple-mobile-web-app-title&quot; content=&quot;标题&quot;&gt;
+</code></pre><p>   是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 </p>
+<pre><code>&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;/&gt;
+</code></pre><p> 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari）</p>
+<pre><code>&lt;meta name=&quot;apple-itunes-app&quot; content=&quot;app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL&quot;&gt;
+</code></pre><p>设置苹果工具栏颜色<br>    <meta name="apple-mobile-web-app-status-bar-style" content="black"></p>
+<p>忽略页面中的数字识别为电话，忽略email识别 </p>
+<pre><code>&lt;meta name=&quot;format-detection&quot; content=&quot;telphone=no, email=no&quot;/&gt;
+</code></pre><p> 启用360浏览器的极速模式(webkit)<br>    <meta name="renderer" content="webkit"></p>
+<p>避免IE使用兼容模式 </p>
+<pre><code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+</code></pre><p>不让百度转码 </p>
+<pre><code>&lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;no-siteapp&quot; /&gt;
+</code></pre><p> 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓</p>
+<pre><code>&lt;meta name=&quot;HandheldFriendly&quot; content=&quot;true&quot;&gt;
+</code></pre><p>微软的老式浏览器 </p>
+<pre><code>&lt;meta name=&quot;MobileOptimized&quot; content=&quot;320&quot;&gt;
+</code></pre><p>   uc强制竖屏 </p>
+<pre><code>&lt;meta name=&quot;screen-orientation&quot; content=&quot;portrait&quot;&gt;
+</code></pre><p>  QQ强制竖屏</p>
+<pre><code>&lt;meta name=&quot;x5-orientation&quot; content=&quot;portrait&quot;&gt;
+</code></pre><p>   UC强制全屏</p>
+<pre><code>&lt;meta name=&quot;full-screen&quot; content=&quot;yes&quot;&gt;
+</code></pre><p> QQ强制全屏 </p>
+<pre><code>&lt;meta name=&quot;x5-fullscreen&quot; content=&quot;true&quot;&gt;
+</code></pre><p>   UC应用模式</p>
+<pre><code>&lt;meta name=&quot;browsermode&quot; content=&quot;application&quot;&gt;
+</code></pre><p>   QQ应用模式</p>
+<pre><code>&lt;meta name=&quot;x5-page-mode&quot; content=&quot;app&quot;&gt;
+</code></pre><p>  windows phone 点击无高光 </p>
+<pre><code>&lt;meta name=&quot;msapplication-tap-highlight&quot; content=&quot;no&quot;&gt;
+</code></pre><p> iOS 图标 begin<br> iPhone 和 iTouch，默认 57x57 像素，必须有 </p>
+<pre><code>&lt;link rel=&quot;apple-touch-icon-precomposed&quot; href=&quot;/apple-touch-icon-57x57-precomposed.png&quot;/&gt;
+</code></pre><p>Retina iPhone 和 Retina iTouch，114x114 像素，可以没有，但推荐有</p>
+<pre><code>&lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;114x114&quot; href=&quot;/apple-touch-icon-114x114-precomposed.png&quot;/&gt;
+</code></pre><p>Retina iPad，144x144 像素，可以没有，但推荐有 </p>
+<pre><code>&lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;144x144&quot; href=&quot;/apple-touch-icon-144x144-precomposed.png&quot;/&gt;
+</code></pre><p>iOS 图标</p>
+<p>  iOS 启动画面 begin<br>  iPad 竖屏 768 x 1004（标准分辨率）</p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;768x1004&quot; href=&quot;/splash-screen-768x1004.png&quot;/&gt;
+</code></pre><p>iPad 竖屏 1536x2008（Retina）</p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;1536x2008&quot; href=&quot;/splash-screen-1536x2008.png&quot;/&gt;
+</code></pre><p>iPad 横屏 1024x748（标准分辨率）</p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;1024x748&quot; href=&quot;/Default-Portrait-1024x748.png&quot;/&gt;
+</code></pre><p>iPad 横屏 2048x1496（Retina） </p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;2048x1496&quot; href=&quot;/splash-screen-2048x1496.png&quot;/&gt;
+</code></pre><p> iPhone/iPod Touch 竖屏 320x480 (标准分辨率)</p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; href=&quot;/splash-screen-320x480.png&quot;/&gt;
+</code></pre><p>iPhone/iPod Touch 竖屏 640x960 (Retina) </p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;640x960&quot; href=&quot;/splash-screen-640x960.png&quot;/&gt;
+</code></pre><p>iPhone 5/iPod Touch 5 竖屏 640x1136 (Retina) </p>
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;640x1136&quot; href=&quot;/splash-screen-640x1136.png&quot;/&gt;
+</code></pre><p> Windows 8 磁贴颜色</p>
+<pre><code>&lt;meta name=&quot;msapplication-TileColor&quot; content=&quot;#000&quot;/&gt;
+</code></pre><p> Windows 8 磁贴图标 </p>
+<pre><code>&lt;meta name=&quot;msapplication-TileImage&quot; content=&quot;icon.png&quot;/&gt;
+</code></pre><p>  添加 RSS 订阅<br>    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml"></p>
+<p>添加 favicon icon<br>    <link rel="shortcut icon" type="image/ico" href="/favicon.ico"></p>
+<p> sns 社交标签 begin<br> 参考微博API </p>
+<pre><code>&lt;meta property=&quot;og:type&quot; content=&quot;类型&quot; /&gt;
+&lt;meta property=&quot;og:url&quot; content=&quot;URL地址&quot; /&gt;
+&lt;meta property=&quot;og:title&quot; content=&quot;标题&quot; /&gt;
+&lt;meta property=&quot;og:image&quot; content=&quot;图片&quot; /&gt;
+&lt;meta property=&quot;og:description&quot; content=&quot;描述&quot; /&gt;
+</code></pre><p>sns 社交标签 end</p>
+<pre><code>&lt;title&gt;标题&lt;/title&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2017/08/24/head-meta/" data-id="cjou118i20000xijgczp7dy6a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/21/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/27/浏览器与内核/">浏览器与内核</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/26/跨域/">跨域</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/22/flex&grid/">flex &amp; grid 布局</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/yeoman/">yeoman</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/21/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 wolfjyx<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
