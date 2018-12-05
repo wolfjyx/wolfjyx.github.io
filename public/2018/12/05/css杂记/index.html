@@ -5,19 +5,20 @@
   
 
   
-  <title>yeoman | wolfjyx&#39;s blog</title>
+  <title>css 杂记（持续补充） | wolfjyx&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="设置开发环境1.1 安装条件安装yeoman之前，你需要先安装如下内容  Nodejs v4 或者更高版本 npm git  通过以下命令检查是否安装 Node 环境以及 npm 管理工具。 $ node -v &amp;amp;&amp;amp; npm -v npm 默认随 Node 一起安装。有些 Node 版本可能安装的是旧版本的 npm，你可以通过以下命令更新 npm $ npm install -g">
+  <meta name="description" content="margin 作用 让块元素水平居中 让元素之间留有间距 处理特殊的first，last 布局   要点  margin折叠 margin百分比 margin的auto值 margin和相对偏移的异同 IE6浮动双margin Bug IE6浮动相邻元素3px Bug      auto一般auto计算值取决于可用空间 百分比默认在writing-mode:horizontal-tb和direct">
+<meta name="keywords" content="css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yeoman">
-<meta property="og:url" content="http://wolfjyx.github.com/2018/11/21/yeoman/index.html">
+<meta property="og:title" content="css 杂记（持续补充）">
+<meta property="og:url" content="http://wolfjyx.github.com/2018/12/05/css杂记/index.html">
 <meta property="og:site_name" content="wolfjyx&#39;s blog">
-<meta property="og:description" content="设置开发环境1.1 安装条件安装yeoman之前，你需要先安装如下内容  Nodejs v4 或者更高版本 npm git  通过以下命令检查是否安装 Node 环境以及 npm 管理工具。 $ node -v &amp;amp;&amp;amp; npm -v npm 默认随 Node 一起安装。有些 Node 版本可能安装的是旧版本的 npm，你可以通过以下命令更新 npm $ npm install -g">
+<meta property="og:description" content="margin 作用 让块元素水平居中 让元素之间留有间距 处理特殊的first，last 布局   要点  margin折叠 margin百分比 margin的auto值 margin和相对偏移的异同 IE6浮动双margin Bug IE6浮动相邻元素3px Bug      auto一般auto计算值取决于可用空间 百分比默认在writing-mode:horizontal-tb和direct">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-21T15:28:49.834Z">
+<meta property="og:updated_time" content="2018-12-05T14:43:52.402Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yeoman">
-<meta name="twitter:description" content="设置开发环境1.1 安装条件安装yeoman之前，你需要先安装如下内容  Nodejs v4 或者更高版本 npm git  通过以下命令检查是否安装 Node 环境以及 npm 管理工具。 $ node -v &amp;amp;&amp;amp; npm -v npm 默认随 Node 一起安装。有些 Node 版本可能安装的是旧版本的 npm，你可以通过以下命令更新 npm $ npm install -g">
+<meta name="twitter:title" content="css 杂记（持续补充）">
+<meta name="twitter:description" content="margin 作用 让块元素水平居中 让元素之间留有间距 处理特殊的first，last 布局   要点  margin折叠 margin百分比 margin的auto值 margin和相对偏移的异同 IE6浮动双margin Bug IE6浮动相邻元素3px Bug      auto一般auto计算值取决于可用空间 百分比默认在writing-mode:horizontal-tb和direct">
   
     <link rel="alternate" href="/atom.xml" title="wolfjyx&#39;s blog" type="application/atom+xml">
   
@@ -68,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-yeoman" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-css杂记" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/11/21/yeoman/" class="article-date">
-  <time datetime="2018-11-21T15:28:17.000Z" itemprop="datePublished">2018-11-21</time>
+    <a href="/2018/12/05/css杂记/" class="article-date">
+  <time datetime="2018-12-05T14:43:52.402Z" itemprop="datePublished">2018-12-05</time>
 </a>
     
   </div>
@@ -82,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      yeoman
+      css 杂记（持续补充）
     </h1>
   
 
@@ -90,62 +91,70 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="设置开发环境"><a href="#设置开发环境" class="headerlink" title="设置开发环境"></a>设置开发环境</h1><h2 id="1-1-安装条件"><a href="#1-1-安装条件" class="headerlink" title="1.1 安装条件"></a>1.1 安装条件</h2><p>安装yeoman之前，你需要先安装如下内容</p>
-<ul>
-<li>Nodejs v4 或者更高版本</li>
-<li>npm</li>
-<li>git</li>
+        <h2 id="margin"><a href="#margin" class="headerlink" title="margin"></a>margin</h2><ul>
+<li><strong>作用</strong><ul>
+<li>让块元素水平居中</li>
+<li>让元素之间留有间距</li>
+<li>处理特殊的first，last</li>
+<li>布局</li>
 </ul>
-<p>通过以下命令检查是否安装 Node 环境以及 npm 管理工具。</p>
-<pre><code>$ node -v &amp;&amp; npm -v
-</code></pre><p>npm 默认随 Node 一起安装。有些 Node 版本可能安装的是旧版本的 npm，你可以通过以下命令更新 npm</p>
-<pre><code>$ npm install -g npm@latest
-</code></pre><p>通过以下命名检查是否安装git</p>
-<pre><code>$ git --version
-</code></pre><h2 id="1-2-安装yeoman工具箱"><a href="#1-2-安装yeoman工具箱" class="headerlink" title="1.2 安装yeoman工具箱"></a>1.2 安装yeoman工具箱</h2><p>如果已经安装了 node 环境，可以通过以下命令安装 Yeoman</p>
-<pre><code>$ npm install -g yo
-</code></pre><p>##1.3 确认安装<br>首先确认 Yeoman 是否正确安装</p>
-<pre><code>$ yo --version
-</code></pre><h1 id="安装Yeoman生成器"><a href="#安装Yeoman生成器" class="headerlink" title="安装Yeoman生成器"></a>安装Yeoman生成器</h1><p>在传统的 web开发中，你需要花大量时间为你的 webapp 设置模板代码、下载依赖包以及手动创建文件目录结构。Yeoman 的生成器会帮你搞定这一切</p>
-<p>2.1安装生成器<br>你可以通过 npm 命令安装 Yeoman 生成器，目前可用的生成器超过了 3500 个，大多数都是开源社区贡献的。</p>
-<p>通过以下命令安装 generator-webpack-simple-static</p>
-<pre><code>$ npm install -g generator-webpack-simple-static
-</code></pre><p>该命令将安装生成器所需的node包。</p>
-<p>和使用 npm install 一样，你可以通过 Yeoman 的交互菜单搜索 generators。</p>
-<p>运行 yo 然后选择 Install a generator 来搜索发布的生成器。</p>
-<h1 id="使用生成器搭建app"><a href="#使用生成器搭建app" class="headerlink" title="使用生成器搭建app"></a>使用生成器搭建app</h1><p>我们已经使用多次“脚手架”这个词，但是你可能还不知道它是什么意思。在 Yeoman的 语境中，脚手架材料表示通过一些配置为你的 webapp 生成文件。在这一步中，你会看到 Yeoman 如何为你喜欢的库及框架生成文件，以及使用如 webpack/babel/Sass 等一些额外的库的配置。</p>
-<p>3.1 创建项目文件夹</p>
-<pre><code>$ mkdir mytodo &amp;&amp; cd mytodo
-</code></pre><p>生成器生成的脚手架文件会放在这个文件夹中。</p>
-<p>3.2 通过 Yeoman 菜单使用生成器<br>再次运行 yo</p>
-<pre><code>$ yo
-</code></pre><p>如果你已经安装了多个 generator，你需要从中选择一个。选中 generator-webpack-simple-static，按回车 enter 运行生成器。</p>
+</li>
+<li><strong>要点</strong> <ul>
+<li>margin折叠</li>
+<li>margin百分比</li>
+<li>margin的auto值</li>
+<li>margin和相对偏移的异同</li>
+<li>IE6浮动双margin Bug</li>
+<li>IE6浮动相邻元素3px Bug  </li>
+</ul>
+</li>
+</ul>
+<h3 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h3><p>一般auto计算值取决于可用空间</p>
+<h3 id="百分比"><a href="#百分比" class="headerlink" title="百分比"></a>百分比</h3><p>默认在writing-mode:horizontal-tb和direction：ltr，百分比参照父级的宽度</p>
+<h3 id="margin折叠"><a href="#margin折叠" class="headerlink" title="margin折叠"></a>margin折叠</h3><ul>
+<li>垂直边毗邻  <ul>
+<li>元素的上外边距和其属于常流中的第一个孩子的上外边距</li>
+<li>元素的下外边距和其属于常流中的下一个兄弟的上外边距</li>
+<li>属于常流中的最后一个孩子的下外边距和其父亲的下外边距</li>
+<li>元素的上下外边距，如果该元素没有建立新的块级格式上下文，且min-height的计算值为0或auto，且没有属于常流中的孩子</li>
+</ul>
+</li>
+</ul>
+<h3 id="IE6浮动双倍margin-bug"><a href="#IE6浮动双倍margin-bug" class="headerlink" title="IE6浮动双倍margin bug"></a>IE6浮动双倍margin bug</h3><ul>
+<li>解决方案<ol>
+<li><code>_margin-left:*/2</code></li>
+<li><code>_display:inline</code>  </li>
+</ol>
+</li>
+</ul>
+<h2 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h2><ul>
+<li>元素的层叠级别为整型，描述在相同层叠上下文中元素在z轴上的呈现顺序</li>
+<li>同一层叠上下文中，层叠级别大的显示在上，相同层叠级别时，遵循后来居上的原则</li>
+<li>不同层叠的上下文中，元素呈现顺序以父级层叠上下文的层叠级别来决定呈现的先后顺序，与自身的层叠级别无关</li>
+<li>当定位元素没有显式定义z-index值时，不会创建新的局部层叠上下文</li>
+<li>子元素有可能和祖先的兄弟会长祖先兄弟的子元素处在同一个层叠上下文中</li>
+<li>当opacity值小于1时，该元素会创建新的局部层叠上下文，</li>
+<li>当opacity值小于1时，该元素拥有层叠级别相当于z-index：0或auto，但不能定义z-index，除非本身是定位元素</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wolfjyx.github.com/2018/11/21/yeoman/" data-id="cjorc09rs0001z8jgho2whtqj" class="article-share-link">Share</a>
+      <a data-url="http://wolfjyx.github.com/2018/12/05/css杂记/" data-id="cjpba9hbq0000qkjini862bdy" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2018/11/22/flex&grid/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          flex &amp; grid 布局
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/21/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/12/04/freemark/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">freemark</div>
     </a>
   
 </nav>
