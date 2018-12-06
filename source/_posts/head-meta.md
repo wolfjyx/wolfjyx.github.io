@@ -1,3 +1,9 @@
+---
+title:      "head-meta"
+tags:
+    - head
+---
+
 使用 HTML5 doctype，不区分大小写 
 
 		<!DOCTYPE html> 
