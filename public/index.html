@@ -66,6 +66,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-threejs 解读  scene" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/10/threejs 解读  scene/" class="article-date">
+  <time datetime="2018-12-10T14:03:28.637Z" itemprop="datePublished">2018-12-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/10/threejs 解读  scene/">threejs 解读  scene</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Scene"><a href="#Scene" class="headerlink" title="Scene"></a>Scene</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>scene用来创建场景</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用:"></a>使用:</h2><p>创建一个scene对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Scence()</span><br></pre></td></tr></table></figure></p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="fog"><a href="#fog" class="headerlink" title="fog"></a>fog</h3><p>fog实例，定义场景中的雾状背景。默认是null</p>
+<h3 id="overrideMaterial"><a href="#overrideMaterial" class="headerlink" title="overrideMaterial"></a>overrideMaterial</h3><p>如果不为null,它将使用其材质强制覆盖场景中所有对象。默认为null</p>
+<h3 id="autoUpdate"><a href="#autoUpdate" class="headerlink" title="autoUpdate"></a>autoUpdate</h3><p>如果是ture,则每一帧自动检测矩阵更新.如果false,则需要手动维护矩阵更新。默认为true</p>
+<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>如果不为null，则设置渲染场景时使用的背景，并始终先渲染。 可以设置为<strong>Color</strong>，<strong>Texture</strong>或<strong>CubeTexture</strong>。 默认为null</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="toJSON"><a href="#toJSON" class="headerlink" title="toJSON"></a>toJSON</h3><p>以JSON格式返回场景数据</p>
+<h1 id="Fog"><a href="#Fog" class="headerlink" title="Fog"></a>Fog</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>此类包含定义线性雾的参数，即密度随着距离的增加呈线性增长</p>
+<h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><p>创建Fog对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fog( color : Integer, near : Float, far : Float )</span><br></pre></td></tr></table></figure></p>
+<p>color参数被传递给<strong>Color</strong>来设置颜色属性，color可以是一个十六进制整数或CSS样式的字符串</p>
+<h1 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h1><h3 id="name"><a href="#name" class="headerlink" title="name"></a>name</h3><p>对象的可选名称（不必是唯一的),默认值为空字符串</p>
+<h3 id="color"><a href="#color" class="headerlink" title="color"></a>color</h3><p>雾的颜色，例如：如果设置为黑色，远处的物体将被渲染为黑色</p>
+<h3 id="near"><a href="#near" class="headerlink" title="near"></a>near</h3><p>开始施雾的最小距离。距离当前相机小于near单位的对象，将不会受到雾的影响。默认为1</p>
+<h3 id="far"><a href="#far" class="headerlink" title="far"></a>far</h3><p>结束施雾的最大距离。距离当前相机大于far单位的对象，将不会受到雾的影响。默认为1000</p>
+<h1 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h1><h3 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h3><p>返回具有与此雾有相同的参数的新雾实例</p>
+<h3 id="toJSON-1"><a href="#toJSON-1" class="headerlink" title="toJSON"></a>toJSON</h3><p>以JSON格式返回线性雾数据</p>
+<h1 id="FogExp2"><a href="#FogExp2" class="headerlink" title="FogExp2"></a>FogExp2</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>此类包含定义指数雾的参数，即密度随着距离的增加呈指数增长</p>
+<h2 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h2><p>创建FogExp2对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FogExp2( color : Integer, density : Float )</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<p>color参数被传递给<strong>Color</strong>来设置颜色属性，color可以是一个十六进制整数或CSS样式的字符串</p>
+<h2 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h2><h2 id="name-1"><a href="#name-1" class="headerlink" title="name"></a>name</h2><p>对象的可选名称（不必是唯一的),默认值为空字符串</p>
+<h2 id="color-1"><a href="#color-1" class="headerlink" title="color"></a>color</h2><p>雾的颜色，例如：如果设置为黑色，远处的物体将被渲染为黑色</p>
+<h2 id="density"><a href="#density" class="headerlink" title="density"></a>density</h2><p>定义雾密度增加的速度，默认0.00025</p>
+<h2 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h2><h3 id="clone-1"><a href="#clone-1" class="headerlink" title="clone"></a>clone</h3><p>返回具有与此雾有相同的参数的新雾实例</p>
+<h3 id="toJSON-2"><a href="#toJSON-2" class="headerlink" title="toJSON"></a>toJSON</h3><p>以JSON格式返回线性雾数据</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2018/12/10/threejs 解读  scene/" data-id="cjpie0t5i0000rsjinaoc4c3g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-threejs/">js threejs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-javascript &amp; ECMAScript &amp; es" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/09/javascript & ECMAScript & es/" class="article-date">
@@ -1293,52 +1355,12 @@ grid-auto-rows: 300px;
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/21/hello-world/" class="article-date">
-  <time datetime="2018-11-21T15:05:28.768Z" itemprop="datePublished">2018-11-21</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wolfjyx.github.com/2018/11/21/hello-world/" data-id="cjorc09rn0000z8jg7iukk7c9" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -1351,7 +1373,7 @@ grid-auto-rows: 300px;
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemark-模板/">freemark 模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/head/">head</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemark-模板/">freemark 模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/head/">head</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-threejs/">js threejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
     </div>
   </div>
 
@@ -1361,7 +1383,7 @@ grid-auto-rows: 300px;
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/freemark-模板/" style="font-size: 10px;">freemark 模板</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/head/" style="font-size: 10px;">head</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/浏览器/" style="font-size: 20px;">浏览器</a>
+      <a href="/tags/css/" style="font-size: 20px;">css</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/freemark-模板/" style="font-size: 10px;">freemark 模板</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/head/" style="font-size: 10px;">head</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js-threejs/" style="font-size: 10px;">js threejs</a> <a href="/tags/浏览器/" style="font-size: 20px;">浏览器</a>
     </div>
   </div>
 
@@ -1383,6 +1405,10 @@ grid-auto-rows: 300px;
       <ul>
         
           <li>
+            <a href="/2018/12/10/threejs 解读  scene/">threejs 解读  scene</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/09/javascript & ECMAScript & es/">javascript &amp; ECMAScript &amp; es</a>
           </li>
         
@@ -1396,10 +1422,6 @@ grid-auto-rows: 300px;
         
           <li>
             <a href="/2018/12/04/freemark/">freemark</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/03/浏览器渲染/">浏览器渲染</a>
           </li>
         
       </ul>
