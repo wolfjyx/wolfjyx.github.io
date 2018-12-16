@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>threejs 解读  camera | wolfjyx&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Camera概念相机的抽象类，新构建的相机都继承自此类 使用创建相机：1Camera() 属性isCamera用于检查此类或派生类是否为相机。 不应该更改此属性，因为渲染器在内部使用它进行优化。默认为true。 layers相机所属的layers  。 这是Object3D的继承属性。在渲染相机的视点时，对象必须与相机共享至少一个图层。 matrixWorldInverse这是matrixWorl">
+<meta name="keywords" content="js threejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="threejs 解读  camera">
+<meta property="og:url" content="http://wolfjyx.github.com/2018/12/16/threejs 解读  camera/index.html">
+<meta property="og:site_name" content="wolfjyx&#39;s blog">
+<meta property="og:description" content="Camera概念相机的抽象类，新构建的相机都继承自此类 使用创建相机：1Camera() 属性isCamera用于检查此类或派生类是否为相机。 不应该更改此属性，因为渲染器在内部使用它进行优化。默认为true。 layers相机所属的layers  。 这是Object3D的继承属性。在渲染相机的视点时，对象必须与相机共享至少一个图层。 matrixWorldInverse这是matrixWorl">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-16T06:47:13.504Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="threejs 解读  camera">
+<meta name="twitter:description" content="Camera概念相机的抽象类，新构建的相机都继承自此类 使用创建相机：1Camera() 属性isCamera用于检查此类或派生类是否为相机。 不应该更改此属性，因为渲染器在内部使用它进行优化。默认为true。 layers相机所属的layers  。 这是Object3D的继承属性。在渲染相机的视点时，对象必须与相机共享至少一个图层。 matrixWorldInverse这是matrixWorl">
+  
+    <link rel="alternate" href="/atom.xml" title="wolfjyx&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">wolfjyx&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">博客的博，博客的客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wolfjyx.github.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-threejs 解读  camera" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/16/threejs 解读  camera/" class="article-date">
+  <time datetime="2018-12-16T06:47:13.504Z" itemprop="datePublished">2018-12-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      threejs 解读  camera
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Camera"><a href="#Camera" class="headerlink" title="Camera"></a>Camera</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>相机的抽象类，新构建的相机都继承自此类</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>创建相机：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Camera()</span><br></pre></td></tr></table></figure></p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="isCamera"><a href="#isCamera" class="headerlink" title="isCamera"></a>isCamera</h3><p>用于检查此类或派生类是否为相机。 不应该更改此属性，因为渲染器在内部使用它进行优化。默认为true。</p>
+<h3 id="layers"><a href="#layers" class="headerlink" title="layers"></a>layers</h3><p>相机所属的layers  。 这是Object3D的继承属性。<br>在渲染相机的视点时，对象必须与相机共享至少一个图层。</p>
+<h3 id="matrixWorldInverse"><a href="#matrixWorldInverse" class="headerlink" title="matrixWorldInverse"></a>matrixWorldInverse</h3><p>这是matrixWorld的逆矩阵,matrixWorld包含相机在世界坐标系的变换矩阵</p>
+<h3 id="projectionMatrix"><a href="#projectionMatrix" class="headerlink" title="projectionMatrix"></a>projectionMatrix</h3><p>包含相机的投影矩阵</p>
+<h3 id="projectionMatrixInverse"><a href="#projectionMatrixInverse" class="headerlink" title="projectionMatrixInverse"></a>projectionMatrixInverse</h3><p>projectionMatrix的逆矩阵</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="clone"><a href="#clone" class="headerlink" title="clone()"></a>clone()</h3><p>返回具有与此相同属性的新相机</p>
+<h3 id="copy-source-Camera-recursive-Boolean"><a href="#copy-source-Camera-recursive-Boolean" class="headerlink" title="copy ( source : Camera, recursive : Boolean )"></a>copy ( source : Camera, recursive : Boolean )</h3><p>将源摄像头中的属性复制到此摄像头中</p>
+<h3 id="getWorldDirection-target-Vector3"><a href="#getWorldDirection-target-Vector3" class="headerlink" title="getWorldDirection ( target : Vector3 )"></a>getWorldDirection ( target : Vector3 )</h3><p>target - 结果将被复制到此Vector3中<br>返回表示摄像机正在查看的世界空间方向的Vector3</p>
+<h1 id="CubeCamera"><a href="#CubeCamera" class="headerlink" title="CubeCamera"></a>CubeCamera</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>创建6个渲染到<strong>WebGLRenderTargetCube</strong>的摄像机</p>
+<h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CubeCamera( near : Number, far : Number, cubeResolution : Number, options : Object )</span><br></pre></td></tr></table></figure>
+<p>near - 相机近剪裁距离<br>far - 相机远裁剪距离<br>cubeResolution - 设置立方体边缘的长度，体现为清晰度<br>options - （可选）保存传递给自动生成的WebGLRenderTargetCube的纹理参数的对象。 如果未指定，则选项默认为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;format：RGBFormat，magFilter：LinearFilter，minFilter：LinearFilter&#125;</span><br><span class="line">```  </span><br><span class="line">构造一个包含6个PerspectiveCameras相机渲染到WebGLRenderTargetCube</span><br><span class="line"></span><br><span class="line">## 属性</span><br><span class="line">### renderTarget</span><br><span class="line">生成的立方体纹理</span><br><span class="line"></span><br><span class="line">## 方法</span><br><span class="line">### update( renderer : WebGLRenderer, scene : Scene)</span><br><span class="line"></span><br><span class="line">调用它来更新renderTarget</span><br><span class="line"></span><br><span class="line">### clear( renderer : WebGLRenderer, color : Boolean, depth : Boolean, stencil : Boolean )</span><br><span class="line">调用此方法以清除renderTarget颜色，深度和/或模板缓冲区。 颜色缓冲区设置为渲染器的当前清晰颜色。 参数默认为true</span><br><span class="line"></span><br><span class="line"># OrthographicCamera</span><br><span class="line">## 概念</span><br><span class="line">在此投影模式下，无论距离相机的距离如何，渲染图像中的对象大小都保持不变</span><br><span class="line">这对于渲染2D场景和UI元素等非常有用</span><br><span class="line"></span><br><span class="line">## 使用</span><br></pre></td></tr></table></figure></p>
+<p>OrthographicCamera( left : Number, right : Number, top : Number, bottom : Number, near : Number, far : Number )<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">left — 相机视锥体的左平面</span><br><span class="line">right — 相机视锥体的右平面</span><br><span class="line">top — 相机视锥体的上平面</span><br><span class="line">bottom — 相机视锥体的下平面</span><br><span class="line">near — 相机视锥体的近平面</span><br><span class="line">far — 相机视锥体的原平面</span><br><span class="line"></span><br><span class="line">这些一起定义了[相机的视锥体](https://en.wikipedia.org/wiki/Viewing_frustum)</span><br><span class="line"></span><br><span class="line">## 属性</span><br><span class="line">### bottom</span><br><span class="line">相机视锥体的下平面</span><br><span class="line"></span><br><span class="line">### far</span><br><span class="line">相机视锥体的远平面。默认是2000</span><br><span class="line">有效范围介于近平面和无穷远之间</span><br><span class="line"></span><br><span class="line">### isOrthographicCamera</span><br><span class="line">用于检查此类或派生类是否为正交相机。 不应该更改此属性，因为渲染器在内部使用它进行优化。默认为true。</span><br><span class="line"></span><br><span class="line">### left</span><br><span class="line">相机视锥体的左平面</span><br><span class="line"></span><br><span class="line">### near</span><br><span class="line">相机视锥体的近平面。默认是0.1</span><br><span class="line">有效范围介于0和远平面</span><br><span class="line"></span><br><span class="line">### right</span><br><span class="line">相机视锥体的右平面</span><br><span class="line"></span><br><span class="line">### top</span><br><span class="line">相机视锥体的上平面</span><br><span class="line"></span><br><span class="line">### view</span><br><span class="line">通过**setViewOffset**方法设置，默认是null</span><br><span class="line"></span><br><span class="line">### zoom</span><br><span class="line">获取或设置摄像机的缩放系数, 默认值为1</span><br><span class="line"></span><br><span class="line">## 方法</span><br><span class="line">### setViewOffset ( fullWidth : Float, fullHeight : Float, x : Float, y : Float, width : Float, height : Float )</span><br><span class="line"></span><br><span class="line">fullWidth - 多视图设置的全宽   </span><br><span class="line">fullHeight - 多视图设置的全高  </span><br><span class="line">x - 副摄像机的水平偏移   </span><br><span class="line">y - 副摄像机的垂直偏移   </span><br><span class="line">width - 副摄像机的宽度   </span><br><span class="line">height - 副摄像机的高度  </span><br><span class="line"> </span><br><span class="line">### clearViewOffset ()</span><br><span class="line">清除所有视图偏移</span><br><span class="line"></span><br><span class="line">### updateProjectionMatrix ()</span><br><span class="line">更新相机投影矩阵，必须在参数发生变化后调用</span><br><span class="line"></span><br><span class="line">### toJSON ()</span><br><span class="line">返回JSON格式的相机数据</span><br><span class="line"></span><br><span class="line"># PerspectiveCamera</span><br><span class="line">## 概念</span><br><span class="line">透视相机，这种投影模式旨在模仿人眼看到的方式，它是用于渲染3D场景的最常见投影模式。</span><br><span class="line"></span><br><span class="line">## 使用</span><br></pre></td></tr></table></figure></p>
+<p>PerspectiveCamera( fov : Number, aspect : Number, near : Number, far : Number )<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">fov — 相机视锥体垂直视角  </span><br><span class="line">aspect — 相机视锥体宽高比  </span><br><span class="line">near — 相机视锥体近平面  </span><br><span class="line">far — 相机视锥体远平面  </span><br><span class="line"></span><br><span class="line">## 属性</span><br><span class="line">### aspect</span><br><span class="line">相机视锥体宽高比，通常是画布宽度除以高度。默认是1</span><br><span class="line"></span><br><span class="line">### far</span><br><span class="line">相机视锥体的远截平面。默认是2000。  </span><br><span class="line">有效范围介于近平面和无穷远之间。</span><br><span class="line"></span><br><span class="line">### filmGauge</span><br><span class="line">用于较大轴的胶片尺寸。 默认值为35（毫米）。 除非**filmOffset**设置为非零值，否则此参数不会影响投影矩阵。</span><br><span class="line"></span><br><span class="line">### filmOffset</span><br><span class="line">与**filmGauge**相同单位的水平偏移，默认值为0</span><br><span class="line"></span><br><span class="line">### focus</span><br><span class="line">用于立体视觉和景深效果的物距。 除非使用**StereoCamera**，否则此参数不会影响投影矩阵。 默认值为10。</span><br><span class="line"></span><br><span class="line">### fov</span><br><span class="line">相机视锥体垂直视野，从底部到顶部的视图的角度度。 默认值为50</span><br><span class="line"></span><br><span class="line">### isPerspectiveCamera</span><br><span class="line">用于检查此类或派生类是否为透视相机。 不应该更改此属性，因为渲染器在内部使用它进行优化。默认为true。</span><br><span class="line"></span><br><span class="line">### near</span><br><span class="line">相机视锥体的近截平面。默认是0.1  </span><br><span class="line">有效范围大于0且小于远平面</span><br><span class="line"></span><br><span class="line">### view</span><br><span class="line">视锥体窗口规范或null。 这是使用**setViewOffset**方法设置的，并使用**clearViewOffset**清除。</span><br><span class="line"></span><br><span class="line">### zoom</span><br><span class="line">获取或设置摄像机的缩放系数, 默认值为1</span><br><span class="line"></span><br><span class="line">## 方法</span><br><span class="line">### clearViewOffset ()</span><br><span class="line">删除**setViewOffset**方法设置的任何偏移量</span><br><span class="line"></span><br><span class="line">### getEffectiveFOV()</span><br><span class="line">返回乘以缩放系数 **zoom** 的当前视角，单位为角度（°）。</span><br><span class="line"></span><br><span class="line">### getFilmHeight()</span><br><span class="line">返回胶片上图像的高度,如果.aspect小于或等于1（纵向格式），则结果等于**filmGauge**</span><br><span class="line"></span><br><span class="line">### getFilmWidth()</span><br><span class="line">返回胶片上图像的宽度。 如果.aspect大于或等于1（横向格式），则结果等于**filmGauge**</span><br><span class="line"></span><br><span class="line">### getFocalLength ()</span><br><span class="line">返回当前和 **filmGauge** 有关的 **fov** 的焦距</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### setFocalLength ( focalLength : Float )</span><br><span class="line">设置当前和**filmGauge**有关的**fov**的焦距。</span><br><span class="line">默认情况下，焦距为35mm全幅相机</span><br><span class="line"></span><br><span class="line">### setViewOffset ( fullWidth : Float, fullHeight : Float, x : Float, y : Float, width : Float, height : Float ) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fullWidth - 多视图设置的全宽   </span><br><span class="line">fullHeight - 多视图设置的全高  </span><br><span class="line">x - 副摄像机的水平偏移   </span><br><span class="line">y - 副摄像机的垂直偏移   </span><br><span class="line">width - 副摄像机的宽度   </span><br><span class="line">height - 副摄像机的高度  </span><br><span class="line"></span><br><span class="line">该方法用于在一个较大的视椎体中设置视图偏移。这对于多窗口或多监视器/多机设置是有用的。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.updateProjectionMatrix ()</span><br><span class="line">更新相机投影矩阵，必须在参数发生变化后调用</span><br><span class="line">### clone ()</span><br><span class="line">返回一个 PerspectiveCamera 对象的克隆</span><br><span class="line"></span><br><span class="line">### toJSON ()</span><br><span class="line">返回JSON格式的相机数据</span><br><span class="line"></span><br><span class="line"># StereoCamera</span><br><span class="line">## 概念</span><br><span class="line">立体相机。用于双透视相机，例如[3D Anaglyph](https://en.wikipedia.org/wiki/Anaglyph_3D)或者[Parallax Barrier](https://en.wikipedia.org/wiki/Parallax_barrier).</span><br><span class="line"></span><br><span class="line">## 使用</span><br></pre></td></tr></table></figure></p>
+<p>StereoCamera()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 属性</span><br><span class="line">### aspect</span><br><span class="line">相机视锥体宽高比，默认为1</span><br><span class="line"></span><br><span class="line">### eyeSep</span><br><span class="line">默认0.064</span><br><span class="line"></span><br><span class="line">### cameraL</span><br><span class="line">左相机。 这将添加到图层 - 左相机要渲染的对象也必须添加到此图层</span><br><span class="line"></span><br><span class="line">### cameraR</span><br><span class="line">右相机。 这将添加到图层 - 右相机要渲染的对象也必须添加到此图层</span><br><span class="line"></span><br><span class="line">## 方法</span><br><span class="line">### update</span><br><span class="line">根据传入的相机更新立体相机</span><br><span class="line"></span><br><span class="line"># ArrayCamera</span><br><span class="line">## 概念</span><br><span class="line">ArrayCamera使用预定义的一相机有效地渲染场景。 这对于渲染VR场景是重要性能考虑。</span><br><span class="line">ArrayCamera的一个实例总是有一个子摄像头数组。 必须为每个子摄像机定义bounds属性，该属性确定使用此摄像机渲染的视口部分</span><br><span class="line"></span><br><span class="line">## 使用</span><br></pre></td></tr></table></figure></p>
+<p>ArrayCamera( array : Array )<br><code>`</code><br>相机数组</p>
+<h2 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h2><h3 id="cameras"><a href="#cameras" class="headerlink" title="cameras"></a>cameras</h3><p>相机数组</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2018/12/16/threejs 解读  camera/" data-id="cjpqj2xnl0000yrji9bzomw33" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-threejs/">js threejs</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/11/threejs解读 webGLRender/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">threejs解读 webGLRender</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemark-模板/">freemark 模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/head/">head</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-threejs/">js threejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/freemark-模板/" style="font-size: 10px;">freemark 模板</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/head/" style="font-size: 10px;">head</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js-threejs/" style="font-size: 20px;">js threejs</a> <a href="/tags/浏览器/" style="font-size: 15px;">浏览器</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/16/threejs 解读  camera/">threejs 解读  camera</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/11/threejs解读 webGLRender/">threejs解读 webGLRender</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/10/threejs 解读  scene/">threejs 解读  scene</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/09/javascript & ECMAScript & es/">javascript &amp; ECMAScript &amp; es</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/06/head-meta/">head-meta</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 wolfjyx<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
