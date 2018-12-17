@@ -66,6 +66,96 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-threejs 解读 materilas" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/17/threejs 解读 materilas/" class="article-date">
+  <time datetime="2018-12-17T14:38:23.516Z" itemprop="datePublished">2018-12-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/17/threejs 解读 materilas/">threejs 解读  material</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LineBasicMaterial"><a href="#LineBasicMaterial" class="headerlink" title="LineBasicMaterial"></a>LineBasicMaterial</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>用于绘制线框样式几何图形的材质  </p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LineBasicMaterial( parameters : Object )</span><br></pre></td></tr></table></figure>
+<p>parameters -（可选）具有一个或多个属性的对象，用于定义材质的外观。 材料的任何属性（包括从Material继承的任何属性）都可以在此处传递。</p>
+<p>属性颜色例外，它可以作为十六进制字符串传递，默认情况下为0xffffff（白色）。 Color.set（颜色）在内部调用。</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="color-Color"><a href="#color-Color" class="headerlink" title="color : Color"></a>color : Color</h3><p>材质的颜色，默认设置为白色（0xffffff）</p>
+<h3 id="isLineBasicMaterial-Boolean"><a href="#isLineBasicMaterial-Boolean" class="headerlink" title="isLineBasicMaterial : Boolean"></a>isLineBasicMaterial : Boolean</h3><p>用于检查此类或派生类是否为行基本材质。 默认为true。<br>不应该更改它，因为它在内部用于优化</p>
+<h3 id="lights-Boolean"><a href="#lights-Boolean" class="headerlink" title="lights : Boolean"></a>lights : Boolean</h3><p>材料是否受灯光影响。 默认值为false</p>
+<h3 id="linewidth-Float"><a href="#linewidth-Float" class="headerlink" title="linewidth : Float"></a>linewidth : Float</h3><p>控制线条粗细。 默认值为1<br>由于在大多数平台上WebGL渲染器的OpenGL核心配置文件的限制，无论设置值如何，线宽始终为1  </p>
+<h3 id="linecap-String"><a href="#linecap-String" class="headerlink" title="linecap : String"></a>linecap : String</h3><p>定义线端的外观。 可能的值是’butt’，’round’和’square’。 默认为’round’.<br>对于2D Canvas lineCap属性，WebGL渲染器会忽略该属性  </p>
+<h3 id="linejoin-String"><a href="#linejoin-String" class="headerlink" title="linejoin : String"></a>linejoin : String</h3><p>定义线关节的连接点。 可能的值是’round’，’bevel’和’miter’。 默认为’round’<br>对于2D Canvas lineJoin属性，WebGL渲染器会忽略该属性   </p>
+<h1 id="LineDashedMaterial"><a href="#LineDashedMaterial" class="headerlink" title="LineDashedMaterial"></a>LineDashedMaterial</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>用虚线绘制线框样式几何图形的材质</p>
+<h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LineBDashedMaterial( parameters : Object )</span><br></pre></td></tr></table></figure>
+<p>parameters -（可选）具有一个或多个属性的对象，用于定义材质的外观。 材料的任何属性（包括从Material继承的任何属性）都可以在此处传递。</p>
+<p>属性颜色例外，它可以作为十六进制字符串传递，默认情况下为0xffffff（白色）。 Color.set（颜色）在内部调用。</p>
+<h2 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h2><h3 id="color-Color-1"><a href="#color-Color-1" class="headerlink" title="color : Color"></a>color : Color</h3><p>材质的颜色，默认设置为白色（0xffffff）</p>
+<h3 id="dashSize-number"><a href="#dashSize-number" class="headerlink" title="dashSize : number"></a>dashSize : number</h3><p>短划线的大小, 默认值为3。</p>
+<h3 id="gapSize-number"><a href="#gapSize-number" class="headerlink" title="gapSize : number"></a>gapSize : number</h3><p>短划线间隙的大小, 默认值为1</p>
+<h3 id="isLineDashedMaterial-Boolean"><a href="#isLineDashedMaterial-Boolean" class="headerlink" title="isLineDashedMaterial : Boolean"></a>isLineDashedMaterial : Boolean</h3><p>用于检查此类或派生类是否为行基本材质。 默认为true。<br>不应该更改它，因为它在内部用于优化</p>
+<h3 id="lights-Boolean-1"><a href="#lights-Boolean-1" class="headerlink" title="lights : Boolean"></a>lights : Boolean</h3><p>材料是否受灯光影响。 默认值为false</p>
+<h3 id="linewidth-Float-1"><a href="#linewidth-Float-1" class="headerlink" title="linewidth : Float"></a>linewidth : Float</h3><p>控制线条粗细。 默认值为1<br>由于在大多数平台上WebGL渲染器的OpenGL核心配置文件的限制，无论设置值如何，线宽始终为1  </p>
+<h3 id="scale-number"><a href="#scale-number" class="headerlink" title="scale : number"></a>scale : number</h3><p>线的虚线部分的比例。 默认值为1。</p>
+<h1 id="Material"><a href="#Material" class="headerlink" title="Material"></a>Material</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>材料的基础抽象类  </p>
+<p>材质描述了对象的外观。 它们以（主要）与渲染器无关的方式定义，因此如果您决定使用不同的渲染器，则不必重写材质。</p>
+<p>所有其他材质类型都继承了该类的属性和方法（尽管它们可能具有不同的默认值）</p>
+<h2 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Material()</span><br></pre></td></tr></table></figure>
+<p>创建通用材质</p>
+<h2 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h2><h3 id="alphaTest-Float"><a href="#alphaTest-Float" class="headerlink" title="alphaTest : Float"></a>alphaTest : Float</h3><p>设置运行alpha测试时要使用的alpha值。 如果不透明度低于此值，则不会渲染材质。 默认值为0  </p>
+<h3 id="blendDst-Integer"><a href="#blendDst-Integer" class="headerlink" title="blendDst : Integer"></a>blendDst : Integer</h3><p>混合目标。这是Three.js中定义的一个混合模式常量。默认为 OneMinusSrcAlphaFactor<br>必须将材质blending设置为CustomBlending才能生效  </p>
+<h3 id="blendDstAlpha-Integer"><a href="#blendDstAlpha-Integer" class="headerlink" title="blendDstAlpha : Integer"></a>blendDstAlpha : Integer</h3><p>blendDst的透明度。 默认值为null</p>
+<h3 id="blendEquation-Integer"><a href="#blendEquation-Integer" class="headerlink" title="blendEquation : Integer"></a>blendEquation : Integer</h3><p>应用混合时所用的混合方程式。这是Three.js中定义的一个常量。 默认为 AddEquation<br>必须将材质blending设置为CustomBlending才能生效   </p>
+<h3 id="blendEquationAlpha-Integer"><a href="#blendEquationAlpha-Integer" class="headerlink" title="blendEquationAlpha : Integer"></a>blendEquationAlpha : Integer</h3><p>blendEquation的透明度。 默认值为null</p>
+<h3 id="blending-Blending"><a href="#blending-Blending" class="headerlink" title="blending : Blending"></a>blending : Blending</h3><p>当显示该材质的对象时使用何种混合模式， 必须将其设置为CustomBlending才能使用自定义blendSrc，blendDst或blendEquation，默认为 NormalBlending  </p>
+<h3 id="blendSrc-Integer"><a href="#blendSrc-Integer" class="headerlink" title="blendSrc : Integer"></a>blendSrc : Integer</h3><p>混合来源。 默认为SrcAlphaFactor<br>必须将材质的混合设置为CustomBlending才能生效  </p>
+<h3 id="blendSrcAlpha-Integer"><a href="#blendSrcAlpha-Integer" class="headerlink" title="blendSrcAlpha : Integer"></a>blendSrcAlpha : Integer</h3><p>blendSrc的透明度。 默认值为null  </p>
+<h3 id="clipIntersection-Boolean"><a href="#clipIntersection-Boolean" class="headerlink" title="clipIntersection : Boolean"></a>clipIntersection : Boolean</h3><p>更改剪裁平面的方式，仅剪切其交交集，而不是它们的并集。 默认值为false  </p>
+<h3 id="clippingPlanes-Array"><a href="#clippingPlanes-Array" class="headerlink" title="clippingPlanes : Array"></a>clippingPlanes : Array</h3><p>用户定义的剪裁平,指定为世界空间中的THREE.Plane对象。 这些平面适用于此材质所附着的对象。 空间中与平面的符号距离为负的点被剪裁（未渲染）。 这需要WebGLRenderer.localClippingEnabled为true。 默认值为null。</p>
+<h3 id="clipShadows-Boolean"><a href="#clipShadows-Boolean" class="headerlink" title="clipShadows : Boolean"></a>clipShadows : Boolean</h3><p>定义是否根据此材质上指定的剪裁平面剪切阴影。 默认值为false</p>
+<h3 id="colorWrite-Boolean"><a href="#colorWrite-Boolean" class="headerlink" title="colorWrite : Boolean"></a>colorWrite : Boolean</h3><p>是否渲染材质的颜色。 这可以与网格renderOrde属性结合使用，以创建遮挡其他对象的不可见对象，默认为true </p>
+<h3 id="customDepthMaterial-Material"><a href="#customDepthMaterial-Material" class="headerlink" title="customDepthMaterial : Material"></a>customDepthMaterial : Material</h3><p>渲染到深度贴图时此材质要使用的通用深度材质。 当使用DirectionalLight或SpotLight进行阴影投射时，如果您是<br>（a）修改顶点着色器中的顶点位置，<br>（b）使用置换贴图，<br>（c）使用带alphaTest的alpha贴图<br>（d）使用透明纹理 使用alphaTest<br>必须为正确的阴影指定customDepthMaterial。 默认值undefined  </p>
+<p>customDistanceMaterial : Material<br>与customDepthMaterial相同，但与PointLight一起使用。 默认值undefined  </p>
+<h3 id="defines-Object"><a href="#defines-Object" class="headerlink" title="defines : Object"></a>defines : Object</h3><p>注入着色器的自定义定义。 它们以对象键/值对传递。 <figure class="highlight plain"><figcaption><span>* 2&#125;```。 这些键/值对在顶点和片段着色器中定义。 默认值undefined </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### depthFunc : Integer</span><br><span class="line">使用哪种深度功能。 默认值为LessEqualDepth </span><br><span class="line"></span><br><span class="line">### depthTest : Boolean</span><br><span class="line">是否在渲染此材质时启用深度测试。 默认为true</span><br><span class="line"></span><br><span class="line">### depthWrite : Boolean</span><br><span class="line">渲染此材质是否对深度缓冲区有任何影响。 默认为true   </span><br><span class="line">在绘制2D叠加时，禁用深度写入以将多个事物分层在一起而不创建z-index伪像会很有用 </span><br><span class="line"></span><br><span class="line">### flatShading : Boolean</span><br><span class="line">定义材质是否使用平面阴影进行渲染。 默认值为false   </span><br><span class="line"></span><br><span class="line">### fog : Boolean</span><br><span class="line">材料是否受场景中fog的影响。 默认为true </span><br><span class="line"></span><br><span class="line">### id : Integer</span><br><span class="line">此材质实例的唯一编号  </span><br><span class="line"></span><br><span class="line">isMaterial : Boolean</span><br><span class="line"></span><br><span class="line">用于检查此类或派生类是否为material。 默认为true,  </span><br><span class="line">不应该更改它，因为它在内部用于优化  </span><br><span class="line"></span><br><span class="line">### lights : Boolean</span><br><span class="line">材质是否受光照影响，默认是true</span><br><span class="line"></span><br><span class="line">### name : String</span><br><span class="line">对象的可选名称（不必是唯一的）。 默认值为空字符串  </span><br><span class="line"></span><br><span class="line">### needsUpdate : Boolean</span><br><span class="line">指定需要重新编译材质  </span><br><span class="line">实例化新材料时，此属性自动设置为true</span><br><span class="line"></span><br><span class="line">### opacity : Float  </span><br><span class="line">值得范围在0.0 - 1.0之间，表示材料的透明度。 值0.0表示完全透明，1.0表示完全不透明，  </span><br><span class="line">如果材质的transparent属性未设置为true，则材质将保持完全不透明，此值仅影响其颜色   </span><br><span class="line">默认值为1.0</span><br><span class="line"></span><br><span class="line">### polygonOffset : Boolean</span><br><span class="line">是否使用多边形偏移。 默认值为false。 这对应于WebGL的GL_POLYGON_OFFSET_FILL 功能。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### polygonOffsetFactor : Integer</span><br><span class="line">设置多边形偏移系数。 默认值为0</span><br><span class="line"></span><br><span class="line">### polygonOffsetUnits : Integer</span><br><span class="line">设置多边形偏移单位。 默认值为0</span><br><span class="line"></span><br><span class="line">### precision : String</span><br><span class="line">覆盖此材质的渲染器的默认精度。 可以是“highp”，“mediump”或“lowp”。 默认值为null</span><br><span class="line"></span><br><span class="line">### premultipliedAlpha : Boolean </span><br><span class="line">是否预乘alpha（透明度）值。 默认值为false </span><br><span class="line"></span><br><span class="line">### dithering : Boolean</span><br><span class="line">是否对颜色应用抖动以消除条带的外观。 默认值为false</span><br><span class="line"></span><br><span class="line">### shadowSide : Integer</span><br><span class="line">定义面部投射阴影的哪一侧。 设置时，可以是THREE.FrontSide，THREE.BackSide或THREE.DoubleSide。 默认值为null。</span><br><span class="line">如果为null，则侧面投射阴影确定如下: </span><br><span class="line"></span><br><span class="line">Material.side    | Side casting shadows</span><br><span class="line">-------------    | -------------</span><br><span class="line">THREE.FrontSide  | back side</span><br><span class="line">THREE.BackSide   | front side</span><br><span class="line">THREE.DoubleSide | both side</span><br><span class="line"></span><br><span class="line">### side : Integer</span><br><span class="line">定义将要渲染面部的哪一面 - 正面，背面或两者。 默认为THREE.FrontSide, 其他选项有THREE.BackSide和THREE.DoubleSide  </span><br><span class="line"></span><br><span class="line">### transparent : Boolean</span><br><span class="line">定义此材质是否透明。 这对渲染有影响，因为透明对象需要特殊处理，并在非透明对象之后呈现  </span><br><span class="line">设置为true时，通过设置材质的不透明度属性来控制材质透明的程度  </span><br><span class="line">默认值为false </span><br><span class="line"></span><br><span class="line">### type : String  </span><br><span class="line">值是字符串&apos;Material&apos;。 这不应该更改，并且可以用于在场景中查找此类型的所有对象  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### uuid : String</span><br><span class="line">此材质实例的UUID。 这会自动分配，因此不应编辑</span><br><span class="line"></span><br><span class="line">### vertexColors : Integer</span><br><span class="line">定义是否使用顶点着色。 默认值为THREE.NoColors。 其他选项有THREE.VertexColors和THREE.FaceColors。</span><br><span class="line"></span><br><span class="line">### visible : Boolean</span><br><span class="line">定义此材质是否可见。 默认为true。</span><br><span class="line"></span><br><span class="line">### userData : object</span><br><span class="line">可用于存储有关Material的自定义数据的对象。 它不应该包含对函数的引用，因为这些函数不会被克隆  </span><br><span class="line"></span><br><span class="line">##  方法</span><br><span class="line">### clone ( ) : Material </span><br><span class="line">返回与此材质具有相同参数的新材质</span><br><span class="line"></span><br><span class="line">### copy ( material : material ) : Material</span><br><span class="line">将传递材质中的参数复制到此材质中</span><br><span class="line"></span><br><span class="line">### dispose () : null</span><br><span class="line">释放材质。 材质的纹理不会被释放。 这些需要通过Texture释放  </span><br><span class="line"></span><br><span class="line">### onBeforeCompile ( shader : Object, renderer : WebGLRenderer ) : null</span><br><span class="line">在编译着色器程序之前立即执行的可选回调。 使用着色器源代码作为参数调用此函数。 用于修改内置材料 </span><br><span class="line"></span><br><span class="line">### setValues ( values : object ) : null</span><br><span class="line">values - 具有参数的容器  </span><br><span class="line">根据值设置属性  </span><br><span class="line"></span><br><span class="line">### toJSON ( meta : object ) : null</span><br><span class="line">元对象，包含元素，例如材质的纹理或图像。</span><br><span class="line">将材质转换为three.js JSON格式</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># MeshBasicMaterial</span><br><span class="line">## 概念</span><br><span class="line">以简单着色（平面或线框）方式来绘制几何形状的材料  </span><br><span class="line">这种材质不受光照影响  </span><br><span class="line"></span><br><span class="line">## 使用</span><br></pre></td></tr></table></figure></p>
+<p>MeshBasicMaterial( parameters : Object )<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">parameters -（可选）具有一个或多个属性的对象，用于定义材质的外观。 材料的任何属性（包括从Material继承的任何属性）都可以在此处传递。</span><br><span class="line"></span><br><span class="line">属性颜色例外，它可以作为十六进制字符串传递，默认情况下为0xffffff（白色）。 Color.set（颜色）在内部调用。</span><br><span class="line"></span><br><span class="line">## 属性</span><br><span class="line">### alphaMap : Texture</span><br><span class="line">alpha贴图是一种灰度纹理，用于控制整个表面的不透明度（黑色：完全透明;白色：完全不透明）。 默认值为null。</span><br><span class="line"></span><br><span class="line">仅使用纹理的颜色，忽略alpha通道（如果存在）。 对于RGB和RGBA纹理，WebGL渲染器在采样此纹理时将使用绿色通道，因为在DXT压缩和未压缩RGB 565格式中为绿色提供了额外的精度。 仅亮度和亮度/ alpha纹理也将按预期工作。</span><br><span class="line"></span><br><span class="line">### aoMap : Texture</span><br><span class="line">该纹理的红色通道用作环境遮挡贴图。 默认值为null。  </span><br><span class="line"> aoMap需要第二组UV，因此将忽略重复和偏移纹理属性。</span><br><span class="line"> </span><br><span class="line">### aoMapIntensity : Float</span><br><span class="line">环境遮挡效应的强度。 默认值为1.零 不遮挡效果</span><br><span class="line"></span><br><span class="line">### color : Color</span><br><span class="line">材质的颜色，默认设置为白色（0xffffff）</span><br><span class="line"></span><br><span class="line">### combine : Integer</span><br><span class="line">如何将表面颜色的结果与环境贴图（如果有）结合起来  </span><br><span class="line">选项为THREE.Multiply（默认值），THREE.MixOperation，THREE.AddOperation。 如果选择混合，则使用reflectivity在两种颜色之间进行混合</span><br><span class="line"></span><br><span class="line">### isMeshBasicMaterial : Boolean</span><br><span class="line">用于检查此类或派生类是否为网格基础材质。 默认为true。</span><br><span class="line">不应该更改它，因为它在内部用于优化。</span><br><span class="line"></span><br><span class="line">### envMap : TextureCube</span><br><span class="line">环境贴图。 默认值为null</span><br><span class="line"></span><br><span class="line">### lightMap : Texture</span><br><span class="line">光照贴图。 默认值为null, </span><br><span class="line">lightMap需要第二组UV，因此将忽略重复和偏移纹理属性。</span><br><span class="line"></span><br><span class="line">### lightMapIntensity : Float</span><br><span class="line">烤光的强度。 默认值为1</span><br><span class="line"></span><br><span class="line">### lights : Boolean</span><br><span class="line">材质是否受光照影响。 默认值为false</span><br><span class="line"></span><br><span class="line">### map : Texture</span><br><span class="line">颜色贴图, 默认值为null</span><br><span class="line"></span><br><span class="line">### .morphTargets : Boolean</span><br><span class="line">定义材质是否使用morphTargets。 默认值为false</span><br><span class="line"></span><br><span class="line">### reflectivity : Float</span><br><span class="line">环境贴图对表面的影响程度。 默认值为1，有效范围介于0（无反射）和1（完全反射）之间</span><br><span class="line"></span><br><span class="line">### refractionRatio : Float</span><br><span class="line">空气的折射率（IOR）（约为1）除以材料的折射率。 它与环境映射模式THREE.CubeRefractionMapping和THREE.EquirectangularRefractionMapping一起使用。 折射率不应超过1.默认值为0.98。</span><br><span class="line"></span><br><span class="line">### skinning : Boolean</span><br><span class="line">定义材质是否使用蒙皮。 默认值为false</span><br><span class="line"></span><br><span class="line">### specularMap : Texture</span><br><span class="line">材质使用的高光贴图。 默认值为null</span><br><span class="line"></span><br><span class="line">### wireframe : Boolean</span><br><span class="line">将几何图形渲染为线框。 默认值为false（即渲染为平面多边形）</span><br><span class="line"></span><br><span class="line">### wireframeLinecap : String</span><br><span class="line">定义线端的外观。 可能的值是“butt”，“round”和“square”。 默认为&apos;round&apos;。</span><br><span class="line"></span><br><span class="line">这对应于2D Canvas lineCap属性，WebGL渲染器会忽略它</span><br><span class="line"></span><br><span class="line">### wireframeLinejoin : String</span><br><span class="line">定义线连接点的外观。 可能的值是“round”，“bevel”和“miter”。 默认为&apos;round&apos;。</span><br><span class="line"></span><br><span class="line">这对应于2D Canvas lineJoin属性，WebGL渲染器会忽略它</span><br><span class="line"></span><br><span class="line">### wireframeLinewidth : Float</span><br><span class="line">控制线框厚度。 默认值为1。</span><br><span class="line"></span><br><span class="line">由于在大多数平台上WebGL渲染器的OpenGL核心配置文件的限制，无论设置值如何，线宽始终为1 </span><br><span class="line"></span><br><span class="line"># MeshDepthMaterial</span><br><span class="line">## 概念</span><br><span class="line"> 用于按深度绘制几何图形的材质。 深度基于相机近远平面。 白色最近，黑色最远</span><br><span class="line"> </span><br><span class="line">## 使用</span><br></pre></td></tr></table></figure></p>
+<p>MeshDepthMaterial( parameters : Object )<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">parameters -（可选）具有一个或多个属性的对象，用于定义材质的外观。 材料的任何属性（包括从Material继承的任何属性）都可以在此处传递</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 属性</span><br><span class="line">### alphaMap : Texture</span><br><span class="line">alpha贴图是一种灰度纹理，用于控制整个表面的不透明度（黑色：完全透明;白色：完全不透明）。 默认值为null。</span><br><span class="line"></span><br><span class="line">仅使用纹理的颜色，忽略alpha通道（如果存在）。 对于RGB和RGBA纹理，WebGL渲染器在采样此纹理时将使用绿色通道，因为在DXT压缩和未压缩RGB 565格式中为绿色提供了额外的精度。 仅亮度和亮度/ alpha纹理也将按预期工作。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### depthPacking : Constant</span><br><span class="line">用于深度包装的编码, 默认为BasicDepthPacking</span><br><span class="line"></span><br><span class="line">### displacementMap : Texture</span><br><span class="line">置换贴图会影响网格顶点的位置。 与仅影响材质的光照和阴影的其他贴图不同，移位的顶点可以投射阴影，阻挡其他对象，以及充当真实的几何体。 位移纹理是这样的图像，其中每个像素的值（白色是最高的）被映射，并且重新定位网格的顶点。</span><br><span class="line"></span><br><span class="line">### displacementScale : Float</span><br><span class="line">置换贴图对网格的影响程度（黑色是不位移，白色是最大位移）。 如果没有设置置换贴图，则不会应用此值。 默认值为1。</span><br><span class="line"></span><br><span class="line">### displacementBias : Float</span><br><span class="line">位移贴图在网格顶点上的偏移量。 如果没有设置置换贴图，则不会应用此值。 默认值为0。</span><br><span class="line"></span><br><span class="line">### fog : Boolean</span><br><span class="line">材质是否受场景中fog影响。 默认值为false</span><br><span class="line"></span><br><span class="line">### isMeshDepthMaterial : Boolean</span><br><span class="line"></span><br><span class="line">用于检查此类或派生类是否为网格深度材质。 默认为true  </span><br><span class="line">不应该更改它，因为它在内部用于优化</span><br><span class="line"></span><br><span class="line">### lights : Boolean</span><br><span class="line">材质是否受光照影响。 默认值为false</span><br><span class="line"></span><br><span class="line">### map : Texture</span><br><span class="line">颜色贴图，默认为null</span><br><span class="line"></span><br><span class="line">### morphTargets : boolean</span><br><span class="line">定义材质是否使用morphTargets。 默认值为false</span><br><span class="line"></span><br><span class="line">### skinning : Boolean</span><br><span class="line">定义材质是否使用蒙皮。 默认值为false</span><br><span class="line"></span><br><span class="line">### wireframe : boolean</span><br><span class="line">将几何图形渲染为线框。 默认值为false（即呈现为平滑着色)</span><br><span class="line"></span><br><span class="line">### wireframeLinewidth : Float</span><br><span class="line">控制线框厚度。 默认值为1。</span><br><span class="line"></span><br><span class="line">由于在大多数平台上WebGL渲染器的OpenGL核心配置文件的限制，无论设置值如何，线宽始终为1 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># MeshLambertMaterial</span><br><span class="line">## 概念</span><br><span class="line">用于非光泽表面的材料，没有镜面高光  </span><br><span class="line">该材料使用基于非物理的朗伯模型来计算反射率。 这可以很好地模拟一些表面（例如未经处理的木材或石材），但不能模拟具有镜面高光的光泽表面（例如涂漆木材）   </span><br><span class="line">使用Gouraud着色模型计算着色。 这将计算每个顶点的着色（即在顶点着色器中）并在多边形的面上插入结果。</span><br><span class="line">由于反射率和照明模型的简单性，当使用这种材料而不是MeshPhongMaterial，MeshStandardMaterial或MeshPhysicalMaterial时，性能会更高，但可能影响某些图形精度</span><br><span class="line"></span><br><span class="line">## 使用</span><br></pre></td></tr></table></figure></p>
+<p>MeshLambertMaterial( parameters : Object )<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">parameters -（可选）具有一个或多个属性的对象，用于定义材质的外观。 材料的任何属性（包括从Material继承的任何属性）都可以在此处传递。</span><br><span class="line"></span><br><span class="line">属性颜色例外，它可以作为十六进制字符串传递，默认情况下为0xffffff（白色）。 Color.set（颜色）在内部调用 </span><br><span class="line"></span><br><span class="line">## 属性</span><br><span class="line">### alphaMap : Texture</span><br><span class="line">alpha贴图是一种灰度纹理，用于控制整个表面的不透明度（黑色：完全透明;白色：完全不透明）。 默认值为null。</span><br><span class="line"></span><br><span class="line">仅使用纹理的颜色，忽略alpha通道（如果存在）。 对于RGB和RGBA纹理，WebGL渲染器在采样此纹理时将使用绿色通道，因为在DXT压缩和未压缩RGB 565格式中为绿色提供了额外的精度。 仅亮度和亮度/ alpha纹理也将按预期工作。</span><br><span class="line"></span><br><span class="line">### aoMap : Texture</span><br><span class="line">该纹理的红色通道用作环境遮挡贴图。 默认值为null。  </span><br><span class="line"> aoMap需要第二组UV，因此将忽略重复和偏移纹理属性。</span><br><span class="line"> </span><br><span class="line">### aoMapIntensity : Float</span><br><span class="line">环境遮挡效应的强度。 默认值为1.零 不遮挡效果</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### color : Color</span><br><span class="line">材质的颜色，默认设置为白色（0xffffff）</span><br><span class="line"></span><br><span class="line">### combine : Integer</span><br><span class="line">如何将表面颜色的结果与环境贴图（如果有）结合起来  </span><br><span class="line">选项为THREE.Multiply（默认值），THREE.MixOperation，THREE.AddOperation。 如果选择混合，则使用reflectivity在两种颜色之间进行混合</span><br><span class="line"></span><br><span class="line">### emissive : Color</span><br><span class="line">材料的发光颜色，基本上是不受其他照明影响的纯色。 默认为黑色。</span><br><span class="line"></span><br><span class="line">### emissiveMap : Texture</span><br><span class="line">设置自发光（发光）贴图。 默认值为null。 发射性地图颜色由发射颜色和发射强度调制。 如果您有自发光贴图，请务必将发光颜色设置为黑色以外的其他颜色 </span><br><span class="line"></span><br><span class="line">### emissiveIntensity : Float</span><br><span class="line">发射光的强度。 调节发光颜色。 默认值为1</span><br><span class="line"></span><br><span class="line">### envMap : TextureCube</span><br><span class="line">环境贴图。 默认值为null</span><br><span class="line"></span><br><span class="line">### isMeshLambertMaterial : Boolean</span><br><span class="line">用于检查此类或派生类是否为网格Lambert材质。 默认为true。</span><br><span class="line">不应该更改它，因为它在内部用于优化</span><br><span class="line"></span><br><span class="line">### lightMap : Texture</span><br><span class="line">光照贴图。 默认值为null。 lightMap需要第二组UV，因此将忽略重复和偏移纹理属性</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### lightMapIntensity : Float</span><br><span class="line">烤光的强度。 默认值为1</span><br><span class="line"></span><br><span class="line">### .map : Texture</span><br><span class="line">色彩贴图，默认为null</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### morphNormals : boolean</span><br><span class="line">定义材质是否使用morphNormals。 设置为true可将morphNormal属性从Geometry传递到着色器。 默认值为false</span><br><span class="line"></span><br><span class="line">### morphTargets : Boolean</span><br><span class="line">定义材质是否使用morphTargets。 默认值为false</span><br><span class="line"></span><br><span class="line">### reflectivity : Float</span><br><span class="line">环境贴图对几何表面的影响程度</span><br><span class="line"></span><br><span class="line">### refractionRatio : Float</span><br><span class="line">空气的折射率（IOR）（约为1）除以材料的折射率。 它与环境映射模式THREE.CubeRefractionMapping和THREE.EquirectangularRefractionMapping一起使用。 折射率不应超过1.默认值为0.98。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### skinning : Boolean</span><br><span class="line">定义材质是否使用蒙皮。 默认值为false。</span><br><span class="line"></span><br><span class="line">### specularMap : Texture</span><br><span class="line">材质使用的高光贴图。 默认值为null。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### wireframe : boolean</span><br><span class="line">将几何图形渲染为线框。 默认值为false（即呈现为平滑着色)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### wireframeLinecap : String</span><br><span class="line">定义线端的外观。 可能的值是“butt”，“round”和“square”。 默认为&apos;round&apos;。</span><br><span class="line"></span><br><span class="line">这对应于2D Canvas lineCap属性，WebGL渲染器会忽略它</span><br><span class="line"></span><br><span class="line">### wireframeLinejoin : String</span><br><span class="line">定义线连接点的外观。 可能的值是“round”，“bevel”和“miter”。 默认为&apos;round&apos;。</span><br><span class="line"></span><br><span class="line">这对应于2D Canvas lineJoin属性，WebGL渲染器会忽略它</span><br><span class="line"></span><br><span class="line">### wireframeLinewidth : Float</span><br><span class="line">控制线框厚度。 默认值为1。</span><br><span class="line"></span><br><span class="line">由于在大多数平台上WebGL渲染器的OpenGL核心配置文件的限制，无论设置值如何，线宽始终为1 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># MeshNormalMaterial</span><br><span class="line">## 概念</span><br><span class="line">将法线矢量映射到RGB颜色的材质</span><br><span class="line"></span><br><span class="line">## 使用</span><br></pre></td></tr></table></figure></p>
+<p>MeshNormalMaterial( parameters : Object )<br><code>`</code><br>parameters -（可选）具有一个或多个属性的对象，用于定义材质的外观。 材料的任何属性（包括从Material继承的任何属性）都可以在此处传递。</p>
+<h2 id="属性-3"><a href="#属性-3" class="headerlink" title="属性"></a>属性</h2><h3 id="fog-Boolean"><a href="#fog-Boolean" class="headerlink" title="fog : Boolean"></a>fog : Boolean</h3><p>材质是否受场景中fog影响。 默认值为false</p>
+<h3 id="isMeshNormalMaterial-Boolean"><a href="#isMeshNormalMaterial-Boolean" class="headerlink" title="isMeshNormalMaterial : Boolean"></a>isMeshNormalMaterial : Boolean</h3><p>用于检查此类或派生类是否为MeshNormalMaterial材质。 默认为true<br>不应该更改它，因为它在内部用于优化</p>
+<h3 id="lights-Boolean-2"><a href="#lights-Boolean-2" class="headerlink" title="lights : Boolean"></a>lights : Boolean</h3><p>材质是否受光照影响。 默认值为false</p>
+<h3 id="morphTargets-boolean"><a href="#morphTargets-boolean" class="headerlink" title="morphTargets : boolean"></a>morphTargets : boolean</h3><p>定义材质是否使用morphTargets, 默认值为false</p>
+<h3 id="wireframe-boolean"><a href="#wireframe-boolean" class="headerlink" title="wireframe : boolean"></a>wireframe : boolean</h3><p>将几何图形渲染为线框。 默认值为false（即呈现为平滑着色)</p>
+<h3 id="wireframeLinewidth-Float"><a href="#wireframeLinewidth-Float" class="headerlink" title="wireframeLinewidth : Float"></a>wireframeLinewidth : Float</h3><p>控制线框厚度。 默认值为1。</p>
+<p>由于在大多数平台上WebGL渲染器的OpenGL核心配置文件的限制，无论设置值如何，线宽始终为1 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2018/12/17/threejs 解读 materilas/" data-id="cjpsfcjzc0000yiji53zzxcdx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-threejs/">js threejs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-threejs 解读  camera" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/16/threejs 解读  camera/" class="article-date">
@@ -1010,173 +1100,6 @@ function throttle(func, wait, mustRun) {
 
 
   
-    <article id="post-跨域" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/26/跨域/" class="article-date">
-  <time datetime="2018-11-26T15:04:04.999Z" itemprop="datePublished">2018-11-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/26/跨域/">跨域</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h1><p>协议，域名，端口任何一项不同都会引起跨域问题<br>注意： 下面讨论的解决方案都是针对于域名引起的跨域的，协议和端口的跨域前端无能为力  </p>
-<h1 id="跨域解决方案"><a href="#跨域解决方案" class="headerlink" title="跨域解决方案"></a>跨域解决方案</h1><h2 id="1-document-domain-iframe"><a href="#1-document-domain-iframe" class="headerlink" title="1.document.domain + iframe"></a>1.document.domain + iframe</h2><p>只有主域相同才能使用  </p>
-<pre><code>//parent.domain.com/a.html
-document.doman = &apos;domain.com&apos;
-var ifr = document.createElement(&apos;iframe&apos;)
-ifr.src = &apos;child.domain.com/b.html&apos;
-ifr.display = none;
-document.body.appendChild(ifr);
-ifr.onload = function () {
-    var doc = ifr.contentDocument || ifr.contentWindow.document
-    //doc 
-     ifr.onload = null;
-}
-</code></pre><p>–</p>
-<pre><code>//child.domain.com/b.html
-document.domain = &apos;domain.com&apos;
-</code></pre><h2 id="2-动态创建script"><a href="#2-动态创建script" class="headerlink" title="2.动态创建script"></a>2.动态创建script</h2><pre><code>function loadScript(url, func) {
-  var head = document.head || document.getElementByTagName(&apos;head&apos;)[0];
-  var script = document.createElement(&apos;script&apos;);
-  script.src = url;
-
-  script.onload = script.onreadystatechange = function(){
-    if(!this.readyState || this.readyState==&apos;loaded&apos; || this.readyState==&apos;complete&apos;){
-      func();
-      script.onload = script.onreadystatechange = null;
-    }
-  };
-
-  head.insertBefore(script, null);
-}
-window.baidu = {
-  sug: function(data){
-    console.log(data);
-  }
-}
-loadScript(&apos;http://suggestion.baidu.com/su?wd=w&apos;,function(){console.log(&apos;loaded&apos;)});    
-</code></pre><h2 id="3-loaction-hash-iframe"><a href="#3-loaction-hash-iframe" class="headerlink" title="3.loaction.hash+ iframe"></a>3.loaction.hash+ iframe</h2><pre><code>    //a.com/a.html
-function startRequest(){
-    var ifr = document.createElement(&apos;iframe&apos;);
-    ifr.style.display = &apos;none&apos;;
-    ifr.src = &apos;http://b.com/b.html#paramdo&apos;;
-        document.body.appendChild(ifr);
-}
-
-function checkHash() {
-    try {
-        var data = location.hash ? location.hash.substring(1) : &apos;&apos;;
-        if (console.log) {
-            console.log(&apos;Now the data is &apos;+data);
-        }
-    } catch(e) {};
-}
-setInterval(checkHash, 2000);
-</code></pre><p>–<br>    //b.com/b.html<br>    //模拟一个简单的参数处理操作<br>    switch(location.hash){<br>        case ‘#paramdo’:<br>            callBack();<br>            break;<br>        case ‘#paramset’:<br>            //do something……<br>            break;<br>    }</p>
-<pre><code>function callBack(){
-    try {
-        parent.location.hash = &apos;somedata&apos;;
-    } catch (e) {
-        // ie、chrome的安全机制无法修改parent.location.hash，
-        // 所以要利用一个中间的cnblogs域下的代理iframe
-        var ifrproxy = document.createElement(&apos;iframe&apos;);
-        ifrproxy.style.display = &apos;none&apos;;
-        ifrproxy.src = &apos;http://a.com/c.html#somedata&apos;;    // 注意该文件在&quot;a.com&quot;域下
-        document.body.appendChild(ifrproxy);
-    }
-}    
-</code></pre><p>–<br>    //<a href="http://a.com/c.html" target="_blank" rel="noopener">http://a.com/c.html</a><br>    parent.parent.location.hash = self.location.hash.substring(1);</p>
-<h2 id="4-window-name-iframe"><a href="#4-window-name-iframe" class="headerlink" title="4.window.name + iframe"></a>4.window.name + iframe</h2><p>window.name :name 值在不同的页面（甚至不同域名）加载后依旧存在，并且可以支持非常长的 name 值（2MB)  </p>
-<pre><code>    //a.com/a/html
-            function proxy(url,func) {
-    var isFirst = true;
-    var ifr = document.createElement(&apos;iframe&apos;);
-    loadFunc = function() {
-        console.log(1,isFirst)
-        if(isFirst) {
-            ifr.src = &apos;a.com/cs1.html&apos;;
-            isFirst = false;
-        } else {
-            console.log(&apos;name&apos;,ifr.contentWindow.name)
-            func(ifr.contentWindow.name);
-            document.body.removeChild(ifr);
-            ifr.src = null;
-            ifr = &apos;&apos;;
-        }
-
-    }
-     ifr.src = url;
-    ifr.style.display = &apos;none&apos;;
-    if(ifr.attachEvent){ ifr.attachEvent(&apos;onload&apos;, loadFunc);
-}else {ifr.onload = loadFunc;}
-     document.body.appendChild(ifr);
-}
-
- proxy(&apos;http://www.baidu.com/&apos;, function(data){
-      console.log(&apos;data&apos;,data);
-    });
-</code></pre><h2 id="5-postMessage"><a href="#5-postMessage" class="headerlink" title="5.    postMessage"></a>5.    postMessage</h2><pre><code>a.com/index.html中的代码：
-&lt;iframe id=&quot;ifr&quot; src=&quot;b.com/index.html&quot;&gt;&lt;/iframe&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    window.onload = function() {
-    var ifr = document.getElementById(&apos;ifr&apos;);
-       var targetOrigin = &apos;http://b.com&apos;;
-     // 若写成&apos;http://b.com/c/proxy.html&apos;效果一样
-      // 若写成&apos;http://c.com&apos;就不会执行postMessage了
-       ifr.contentWindow.postMessage(&apos;I was there!&apos;, targetOrigin);
-};
-&lt;/script&gt;
-
-//b.com/index.html
-window.addEventListener(&apos;message&apos;, function(event){
-        // 通过origin属性判断消息来源地址
-        if (event.origin == &apos;http://a.com&apos;) {
-            alert(event.data);    // 弹出&quot;I was there!&quot;
-            alert(event.source);  
-            // 对a.com、index.html中window对象的引用
-            // 但由于同源策略，这里event.source不可以访问window对象
-        }
-    }, false);
-</code></pre><h2 id="6-CORS"><a href="#6-CORS" class="headerlink" title="6.CORS"></a>6.CORS</h2><h2 id="7-JSONP"><a href="#7-JSONP" class="headerlink" title="7.JSONP"></a>7.JSONP</h2><pre><code>    function handleResponse(response){
-    console.log(&apos;The responsed data is: &apos;+response.data);
-}
-var script = document.createElement(&apos;script&apos;);
-script.src = &apos;http://www.baidu.com/json/?callback=handleResponse&apos;;
-document.body.insertBefore(script, document.body.firstChild);
-/*handleResonse({&quot;data&quot;: &quot;zhe&quot;})*/
-//原理如下：
-//当我们通过script标签请求时
-//后台就会根据相应的参数(json,handleResponse)
-//来生成相应的json数据(handleResponse({&quot;data&quot;: &quot;zhe&quot;}))
-//最后这个返回的json数据(代码)就会被放在当前js文件中被执行
-//至此跨域通信完成
-</code></pre><h2 id="8-web-socket"><a href="#8-web-socket" class="headerlink" title="8.web socket"></a>8.web socket</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wolfjyx.github.com/2018/11/26/跨域/" data-id="cjoyft7bp0000nljgn33pwduk" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1227,6 +1150,10 @@ document.body.insertBefore(script, document.body.firstChild);
       <ul>
         
           <li>
+            <a href="/2018/12/17/threejs 解读 materilas/">threejs 解读  material</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/16/threejs 解读  camera/">threejs 解读  camera</a>
           </li>
         
@@ -1240,10 +1167,6 @@ document.body.insertBefore(script, document.body.firstChild);
         
           <li>
             <a href="/2018/12/09/javascript & ECMAScript & es/">javascript &amp; ECMAScript &amp; es</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/06/head-meta/">head-meta</a>
           </li>
         
       </ul>
