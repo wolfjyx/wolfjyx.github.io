@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>threejs 解读  camera | wolfjyx&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AmbientLight概念此光照均匀地照亮场景中的所有对象此灯不能用于投射阴影，因为它没有方向 使用1AmbientLight( color : Integer, intensity : Float ) color — 光源颜色的RGB数值, 默认0xffffffintensity – 光源强度的数值， 默认1 属性castShadow : Boolean这在构造函数中设置为undefined，">
+<meta name="keywords" content="js threejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="threejs 解读  camera">
+<meta property="og:url" content="http://wolfjyx.github.com/2018/12/24/threejs 解读 light/index.html">
+<meta property="og:site_name" content="wolfjyx&#39;s blog">
+<meta property="og:description" content="AmbientLight概念此光照均匀地照亮场景中的所有对象此灯不能用于投射阴影，因为它没有方向 使用1AmbientLight( color : Integer, intensity : Float ) color — 光源颜色的RGB数值, 默认0xffffffintensity – 光源强度的数值， 默认1 属性castShadow : Boolean这在构造函数中设置为undefined，">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-24T15:48:27.770Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="threejs 解读  camera">
+<meta name="twitter:description" content="AmbientLight概念此光照均匀地照亮场景中的所有对象此灯不能用于投射阴影，因为它没有方向 使用1AmbientLight( color : Integer, intensity : Float ) color — 光源颜色的RGB数值, 默认0xffffffintensity – 光源强度的数值， 默认1 属性castShadow : Boolean这在构造函数中设置为undefined，">
+  
+    <link rel="alternate" href="/atom.xml" title="wolfjyx&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">wolfjyx&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">博客的博，博客的客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wolfjyx.github.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-threejs 解读 light" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/24/threejs 解读 light/" class="article-date">
+  <time datetime="2018-12-24T15:48:27.770Z" itemprop="datePublished">2018-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      threejs 解读  camera
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="AmbientLight"><a href="#AmbientLight" class="headerlink" title="AmbientLight"></a>AmbientLight</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>此光照均匀地照亮场景中的所有对象<br>此灯不能用于投射阴影，因为它没有方向</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AmbientLight( color : Integer, intensity : Float )</span><br></pre></td></tr></table></figure>
+<p>color — 光源颜色的RGB数值, 默认0xffffff<br>intensity – 光源强度的数值， 默认1</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="castShadow-Boolean"><a href="#castShadow-Boolean" class="headerlink" title="castShadow : Boolean"></a>castShadow : Boolean</h3><p>这在构造函数中设置为undefined，因为环境光不能投射阴影。</p>
+<h3 id="isAmbientLight-Boolean"><a href="#isAmbientLight-Boolean" class="headerlink" title="isAmbientLight : Boolean"></a>isAmbientLight : Boolean</h3><p>用于检查此类或派生类是否为环境光. 默认为true.<br>不应该更改它，因为它在内部用于优化  </p>
+<h1 id="DirectionalLight"><a href="#DirectionalLight" class="headerlink" title="DirectionalLight"></a>DirectionalLight</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>一种沿特定方向发射的光。 这种光的行为就好像它是无限远的，并且由它产生的光线都是平行的。 常见的用例是模拟日光; 太阳足够远，它的位置可以被认为是无限的，并且来自它的所有光线都是平行的。</p>
+<p><strong>关于位置，目标和旋转的注释</strong><br>方向灯的一个常见混淆点是设置旋转无效。 这是因为three.js的DirectionalLight与其他应用程序中通常称为“Target Direct Light”的东西相当。</p>
+<p>这意味着它的方向被计算为从光的位置指向目标的位置（而不是仅具有旋转分量的’自由直接光’）。</p>
+<p>这样做的原因是允许灯光投射阴影 - 阴影相机需要一个位置来计算阴影。</p>
+<h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DirectionalLight( color : Integer, intensity : Float )</span><br></pre></td></tr></table></figure>
+<p>color  - （可选）十六进制颜色的光。 默认值为0xffffff（白色）。<br>intensity - （可选）灯光强度/强度的数值。 默认值为1。</p>
+<h2 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h2><h3 id="castShadow-Boolean-1"><a href="#castShadow-Boolean-1" class="headerlink" title="castShadow : Boolean"></a>castShadow : Boolean</h3><p>如果设置为true，则会投射动态阴影。 警告：不停的调整阴影以使其看起来正常，这很消耗性能。</p>
+<h3 id="isDirectionalLight-Boolean"><a href="#isDirectionalLight-Boolean" class="headerlink" title="isDirectionalLight : Boolean"></a>isDirectionalLight : Boolean</h3><p>用于检查此类或派生类是否为平行光. 默认为true.<br>不应该更改它，因为它在内部用于优化    </p>
+<h3 id="position-Vector3"><a href="#position-Vector3" class="headerlink" title="position : Vector3"></a>position : Vector3</h3><p>这被默认设置为<strong>Object3D.DefaultUp（0,1,0）</strong>，以便光从上到下发光</p>
+<h3 id="shadow-DirectionalLightShadow"><a href="#shadow-DirectionalLightShadow" class="headerlink" title="shadow : DirectionalLightShadow"></a>shadow : DirectionalLightShadow</h3><p>用于计算此灯光的阴影<strong>DirectionalLightShadow</strong> </p>
+<h3 id="target-Object3D"><a href="#target-Object3D" class="headerlink" title="target : Object3D"></a>target : Object3D</h3><p>DirectionalLight从其位置指向target.position。 目标的默认位置是（0,0,0）。<br>注意：要将目标的位置更改为默认值以外的任何位置，必须将其添加到场景中</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="copy-source-DirectionalLight-DirectionalLight"><a href="#copy-source-DirectionalLight-DirectionalLight" class="headerlink" title="copy( source : DirectionalLight ) : DirectionalLight"></a>copy( source : DirectionalLight ) : DirectionalLight</h3><p>将source中所有属性的值复制到此DirectionalLight  </p>
+<h1 id="HemisphereLight"><a href="#HemisphereLight" class="headerlink" title="HemisphereLight"></a>HemisphereLight</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>直接位于场景上方的光源，颜色从天空颜色渐变到底色。</p>
+<p>此灯不能用于投射阴影</p>
+<h2 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HemisphereLight( skyColor : Integer, groundColor : Integer, intensity : Float )</span><br></pre></td></tr></table></figure>
+<p>skyColor - （可选）天空的十六进制颜色。 默认值为0xffffff。<br>groundColor - （可选）地面的十六进制颜色。 默认值为0xffffff。<br>intensity - （可选）灯光强度/强度的数值。 默认值为1。  </p>
+<h2 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h2><h3 id="castShadow-Boolean-2"><a href="#castShadow-Boolean-2" class="headerlink" title="castShadow : Boolean"></a>castShadow : Boolean</h3><p>这在构造函数中设置为undefined，因为半球光不能投射阴影</p>
+<h3 id="color-Float"><a href="#color-Float" class="headerlink" title="color : Float"></a>color : Float</h3><p>灯光的天空颜色，在构造函数中传递。 默认值是（0xffffff）</p>
+<h3 id="groundColor-Float"><a href="#groundColor-Float" class="headerlink" title="groundColor : Float"></a>groundColor : Float</h3><p>灯光的地面颜色，在构造函数中传递。 默认值是（0xffffff）</p>
+<h3 id="isHemisphereLight-Boolean"><a href="#isHemisphereLight-Boolean" class="headerlink" title="isHemisphereLight : Boolean"></a>isHemisphereLight : Boolean</h3><p>用于检查此类或派生类是否为半球光. 默认为true.<br>不应该更改它，因为它在内部用于优化    </p>
+<h3 id="position-Vector3-1"><a href="#position-Vector3-1" class="headerlink" title="position : Vector3"></a>position : Vector3</h3><p>这被默认设置为<strong>Object3D.DefaultUp（0,1,0）</strong>，以便光从上到下发光</p>
+<h2 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h2><h3 id="copy-source-HemisphereLight-HemisphereLight"><a href="#copy-source-HemisphereLight-HemisphereLight" class="headerlink" title="copy ( source : HemisphereLight ) : HemisphereLight"></a>copy ( source : HemisphereLight ) : HemisphereLight</h3><p>将source中 color, intensity and groundColor属性的值复制到此光照  </p>
+<h1 id="Light"><a href="#Light" class="headerlink" title="Light"></a>Light</h1><h2 id="概念-3"><a href="#概念-3" class="headerlink" title="概念"></a>概念</h2><p>灯的抽象基类 - 所有其他灯类型都继承了此处描述的属性和方法</p>
+<h2 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Light( color : Integer, intensity : float )</span><br></pre></td></tr></table></figure>
+<p>color - （可选）十六进制颜色的光。 默认值为0xffffff（白色）。<br>intensity - （可选）灯光强度/强度的数值。 默认值为1。</p>
+<p>创造一个新的光。 请注意，这不是要直接调用（而是使用派生类之一）</p>
+<h2 id="属性-3"><a href="#属性-3" class="headerlink" title="属性"></a>属性</h2><h3 id="color-Color"><a href="#color-Color" class="headerlink" title="color: Color"></a>color: Color</h3><p>光的颜色。 如果未在构造函数中传递，则默认为将新颜色设置为白色</p>
+<h3 id="intensity-Float"><a href="#intensity-Float" class="headerlink" title="intensity : Float"></a>intensity : Float</h3><p>光的强度或强度。<br>在物理上正确的模式中，颜色*强度的乘积被解释为在坎德拉中测量的发光强度。<br>默认值 - 1.0</p>
+<h3 id="isLight-Boolean"><a href="#isLight-Boolean" class="headerlink" title="isLight : Boolean"></a>isLight : Boolean</h3><p>用于检查此类或派生类是否为光照. 默认为true.<br>不应该更改它，因为它在内部用于优化  </p>
+<h2 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h2><h3 id="copy-source-Light-Light"><a href="#copy-source-Light-Light" class="headerlink" title="copy ( source : Light ) : Light"></a>copy ( source : Light ) : Light</h3><p>将source中 color, intensity 属性的值复制到此光照  </p>
+<p>###toJSON ( meta : String )<br>返回JSON格式的光照数据</p>
+<h1 id="PointLight"><a href="#PointLight" class="headerlink" title="PointLight"></a>PointLight</h1><h2 id="概念-4"><a href="#概念-4" class="headerlink" title="概念"></a>概念</h2><p>从所有方向的单个点发出的光。 一个常见的用例是复制裸灯泡发出的光。</p>
+<h2 id="使用-4"><a href="#使用-4" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PointLight( color : Integer, intensity : Float, distance : Number, decay : Float )</span><br></pre></td></tr></table></figure>
+<p>color - （可选）十六进制颜色的光。 默认值为0xffffff（白色）。<br>intensity - （可选）灯光强度/强度的数值。 默认值为1。</p>
+<p>distance - 光的最大范围。 默认值为0（无限制）。<br>decay - 灯光沿着光线的距离变暗的量。 默认值为1. 对于物理上正确的照明，请将其设置为2</p>
+<h2 id="属性-4"><a href="#属性-4" class="headerlink" title="属性"></a>属性</h2><h3 id="decay-Float"><a href="#decay-Float" class="headerlink" title="decay : Float"></a>decay : Float</h3><p>光线沿光线距离变暗的量<br>在物理校正模式下，衰减= 2会模拟物理上逼真的光线衰减。<br>默认值为1。</p>
+<h3 id="distance-Float"><a href="#distance-Float" class="headerlink" title="distance : Float"></a>distance : Float</h3><p>默认模式 - 当距离为零时，灯不会衰减<br> 当距离不为零时，光线将从光线位置处的最大强度线性衰减到距离光线此距离处的零点  </p>
+<p> 物理校正模式 - 当距离为零时，光将根据反平方定律衰减到无限远距离<br> 当距离不为零时，光将根据反平方定律衰减，直到接近距离截止，然后它将快速平滑地衰减到0.当然，截止在物理上是不正确的</p>
+<p>默认值为0.0</p>
+<h3 id="isPointLight-Boolean"><a href="#isPointLight-Boolean" class="headerlink" title="isPointLight : Boolean"></a>isPointLight : Boolean</h3><p>用于检查此类或派生类是否为点光源. 默认为true.<br>不应该更改它，因为它在内部用于优化  </p>
+<h3 id="power-Float"><a href="#power-Float" class="headerlink" title="power : Float"></a>power : Float</h3><p>光的强度<br>在物理校正模式下，光的发光功率以流明为单位测量。 默认值为4Math.PI<br>这与intensity成比例关系 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">改变这属性也将改变intensity </span><br><span class="line"></span><br><span class="line">###shadow : LightShadow  </span><br><span class="line"></span><br><span class="line">用于计算此灯光阴影的LightShadow。</span><br><span class="line"></span><br><span class="line">lightShadow的相机被设置为PerspectiveCamera，fov为90, aspect为1，near 为0.5，far为500。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 方法</span><br><span class="line">### copy  ( source : PointLight ) : PointLight</span><br><span class="line">将source中所有属性的值复制到此光照  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># RectAreaLight</span><br><span class="line">RectAreaLight是在一个矩形平面上均匀地发光。 这种灯型可用于模拟光源，如明亮的窗户或条形照明。</span><br><span class="line"></span><br><span class="line">ps：</span><br><span class="line"></span><br><span class="line">不支持阴影  </span><br><span class="line">仅支持**MeshStandardMaterial**和**MeshPhysicalMaterial**  </span><br><span class="line">在场景中必须包含**RectAreaLightUniformsLib**</span><br><span class="line"></span><br><span class="line">## 使用</span><br></pre></td></tr></table></figure></p>
+<p>RectAreaLight( color : Integer, intensity : Float, width : Float, height : Float )<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">color - （可选）十六进制颜色的光。 默认值为0xffffff（白色）。</span><br><span class="line">intensity - （可选）光的强度或亮度。 默认值为1。</span><br><span class="line">width - （可选）灯的宽度。 默认值为10。</span><br><span class="line">height - （可选）灯光高度。 默认值为10。</span><br><span class="line"></span><br><span class="line">## 属性</span><br><span class="line">### isRectAreaLight : Boolean</span><br><span class="line"></span><br><span class="line">用于检查此类或派生类是否为矩形区光源. 默认为true.  </span><br><span class="line">不应该更改它，因为它在内部用于优化  </span><br><span class="line"></span><br><span class="line">## 方法</span><br><span class="line">### copy  ( source : RectAreaLight ) : RectAreaLight</span><br><span class="line">将source中所有属性的值复制到此光照  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># SpotLight</span><br><span class="line">## 概念 </span><br><span class="line">聚光源，这种光从一个方向上的单个点沿着一个锥体发出，该锥体的尺寸越大，距离得到的光越远</span><br><span class="line"></span><br><span class="line">## 使用</span><br></pre></td></tr></table></figure></p>
+<p>SpotLight( color : Integer, intensity : Float, distance : Float, angle : Radians, penumbra : Float, decay : Float )<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">color - （可选）十六进制颜色的光。 默认值为0xffffff（白色）。</span><br><span class="line">intensity - （可选）灯光强度/强度的数值。 默认值为1。</span><br><span class="line">distance - 光的最大范围。 默认值为0（无限制）。</span><br><span class="line">angle - 从其上限为Math.PI / 2的方向的最大光散射角。</span><br><span class="line">pennumbra - 由于半影而衰减的聚光锥的百分比。 取值介于0和1之间。默认值为零。</span><br><span class="line">decay - 灯光沿着光线的距离变暗的量</span><br><span class="line"></span><br><span class="line">## 属性</span><br><span class="line">### angle : Float</span><br><span class="line">聚光灯的最大范围，从光源方向看，以弧度为单位，。 应该不超过Math.PI / 2。 默认值为Math.PI / 3</span><br><span class="line"></span><br><span class="line">### castShadow : Boolean</span><br><span class="line">如果设置为true，则会投射动态阴影。 警告：不停的调整阴影以使其看起来正常，这很消耗性能。</span><br><span class="line"></span><br><span class="line">### decay : Float</span><br><span class="line">光线沿光线距离变暗的量  </span><br><span class="line">在物理校正模式下，decay= 2会导致物理上逼真的光线衰减, </span><br><span class="line">默认值为1</span><br><span class="line"></span><br><span class="line">### distance : Float</span><br><span class="line">默认模式 - 当距离为零时，灯不会衰减  </span><br><span class="line"> 当距离不为零时，光线将从光线位置处的最大强度线性衰减到距离光线此距离处的零点  </span><br><span class="line"> </span><br><span class="line"> 物理校正模式 - 当距离为零时，光将根据反平方定律衰减到无限远距离  </span><br><span class="line"> 当距离不为零时，光将根据反平方定律衰减，直到接近距离截止，然后它将快速平滑地衰减到0.当然，截止在物理上是不正确的</span><br><span class="line"></span><br><span class="line">默认值为0.0</span><br><span class="line"></span><br><span class="line">### isSpotLight : Boolean</span><br><span class="line"></span><br><span class="line">用于检查此类或派生类是否为聚光光源. 默认为true.  </span><br><span class="line">不应该更改它，因为它在内部用于优化  </span><br><span class="line"></span><br><span class="line">### penumbra : Float</span><br><span class="line">由于半影而衰减的聚光锥的百分比。 取值介于0和1之间。默认值为0.0</span><br><span class="line"></span><br><span class="line">### position : Vector3</span><br><span class="line">默认设置为Object3D.DefaultUp（0,1,0），以便光从上到下发光</span><br><span class="line"></span><br><span class="line">### power : Float</span><br><span class="line">光的强度  </span><br><span class="line">在物理校正模式下，光的发光功率以流明为单位测量。 默认值为4Math.PI    </span><br><span class="line">这与intensity成比例关系 ```power = intensity * π```  </span><br><span class="line">改变这属性也将改变intensity </span><br><span class="line"></span><br><span class="line">### shadow : SpotLightShadow</span><br><span class="line">用于计算此灯光的阴影SpotLightShadow</span><br><span class="line"></span><br><span class="line">### target : Object3D</span><br><span class="line">Spotlight从其光源位置指向target.position。 目标的默认位置是（0,0,0）。</span><br><span class="line">注意：要将目标的位置更改为默认值以外的任何位置，必须将其添加到场景中</span><br></pre></td></tr></table></figure></p>
+<p>scene.add( light.target )<br><code>`</code><br>这样，目标的matrixWorld每帧都会自动更新</p>
+<p>也可以将目标设置为场景中的另一个对象（具有position属性的任何对象），如下所示</p>
+<pre><code>var targetObject = new THREE.Object3D();
+scene.add(targetObject);
+
+light.target = targetObject;
+</code></pre><p>聚光灯现在将跟踪目标对象</p>
+<h2 id="方法-3"><a href="#方法-3" class="headerlink" title="方法"></a>方法</h2><h3 id="copy-source-SpotLight-SpotLight"><a href="#copy-source-SpotLight-SpotLight" class="headerlink" title="copy  ( source : SpotLight ) : SpotLight"></a>copy  ( source : SpotLight ) : SpotLight</h3><p>将source中所有属性的值复制到此光照  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2018/12/24/threejs 解读 light/" data-id="cjq2hxq7q0000ggjgr5ondkxg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-threejs/">js threejs</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/17/threejs 解读 materilas/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">threejs 解读  material</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemark-模板/">freemark 模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/head/">head</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-threejs/">js threejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/freemark-模板/" style="font-size: 10px;">freemark 模板</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/head/" style="font-size: 10px;">head</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js-threejs/" style="font-size: 20px;">js threejs</a> <a href="/tags/浏览器/" style="font-size: 15px;">浏览器</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/24/threejs 解读 light/">threejs 解读  camera</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/17/threejs 解读 materilas/">threejs 解读  material</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/16/threejs 解读  camera/">threejs 解读  camera</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/11/threejs解读 webGLRender/">threejs解读 webGLRender</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/10/threejs 解读  scene/">threejs 解读  scene</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 wolfjyx<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
