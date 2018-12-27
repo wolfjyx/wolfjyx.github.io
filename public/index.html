@@ -66,6 +66,260 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-threejs 解读 geometry" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/27/threejs 解读 geometry/" class="article-date">
+  <time datetime="2018-12-27T14:49:31.774Z" itemprop="datePublished">2018-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/27/threejs 解读 geometry/">threejs 解读  geometry</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="BoxGeometry"><a href="#BoxGeometry" class="headerlink" title="BoxGeometry"></a>BoxGeometry</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>盒子几何模型，长、宽、高可不等</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BoxGeometry(width : Float, height : Float, depth : Float, widthSegments : Integer, heightSegments : Integer, depthSegments : Integer)</span><br></pre></td></tr></table></figure>
+<p>width - x轴上的宽度，默认为1<br>height - y轴上的高度，默认为1<br>depth - z轴上的深度，默认为1<br>widthSegments — 可选参数. 沿宽度面的分割面数量. 默认值为1<br>heightSegments — 可选参数. 沿高度面的分割面数量. 默认值为1<br>depthSegments — 可选参数. 沿深度面的分割面数量. 默认值为1  </p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object"><a href="#parameters-Object" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何</p>
+<h1 id="BoxBufferGeometry"><a href="#BoxBufferGeometry" class="headerlink" title="BoxBufferGeometry"></a>BoxBufferGeometry</h1><p>##概念<br> BoxGeometry 部分的 BufferGeometry </p>
+<h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BoxBufferGeometry(width : Float, height : Float, depth : Float, widthSegments : Integer, heightSegments : Integer, depthSegments : Integer)</span><br></pre></td></tr></table></figure>
+<p>width - x轴上的宽度，默认为1<br>height - y轴上的高度，默认为1<br>depth - z轴上的深度，默认为1<br>widthSegments — 可选参数. 沿宽度面的分割面数量. 默认值为1<br>heightSegments — 可选参数. 沿高度面的分割面数量. 默认值为1<br>depthSegments — 可选参数. 沿深度面的分割面数量. 默认值为1  </p>
+<h2 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-1"><a href="#parameters-Object-1" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何</p>
+<p>#CircleGeometry</p>
+<p>##概念<br>CircleGeometry是一个简单的欧氏几何形。它是众多三角形面围绕一个中心点并延伸到给定的半径范围而组成。它是用一个开始角度和一个给定的中心角度逆时针建立。它可以用来创建规则的多边形模型，其中分割面的数量决定的面的数量。</p>
+<p>##使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CircleGeometry(radius : Float, segments : Integer, thetaStart : Float, thetaLength : Float)</span><br></pre></td></tr></table></figure></p>
+<p>radius — 圆的半径, 默认为1.<br>segments — 分割面数量 (三角形), 最小值为3, 默认值 = 8.<br>thetaStart — 第一个分割面的开始角度, 默认值为0 (3点钟方向).<br>thetaLength — 圆形扇形的圆心角通常称为 θ。默认为2 * Pi</p>
+<h2 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-2"><a href="#parameters-Object-2" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何</p>
+<p>#CircleBufferGeometry</p>
+<p>##概念<br> CircleGeometry 部分的 BufferGeometry </p>
+<p>##使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CircleBufferGeometry(radius : Float, segments : Integer, thetaStart : Float, thetaLength : Float)</span><br></pre></td></tr></table></figure></p>
+<p>radius — 圆的半径, 默认为1.<br>segments — 分割面数量 (三角形), 最小值为3, 默认值 = 8.<br>thetaStart — 第一个分割面的开始角度, 默认值为0 (3点钟方向).<br>thetaLength — 圆形扇形的圆心角通常称为 θ。默认为2 * Pi</p>
+<h2 id="属性-3"><a href="#属性-3" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-3"><a href="#parameters-Object-3" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="ConeGeometry"><a href="#ConeGeometry" class="headerlink" title="ConeGeometry"></a>ConeGeometry</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>用于生成锥形几何的类</p>
+<p>##使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConeGeometry(radius : Float, height : Float, radialSegments : Integer, heightSegments : Integer, openEnded : Boolean, thetaStart : Float, thetaLength : Float)</span><br></pre></td></tr></table></figure></p>
+<p>adius — 锥底半径. 默认值为20<br>height — 锥体高度. 默认值为100<br>radiusSegments — 围绕圆锥周长的分割面数量. 默认值为8<br>heightSegments — 沿圆锥高度的分割面数量. 默认值为1<br>openEnded — 指示锥底是否打开, 默认值为false<br>thetaStart — 第一个分割面的开始角度, 默认值 = 0 (3点钟方向)<br>thetaLength — 圆形扇形的圆心角通常称为θ。默认为2 * Pi.</p>
+<h2 id="属性-4"><a href="#属性-4" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-4"><a href="#parameters-Object-4" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="ConeBufferGeometry"><a href="#ConeBufferGeometry" class="headerlink" title="ConeBufferGeometry"></a>ConeBufferGeometry</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>ConeGeometry 部分的 BufferGeometry </p>
+<p>##使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ConeGeometry(radius : Float, height : Float, radialSegments : Integer, heightSegments : Integer, openEnded : Boolean, thetaStart : Float, thetaLength : Float)</span><br></pre></td></tr></table></figure></p>
+<p>adius — 锥底半径. 默认值为20<br>height — 锥体高度. 默认值为100<br>radiusSegments — 围绕圆锥周长的分割面数量. 默认值为8<br>heightSegments — 沿圆锥高度的分割面数量. 默认值为1<br>openEnded — 指示锥底是否打开, 默认值为false<br>thetaStart — 第一个分割面的开始角度, 默认值 = 0 (3点钟方向)<br>thetaLength — 圆形扇形的圆心角通常称为θ。默认为2 * Pi.</p>
+<h2 id="属性-5"><a href="#属性-5" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-5"><a href="#parameters-Object-5" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="CylinderGeometry"><a href="#CylinderGeometry" class="headerlink" title="CylinderGeometry"></a>CylinderGeometry</h1><h2 id="概念-3"><a href="#概念-3" class="headerlink" title="概念"></a>概念</h2><p>用于生成圆柱几何的类</p>
+<h2 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CylinderGeometry(radiusTop : Float, radiusBottom : Float, height : Float, radialSegments : Integer, heightSegments : Integer, openEnded : Boolean, thetaStart : Float, thetaLength : Float)</span><br></pre></td></tr></table></figure>
+<p>radiusTop — 圆柱体顶端半径. 默认值为20.<br>radiusBottom — 圆柱体底端半径. 默认值为20.<br>height — 圆柱体高度. 默认值为100.<br>radiusSegments — 围绕圆柱体周长的分割面数量. 默认值为8.<br>heightSegments — 沿圆柱体高度的分割面数量. 默认值为1.<br>openEnded — 指示圆柱体两端是否打开. 默认值为false<br>thetaStart — 第一个分割面的开始角度, 默认值 = 0 (3点钟方向).<br>thetaLength — 圆形扇形的圆心角通常称为θ。默认为2 * Pi</p>
+<h2 id="属性-6"><a href="#属性-6" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-6"><a href="#parameters-Object-6" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="CylinderBufferGeometry"><a href="#CylinderBufferGeometry" class="headerlink" title="CylinderBufferGeometry"></a>CylinderBufferGeometry</h1><h2 id="概念-4"><a href="#概念-4" class="headerlink" title="概念"></a>概念</h2><p>CylinderGeometry 部分的 BufferGeometry </p>
+<h2 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CylinderGeometry(radiusTop : Float, radiusBottom : Float, height : Float, radialSegments : Integer, heightSegments : Integer, openEnded : Boolean, thetaStart : Float, thetaLength : Float)</span><br></pre></td></tr></table></figure>
+<p>radiusTop — 圆柱体顶端半径. 默认值为20.<br>radiusBottom — 圆柱体底端半径. 默认值为20.<br>height — 圆柱体高度. 默认值为100.<br>radiusSegments — 围绕圆柱体周长的分割面数量. 默认值为8.<br>heightSegments — 沿圆柱体高度的分割面数量. 默认值为1.<br>openEnded — 指示圆柱体两端是否打开. 默认值为false<br>thetaStart — 第一个分割面的开始角度, 默认值 = 0 (3点钟方向).<br>thetaLength — 圆形扇形的圆心角通常称为θ。默认为2 * Pi</p>
+<h2 id="属性-7"><a href="#属性-7" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-7"><a href="#parameters-Object-7" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="DodecahedronGeometry"><a href="#DodecahedronGeometry" class="headerlink" title="DodecahedronGeometry"></a>DodecahedronGeometry</h1><h2 id="概念-5"><a href="#概念-5" class="headerlink" title="概念"></a>概念</h2><p>用于生成十二面体几何的类</p>
+<h2 id="使用-4"><a href="#使用-4" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DodecahedronGeometry(radius : Float, detail : Integer)</span><br></pre></td></tr></table></figure>
+<p>radius — 十二面体的半径. 默认值为1.<br>detail — 默认值为0. 设置为大于0的值将添加顶点使之不再是一个十二面体  </p>
+<h2 id="属性-8"><a href="#属性-8" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-8"><a href="#parameters-Object-8" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="DodecahedBufferronGeometry"><a href="#DodecahedBufferronGeometry" class="headerlink" title="DodecahedBufferronGeometry"></a>DodecahedBufferronGeometry</h1><h2 id="概念-6"><a href="#概念-6" class="headerlink" title="概念"></a>概念</h2><p>DodecahedonGeometry 部分的 BufferGeometry </p>
+<h2 id="使用-5"><a href="#使用-5" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DodecahedronGeometry(radius : Float, detail : Integer)</span><br></pre></td></tr></table></figure>
+<p>radius — 十二面体的半径. 默认值为1.<br>detail — 默认值为0. 设置为大于0的值将添加顶点使之不再是一个十二面体  </p>
+<h2 id="属性-9"><a href="#属性-9" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-9"><a href="#parameters-Object-9" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="ExtrudeGeometry"><a href="#ExtrudeGeometry" class="headerlink" title="ExtrudeGeometry"></a>ExtrudeGeometry</h1><h2 id="概念-7"><a href="#概念-7" class="headerlink" title="概念"></a>概念</h2><p>这可以用作辅助对象来查看Geometry对象的边缘</p>
+<h2 id="使用-6"><a href="#使用-6" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EdgesGeometry( geometry : Geometry, thresholdAngle : Integer )</span><br></pre></td></tr></table></figure>
+<p>geometry - 任何几何对象<br>thresholdAngle - 仅当相邻面的面法线之间的角度（以度为单位）超过此值时，才会渲染边。 默认为1度</p>
+<h2 id="属性-10"><a href="#属性-10" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-10"><a href="#parameters-Object-10" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="ExtrudeGeometry-1"><a href="#ExtrudeGeometry-1" class="headerlink" title="ExtrudeGeometry"></a>ExtrudeGeometry</h1><h2 id="概念-8"><a href="#概念-8" class="headerlink" title="概念"></a>概念</h2><p>从路径形状创建拉伸几何体</p>
+<h2 id="使用-7"><a href="#使用-7" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExtrudeGeometry(shapes : Array, options : Object)</span><br></pre></td></tr></table></figure>
+<p>shapes — 形状或形状数组<br>options — 包括下面这些参数的对象.  </p>
+<ul>
+<li>curveSegments — int. 曲线上点的个数  </li>
+<li>steps — int. 用于细分拉伸的样条段数量</li>
+<li>depth — int. 拉伸形状的深度</li>
+<li>bevelEnabled — bool. 打开斜面</li>
+<li>bevelThickness — float. 在原来的形状里面弄多深的斜面</li>
+<li>bevelSize — float. 斜面离形状轮廓的距离</li>
+<li>bevelSegments — int. 斜面层的数量</li>
+<li>extrudePath — THREE.CurvePath. 沿3D样条路径拉伸形状</li>
+<li>UVGenerator — Object. 提供UV生成器各功能的对象</li>
+</ul>
+<p>这个对象将一个2D图形拉伸为一个3D几何体.<br>在使用此几何体创建网格时，如果您希望将单独的材质用于其面和其拉伸边，则可以使用一组材质。 第一种材料将涂在形状面; 第二种材料将应用于侧面</p>
+<h2 id="属性-11"><a href="#属性-11" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-11"><a href="#parameters-Object-11" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="ExtrudeBufferGeometry"><a href="#ExtrudeBufferGeometry" class="headerlink" title="ExtrudeBufferGeometry"></a>ExtrudeBufferGeometry</h1><h2 id="概念-9"><a href="#概念-9" class="headerlink" title="概念"></a>概念</h2><p>从路径形状创建拉伸几何体</p>
+<h2 id="使用-8"><a href="#使用-8" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExtrudeBufferGeometry(shapes : Array, options : Object)</span><br></pre></td></tr></table></figure>
+<p>shapes — 形状或形状数组<br>options — 包括下面这些参数的对象.  </p>
+<ul>
+<li>curveSegments — int. 曲线上点的个数  </li>
+<li>steps — int. 用于细分拉伸的样条段数量</li>
+<li>depth — int. 拉伸形状的深度</li>
+<li>bevelEnabled — bool. 打开斜面</li>
+<li>bevelThickness — float. 在原来的形状里面弄多深的斜面</li>
+<li>bevelSize — float. 斜面离形状轮廓的距离</li>
+<li>bevelSegments — int. 斜面层的数量</li>
+<li>extrudePath — THREE.CurvePath. 沿3D样条路径拉伸形状</li>
+<li>UVGenerator — Object. 提供UV生成器各功能的对象</li>
+</ul>
+<p>这个对象将一个2D图形拉伸为一个3D几何体.<br>在使用此几何体创建网格时，如果您希望将单独的材质用于其面和其拉伸边，则可以使用一组材质。 第一种材料将涂在形状面; 第二种材料将应用于侧面</p>
+<h2 id="属性-12"><a href="#属性-12" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-12"><a href="#parameters-Object-12" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="IcosahedronGeometry"><a href="#IcosahedronGeometry" class="headerlink" title="IcosahedronGeometry"></a>IcosahedronGeometry</h1><h2 id="概念-10"><a href="#概念-10" class="headerlink" title="概念"></a>概念</h2><p>用来创建二十面体几何模型的类</p>
+<h2 id="使用-9"><a href="#使用-9" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IcosahedronGeometry(radius : Float, detail : Integer)</span><br></pre></td></tr></table></figure>
+<p>radius — 默认值为1.<br>detail — 默认值为0. 设置为大于0的值将添加顶点使之不再是一个二十面体. 当值大于1时它就成了一个球体.</p>
+<h2 id="属性-13"><a href="#属性-13" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-13"><a href="#parameters-Object-13" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="IcosahedronBufferGeometry"><a href="#IcosahedronBufferGeometry" class="headerlink" title="IcosahedronBufferGeometry"></a>IcosahedronBufferGeometry</h1><h2 id="概念-11"><a href="#概念-11" class="headerlink" title="概念"></a>概念</h2><p>用来创建二十面体几何模型的类</p>
+<h2 id="使用-10"><a href="#使用-10" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IcosahedronBufferGeometry(radius : Float, detail : Integer)</span><br></pre></td></tr></table></figure>
+<p>radius — 默认值为1.<br>detail — 默认值为0. 设置为大于0的值将添加顶点使之不再是一个二十面体. 当值大于1时它就成了一个球体.</p>
+<h2 id="属性-14"><a href="#属性-14" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-14"><a href="#parameters-Object-14" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="LatheGeometry"><a href="#LatheGeometry" class="headerlink" title="LatheGeometry"></a>LatheGeometry</h1><h2 id="概念-12"><a href="#概念-12" class="headerlink" title="概念"></a>概念</h2><p>创建具有轴对称性的网格，如花瓶。 车床绕Y轴旋转。</p>
+<h2 id="使用-11"><a href="#使用-11" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LatheGeometry(points : Array, segments : Integer, phiStart : Float, phiLength : Float)</span><br></pre></td></tr></table></figure>
+<p>points — Vector2s数组. X轴上每个点都必须大于0.<br>segments — 生成圆周段的数目. 默认值为12.<br>phiStart — 起始角度的弧度值. 默认值为0.<br>phiLength — 弧度范围在0到2PI间的，2PI是闭合车床, 小于2PI的是部分。默认值为2PI.</p>
+<h2 id="属性-15"><a href="#属性-15" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-15"><a href="#parameters-Object-15" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="LatheBufferGeometry"><a href="#LatheBufferGeometry" class="headerlink" title="LatheBufferGeometry"></a>LatheBufferGeometry</h1><h2 id="概念-13"><a href="#概念-13" class="headerlink" title="概念"></a>概念</h2><p>创建具有轴对称性的网格，如花瓶。 车床绕Y轴旋转。</p>
+<h2 id="使用-12"><a href="#使用-12" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LatheBufferGeometry(points : Array, segments : Integer, phiStart : Float, phiLength : Float)</span><br></pre></td></tr></table></figure>
+<p>points — Vector2s数组. X轴上每个点都必须大于0.<br>segments — 生成圆周段的数目. 默认值为12.<br>phiStart — 起始角度的弧度值. 默认值为0.<br>phiLength — 弧度范围在0到2PI间的，2PI是闭合车床, 小于2PI的是部分。默认值为2PI.</p>
+<h2 id="属性-16"><a href="#属性-16" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-16"><a href="#parameters-Object-16" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="OctahedBufferGeometry"><a href="#OctahedBufferGeometry" class="headerlink" title="OctahedBufferGeometry"></a>OctahedBufferGeometry</h1><h2 id="概念-14"><a href="#概念-14" class="headerlink" title="概念"></a>概念</h2><p>用来创建八面体几何模型的类</p>
+<h2 id="使用-13"><a href="#使用-13" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OctahedGeometry(radius : Float, detail : Integer)</span><br></pre></td></tr></table></figure>
+<p>radius — 默认值为1.<br>detail — 默认值为0. 设置为大于0的值将添加顶点使之不再是一个八面体.</p>
+<h2 id="属性-17"><a href="#属性-17" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-17"><a href="#parameters-Object-17" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="OctahedronBufferGeometry"><a href="#OctahedronBufferGeometry" class="headerlink" title="OctahedronBufferGeometry"></a>OctahedronBufferGeometry</h1><h2 id="概念-15"><a href="#概念-15" class="headerlink" title="概念"></a>概念</h2><p>用来创建八面体几何模型的类</p>
+<h2 id="使用-14"><a href="#使用-14" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OctahedBufferGeometry(radius : Float, detail : Integer)</span><br></pre></td></tr></table></figure>
+<p>radius — 默认值为1.<br>detail — 默认值为0. 设置为大于0的值将添加顶点使之不再是一个八面体.</p>
+<h2 id="属性-18"><a href="#属性-18" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-18"><a href="#parameters-Object-18" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="ParametricGeometry"><a href="#ParametricGeometry" class="headerlink" title="ParametricGeometry"></a>ParametricGeometry</h1><h2 id="概念-16"><a href="#概念-16" class="headerlink" title="概念"></a>概念</h2><p>生成代表参数化曲面的几何模型</p>
+<h2 id="使用-15"><a href="#使用-15" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ParametricGeometry(func : Function, slices : Integer, stacks : Integer)</span><br></pre></td></tr></table></figure>
+<p>func — 一个函数，接收介于0到1之间的 u 和 v 值，并返回一个 Vector3<br>slices — 用于参数化函数的切片数量<br>stacks — 用于参数化函数的堆栈数量  </p>
+<h2 id="属性-19"><a href="#属性-19" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-19"><a href="#parameters-Object-19" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="ParametricBufferGeometry"><a href="#ParametricBufferGeometry" class="headerlink" title="ParametricBufferGeometry"></a>ParametricBufferGeometry</h1><h2 id="概念-17"><a href="#概念-17" class="headerlink" title="概念"></a>概念</h2><p>生成代表参数化曲面的几何模型</p>
+<h2 id="使用-16"><a href="#使用-16" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ParametricBufferGeometry(func : Function, slices : Integer, stacks : Integer)</span><br></pre></td></tr></table></figure>
+<p>func — 一个函数，接收介于0到1之间的 u 和 v 值，并返回一个 Vector3<br>slices — 用于参数化函数的切片数量<br>stacks — 用于参数化函数的堆栈数量  </p>
+<h2 id="属性-20"><a href="#属性-20" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-20"><a href="#parameters-Object-20" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="PlaneGeometry"><a href="#PlaneGeometry" class="headerlink" title="PlaneGeometry"></a>PlaneGeometry</h1><h2 id="概念-18"><a href="#概念-18" class="headerlink" title="概念"></a>概念</h2><p>用来生成平面几何模型的类</p>
+<h2 id="使用-17"><a href="#使用-17" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PlaneGeometry(width : Float, height : Float, widthSegments : Integer, heightSegments : Integer)</span><br></pre></td></tr></table></figure>
+<p>width — 沿X轴宽度, 默认为1.<br>height — 沿Y轴高度，默认为1.<br>widthSegments — 可选参数，x方向的分段数，缺省为1<br>heightSegments — 可选参数，y方向的分段数，缺省为1 </p>
+<h2 id="属性-21"><a href="#属性-21" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-21"><a href="#parameters-Object-21" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="PlaneBufferGeometry"><a href="#PlaneBufferGeometry" class="headerlink" title="PlaneBufferGeometry"></a>PlaneBufferGeometry</h1><h2 id="概念-19"><a href="#概念-19" class="headerlink" title="概念"></a>概念</h2><p>用来生成平面几何模型的类</p>
+<h2 id="使用-18"><a href="#使用-18" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PlaneBufferGeometry(width : Float, height : Float, widthSegments : Integer, heightSegments : Integer)</span><br></pre></td></tr></table></figure>
+<p>width — 沿X轴宽度, 默认为1.<br>height — 沿Y轴高度，默认为1.<br>widthSegments — 可选参数，x方向的分段数，缺省为1<br>heightSegments — 可选参数，y方向的分段数，缺省为1 </p>
+<h2 id="属性-22"><a href="#属性-22" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-22"><a href="#parameters-Object-22" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="PolyhedronGeometry"><a href="#PolyhedronGeometry" class="headerlink" title="PolyhedronGeometry"></a>PolyhedronGeometry</h1><h2 id="概念-20"><a href="#概念-20" class="headerlink" title="概念"></a>概念</h2><p>多面体是由多个平面形成的三维几何体,它将取一个顶点数组并将它们投射到一个球体上，然后将它们划分成所需的期望细节层面</p>
+<h2 id="使用-19"><a href="#使用-19" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PolyhedronGeometry(vertices : Array, indices : Array, radius : Float, detail : Integer)</span><br></pre></td></tr></table></figure>
+<p>vertices — Array 以 [1,1,1, -1,-1,-1, … ] 这种形式出现的点的数组<br>faces — Array 以 [0,1,2, 2,3,0, … ] 这种形式出现的构成各个面的指数数组<br>radius — Float - 最终形状的半径<br>detail — Integer - 把几何模型细分成多少层. 层越多形状越光滑.  </p>
+<h2 id="属性-23"><a href="#属性-23" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-23"><a href="#parameters-Object-23" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="PolyhedronBufferGeometry"><a href="#PolyhedronBufferGeometry" class="headerlink" title="PolyhedronBufferGeometry"></a>PolyhedronBufferGeometry</h1><h2 id="概念-21"><a href="#概念-21" class="headerlink" title="概念"></a>概念</h2><p>多面体是由多个平面形成的三维几何体,它将取一个顶点数组并将它们投射到一个球体上，然后将它们划分成所需的期望细节层面</p>
+<h2 id="使用-20"><a href="#使用-20" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PolyhedronBufferGeometry(vertices : Array, indices : Array, radius : Float, detail : Integer)</span><br></pre></td></tr></table></figure>
+<p>vertices — Array 以 [1,1,1, -1,-1,-1, … ] 这种形式出现的点的数组<br>faces — Array 以 [0,1,2, 2,3,0, … ] 这种形式出现的构成各个面的指数数组<br>radius — Float - 最终形状的半径<br>detail — Integer - 把几何模型细分成多少层. 层越多形状越光滑.  </p>
+<h2 id="属性-24"><a href="#属性-24" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-24"><a href="#parameters-Object-24" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="RingGeometry"><a href="#RingGeometry" class="headerlink" title="RingGeometry"></a>RingGeometry</h1><h2 id="概念-22"><a href="#概念-22" class="headerlink" title="概念"></a>概念</h2><p>用于生成二维环几何的类</p>
+<h2 id="使用-21"><a href="#使用-21" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RingGeometry(innerRadius : Float, outerRadius : Float, thetaSegments : Integer, phiSegments : Integer, thetaStart : Float, thetaLength : Float)</span><br></pre></td></tr></table></figure>
+<p>innerRadius — 默认值为0.5.<br>outerRadius — 默认值为1.<br>thetaSegments — 分割面数量. 更高的值意味着更加的圆滑. 最小值为3. 默认值为8.<br>phiSegments — 最小值为1. 默认值为8.<br>thetaStart — 开始角度. 默认值为0.<br>thetaLength — 圆心角. 默认值为Math.PI * 2.</p>
+<h2 id="属性-25"><a href="#属性-25" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-25"><a href="#parameters-Object-25" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="RingBufferGeometry"><a href="#RingBufferGeometry" class="headerlink" title="RingBufferGeometry"></a>RingBufferGeometry</h1><h2 id="概念-23"><a href="#概念-23" class="headerlink" title="概念"></a>概念</h2><p>用于生成二维环几何的类</p>
+<h2 id="使用-22"><a href="#使用-22" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RingBufferGeometry(innerRadius : Float, outerRadius : Float, thetaSegments : Integer, phiSegments : Integer, thetaStart : Float, thetaLength : Float)</span><br></pre></td></tr></table></figure>
+<p>innerRadius — 默认值为0.5.<br>outerRadius — 默认值为1.<br>thetaSegments — 分割面数量. 更高的值意味着更加的圆滑. 最小值为3. 默认值为8.<br>phiSegments — 最小值为1. 默认值为8.<br>thetaStart — 开始角度. 默认值为0.<br>thetaLength — 圆心角. 默认值为Math.PI * 2.</p>
+<h2 id="属性-26"><a href="#属性-26" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-26"><a href="#parameters-Object-26" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="ShapeGeometry"><a href="#ShapeGeometry" class="headerlink" title="ShapeGeometry"></a>ShapeGeometry</h1><h2 id="概念-24"><a href="#概念-24" class="headerlink" title="概念"></a>概念</h2><p>从一个或多个路径形状创建单面多边形几何</p>
+<h2 id="使用-23"><a href="#使用-23" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ShapeGeometry(shapes : Array, curveSegments : Integer)</span><br></pre></td></tr></table></figure>
+<p>shape - 形状数组或单个形状<br>curveSegments - 整数 - 每个形状的段数。 默认值为12   </p>
+<h2 id="属性-27"><a href="#属性-27" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-27"><a href="#parameters-Object-27" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="ShapeBufferGeometry"><a href="#ShapeBufferGeometry" class="headerlink" title="ShapeBufferGeometry"></a>ShapeBufferGeometry</h1><h2 id="概念-25"><a href="#概念-25" class="headerlink" title="概念"></a>概念</h2><p>从一个或多个路径形状创建单面多边形几何</p>
+<h2 id="使用-24"><a href="#使用-24" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ShapeBufferGeometry(shapes : Array, curveSegments : Integer)</span><br></pre></td></tr></table></figure>
+<p>shape - 形状数组或单个形状<br>curveSegments - 整数 - 每个形状的段数。 默认值为12   </p>
+<h2 id="属性-28"><a href="#属性-28" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-28"><a href="#parameters-Object-28" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="SphereGeometry"><a href="#SphereGeometry" class="headerlink" title="SphereGeometry"></a>SphereGeometry</h1><h2 id="概念-26"><a href="#概念-26" class="headerlink" title="概念"></a>概念</h2><p>用于生成球体几何的类</p>
+<h2 id="使用-25"><a href="#使用-25" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SphereGeometry(radius : Float, widthSegments : Integer, heightSegments : Integer, phiStart : Float, phiLength : Float, thetaStart : Float, thetaLength : Float)</span><br></pre></td></tr></table></figure>
+<p>radius — 球体半径. 默认值为50<br>widthSegments — 水平分割面的数量. 最小值为3, 默认值为8<br>heightSegments — 垂直分割面的数量. 最小值为2, 默认值为6<br>phiStart — 指定水平起始角度. 默认值为0<br>phiLength — 指定水平扫描角度大小. 默认值为 Math.PI * 2<br>thetaStart — 指定垂直起始角度. 默认值为0<br>thetaLength — 指定垂直扫描角度大小. 默认值为Math.PI  </p>
+<p>几何模型是通过扫描和计算绕Y轴（水平扫描）和Z轴（垂直扫描）的顶点创建而成。因此，不完整的球（类似于’sphere slices’）可以通过对phistart，philength，thetastart和thetalength使用不同的值来创建</p>
+<h2 id="属性-29"><a href="#属性-29" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-29"><a href="#parameters-Object-29" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="SphereBufferGeometry"><a href="#SphereBufferGeometry" class="headerlink" title="SphereBufferGeometry"></a>SphereBufferGeometry</h1><h2 id="概念-27"><a href="#概念-27" class="headerlink" title="概念"></a>概念</h2><p>用于生成球体几何的类</p>
+<h2 id="使用-26"><a href="#使用-26" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SphereBufferGeometry(radius : Float, widthSegments : Integer, heightSegments : Integer, phiStart : Float, phiLength : Float, thetaStart : Float, thetaLength : Float)</span><br></pre></td></tr></table></figure>
+<p>radius — 球体半径. 默认值为50<br>widthSegments — 水平分割面的数量. 最小值为3, 默认值为8<br>heightSegments — 垂直分割面的数量. 最小值为2, 默认值为6<br>phiStart — 指定水平起始角度. 默认值为0<br>phiLength — 指定水平扫描角度大小. 默认值为 Math.PI * 2<br>thetaStart — 指定垂直起始角度. 默认值为0<br>thetaLength — 指定垂直扫描角度大小. 默认值为Math.PI  </p>
+<p>几何模型是通过扫描和计算绕Y轴（水平扫描）和Z轴（垂直扫描）的顶点创建而成。因此，不完整的球（类似于’sphere slices’）可以通过对phistart，philength，thetastart和thetalength使用不同的值来创建</p>
+<h2 id="属性-30"><a href="#属性-30" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-30"><a href="#parameters-Object-30" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="TetrahedronGeometry"><a href="#TetrahedronGeometry" class="headerlink" title="TetrahedronGeometry"></a>TetrahedronGeometry</h1><h2 id="概念-28"><a href="#概念-28" class="headerlink" title="概念"></a>概念</h2><p>用于生成四面体几何的类</p>
+<h2 id="使用-27"><a href="#使用-27" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TetrahedronGeometry(radius : Float, detail : Integer)</span><br></pre></td></tr></table></figure>
+<p>radius — 四面体半径. 默认值为1.<br>detail — 默认值为0. 设置为大于0的值将添加顶点使之不再是一个四面体.</p>
+<h2 id="属性-31"><a href="#属性-31" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-31"><a href="#parameters-Object-31" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="TetrahedronBufferGeometry"><a href="#TetrahedronBufferGeometry" class="headerlink" title="TetrahedronBufferGeometry"></a>TetrahedronBufferGeometry</h1><h2 id="概念-29"><a href="#概念-29" class="headerlink" title="概念"></a>概念</h2><p>用于生成四面体几何的类</p>
+<h2 id="使用-28"><a href="#使用-28" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TetrahedronBufferGeometry(radius : Float, detail : Integer)</span><br></pre></td></tr></table></figure>
+<p>radius — 四面体半径. 默认值为1.<br>detail — 默认值为0. 设置为大于0的值将添加顶点使之不再是一个四面体.</p>
+<h2 id="属性-32"><a href="#属性-32" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-32"><a href="#parameters-Object-32" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="TextGeometry"><a href="#TextGeometry" class="headerlink" title="TextGeometry"></a>TextGeometry</h1><h2 id="概念-30"><a href="#概念-30" class="headerlink" title="概念"></a>概念</h2><p>用于将文本生成为单个几何的类。 它是文本和传入的属性对象创建的</p>
+<h2 id="使用-29"><a href="#使用-29" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TextGeometry(text : String, parameters : Object)</span><br></pre></td></tr></table></figure>
+<p>text — 要显示的文字<br>parameters — 包含下面这些参数的对象  </p>
+<ul>
+<li>font — THREE.Font. 字体实例.</li>
+<li>size — Float. 文字大小， 默认为100.</li>
+<li>height — Float. 文字厚度. 默认值为50.   </li>
+<li>curveSegments — Integer. 曲线上点的数量. 默认值为12.</li>
+<li>bevelEnabled — Boolean. 是否打开斜面. 默认值为False.</li>
+<li>bevelThickness — Float. 文本斜面的深度. 默认值为10.</li>
+<li>bevelSize — Float. 斜面离轮廓的距离. 默认值为8.</li>
+<li>bevelSegments - Integer. 斜角段数. 默认值为3.</li>
+<li><h2 id="属性-33"><a href="#属性-33" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-33"><a href="#parameters-Object-33" class="headerlink" title="parameters : Object"></a>parameters : Object</h3></li>
+</ul>
+<p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="TextBufferGeometry"><a href="#TextBufferGeometry" class="headerlink" title="TextBufferGeometry"></a>TextBufferGeometry</h1><h2 id="概念-31"><a href="#概念-31" class="headerlink" title="概念"></a>概念</h2><p>用于将文本生成为单个几何的类。 它是文本和传入的属性对象创建的</p>
+<h2 id="使用-30"><a href="#使用-30" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TextBufferGeometry(text : String, parameters : Object)</span><br></pre></td></tr></table></figure>
+<p>text — 要显示的文字<br>parameters — 包含下面这些参数的对象  </p>
+<ul>
+<li>font — THREE.Font. 字体实例.</li>
+<li>size — Float. 文字大小， 默认为100.</li>
+<li>height — Float. 文字厚度. 默认值为50.   </li>
+<li>curveSegments — Integer. 曲线上点的数量. 默认值为12.</li>
+<li>bevelEnabled — Boolean. 是否打开斜面. 默认值为False.</li>
+<li>bevelThickness — Float. 文本斜面的深度. 默认值为10.</li>
+<li>bevelSize — Float. 斜面离轮廓的距离. 默认值为8.</li>
+<li>bevelSegments - Integer. 斜角段数. 默认值为3.</li>
+</ul>
+<h2 id="属性-34"><a href="#属性-34" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-34"><a href="#parameters-Object-34" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="TorusGeometry"><a href="#TorusGeometry" class="headerlink" title="TorusGeometry"></a>TorusGeometry</h1><h2 id="概念-32"><a href="#概念-32" class="headerlink" title="概念"></a>概念</h2><p>用于生成圆环几何的类</p>
+<h2 id="使用-31"><a href="#使用-31" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TorusGeometry(radius : Float, tube : Float, radialSegments : Integer, tubularSegments : Integer, arc : Float)</span><br></pre></td></tr></table></figure>
+<p>radius — 半径, 默认值为1.<br>tube — 管道直径. 默认值为 0.4.<br>radialSegments — 默认值为8<br>tubularSegments — 默认值为6.<br>arc — 圆心角. 默认值为Math.PI * 2.  </p>
+<h2 id="属性-35"><a href="#属性-35" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-35"><a href="#parameters-Object-35" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="TorusBufferGeometry"><a href="#TorusBufferGeometry" class="headerlink" title="TorusBufferGeometry"></a>TorusBufferGeometry</h1><h2 id="概念-33"><a href="#概念-33" class="headerlink" title="概念"></a>概念</h2><p>用于生成圆环几何的类</p>
+<h2 id="使用-32"><a href="#使用-32" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TorusBufferGeometry(radius : Float, tube : Float, radialSegments : Integer, tubularSegments : Integer, arc : Float)</span><br></pre></td></tr></table></figure>
+<p>radius — 半径, 默认值为1.<br>tube — 管道直径. 默认值为 0.4.<br>radialSegments — 默认值为8<br>tubularSegments — 默认值为6.<br>arc — 圆心角. 默认值为Math.PI * 2.  </p>
+<h2 id="属性-36"><a href="#属性-36" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-36"><a href="#parameters-Object-36" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="TorusKnotGeometry"><a href="#TorusKnotGeometry" class="headerlink" title="TorusKnotGeometry"></a>TorusKnotGeometry</h1><h2 id="概念-34"><a href="#概念-34" class="headerlink" title="概念"></a>概念</h2><p>创建圆环结，其特定形状由一对互质整数p和q定义。 如果p和q不是互质的，则结果将是环面链接。</p>
+<h2 id="使用-33"><a href="#使用-33" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TorusKnotGeometry(radius : Float, tube : Float, tubularSegments : Integer, radialSegments : Integer, p : Integer, q : Integer)</span><br></pre></td></tr></table></figure>
+<p>radius — 半径, 默认值为1.<br>tube — 管道直径. 默认值为 0.4.<br>tubularSegments — 默认值为64.<br>radialSegments — 默认值为8.<br>p — 这个值决定了几何体绕旋转对称轴绕了多少圈. 默认值为2.<br>q — 这个值决定了几何体绕环面的圆绕了多少圈. 默认值为3.  </p>
+<h2 id="属性-37"><a href="#属性-37" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-37"><a href="#parameters-Object-37" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="TorusKnotBufferGeometry"><a href="#TorusKnotBufferGeometry" class="headerlink" title="TorusKnotBufferGeometry"></a>TorusKnotBufferGeometry</h1><h2 id="概念-35"><a href="#概念-35" class="headerlink" title="概念"></a>概念</h2><p>创建圆环结，其特定形状由一对互质整数p和q定义。 如果p和q不是互质的，则结果将是环面链接。</p>
+<h2 id="使用-34"><a href="#使用-34" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TorusKnotBufferGeometry(radius : Float, tube : Float, tubularSegments : Integer, radialSegments : Integer, p : Integer, q : Integer)</span><br></pre></td></tr></table></figure>
+<p>radius — 半径, 默认值为1.<br>tube — 管道直径. 默认值为 0.4.<br>tubularSegments — 默认值为64.<br>radialSegments — 默认值为8.<br>p — 这个值决定了几何体绕旋转对称轴绕了多少圈. 默认值为2.<br>q — 这个值决定了几何体绕环面的圆绕了多少圈. 默认值为3. </p>
+<h2 id="属性-38"><a href="#属性-38" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-38"><a href="#parameters-Object-38" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="TubeGeometry"><a href="#TubeGeometry" class="headerlink" title="TubeGeometry"></a>TubeGeometry</h1><h2 id="概念-36"><a href="#概念-36" class="headerlink" title="概念"></a>概念</h2><p>创建一个沿3d曲线挤出的管子</p>
+<h2 id="使用-35"><a href="#使用-35" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TubeGeometry(path : Curve, tubularSegments : Integer, radius : Float, radialSegments : Integer, closed : Boolean)</span><br></pre></td></tr></table></figure>
+<p>path — Curve - 从 Curve 基本类继承而来的路径<br>segments — Integer - 组成管道的分割面数量, 默认值为64<br>radius — Float - 管道半径, 默认值为1<br>radiusSegments — Integer - 组成截面的分割面数量, 默认值为8<br>closed — Boolean 管道是开放的还是闭合的, 默认值为false   </p>
+<h2 id="属性-39"><a href="#属性-39" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-39"><a href="#parameters-Object-39" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="TubeBufferGeometry"><a href="#TubeBufferGeometry" class="headerlink" title="TubeBufferGeometry"></a>TubeBufferGeometry</h1><h2 id="概念-37"><a href="#概念-37" class="headerlink" title="概念"></a>概念</h2><p>创建一个沿3d曲线挤出的管子</p>
+<h2 id="使用-36"><a href="#使用-36" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TubeBufferGeometry(path : Curve, tubularSegments : Integer, radius : Float, radialSegments : Integer, closed : Boolean)</span><br></pre></td></tr></table></figure>
+<p>path — Curve - 从 Curve 基本类继承而来的路径<br>segments — Integer - 组成管道的分割面数量, 默认值为64<br>radius — Float - 管道半径, 默认值为1<br>radiusSegments — Integer - 组成截面的分割面数量, 默认值为8<br>closed — Boolean 管道是开放的还是闭合的, 默认值为false   </p>
+<h2 id="属性-40"><a href="#属性-40" class="headerlink" title="属性"></a>属性</h2><h3 id="parameters-Object-40"><a href="#parameters-Object-40" class="headerlink" title="parameters : Object"></a>parameters : Object</h3><p>具有每个构造函数参数的属性的对象。 实例化后的任何修改都不会更改几何  </p>
+<h1 id="WireframeGeometry"><a href="#WireframeGeometry" class="headerlink" title="WireframeGeometry"></a>WireframeGeometry</h1><h2 id="概念-38"><a href="#概念-38" class="headerlink" title="概念"></a>概念</h2><p>这可以用作辅助对象，从线框角度观察Geometry对象</p>
+<h2 id="使用-37"><a href="#使用-37" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WireframeGeometry( geometry : Geometry )</span><br></pre></td></tr></table></figure>
+<p>geometry — 任何几何对象</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2018/12/27/threejs 解读 geometry/" data-id="cjq6q5hu500000tjgat2n555k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-threejs/">js threejs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-threejs 解读 light" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/24/threejs 解读 light/" class="article-date">
@@ -933,220 +1187,6 @@ renderer.info.reset();
 
 
   
-    <article id="post-浏览器渲染" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/03/浏览器渲染/" class="article-date">
-  <time datetime="2018-12-03T15:03:31.878Z" itemprop="datePublished">2018-12-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/03/浏览器渲染/">浏览器渲染</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="从浏览器角度谈渲染"><a href="#从浏览器角度谈渲染" class="headerlink" title="从浏览器角度谈渲染"></a>从浏览器角度谈渲染</h2><ul>
-<li>之前更多的优化是从页面资源的数量，传输是否采用了压缩，JS、cSS，是否进行了精简，缓存有没有合理的使用</li>
-<li>这次从另一个角度谈页面的渲染，浏览器是如何工作的，要把页面渲染出来，浏览器需要做什么，哪些过程比较耗时</li>
-<li>浏览器工作原理<img src="http://mmbiz.qpic.cn/mmbiz_jpg/zPh0erYjkib1uAwicF98dVY5j2dib36rQkOw6lnb7Jls3Gd1BBbp5bhk81Q4qkfOFnO7hyXO1bFNdCg6cDVvasj5A/0?wx_fmt=jpeg" alt="浏览器工作原理"><ul>
-<li>加载HTML</li>
-<li>解析HTML，生成DOM</li>
-<li>加载CSS，JS</li>
-<li>解析CSS，生成CSSOM</li>
-<li>JS引擎执行JS</li>
-<li>合并DOM和CSSOM，生成Render Tree</li>
-<li>根据Render Tree 进行布局</li>
-<li>绘制每个层中的元素</li>
-<li>合并图层</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>方案：加快完成DOM+CSSOM-Layout-Paint-Composite的整个过程<ul>
-<li>分割css<br>对不同的浏览终端，同一终端的不同模式，提供不同的规则（通俗讲屏幕大小和宽高比）把媒体查询放在link上，根据终端情况加载不同的css文件</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>css规则的优先级<br>css权重计算的无形增加<br><strong>css选择器解析从右往左还是从左往右？？</strong><br>过多的嵌套规则，会导致复杂的，无必要的深层次规则（SASS，LESS开发过程中尤为明显）<br>css规则越复杂，构建Render Tree时，浏览器花费的时间越长  </li>
-</ul>
-<ul>
-<li><p>使用GPU加速<br> 很多的动画定时的执行，会导致浏览器的重新布局  </p>
-<pre><code>      @keyframes my {
-     20% {
-      top: 10px;
-      }
-
-  50% {
-      top: 120px;
-  }
-
-  80% {
-      top: 10px;
-  }
-} 
-</code></pre><p> 这些执行可以放到GPU加速执行  </p>
-<pre><code> @keyframes my {
-  20% {
-      transform: translateY(10px);
-  }
-
-  50% {
-      transform: translateY(120px);
-  }
-
-  80% {
-      transform: translateY(10px);
-  }
-}
-</code></pre></li>
-</ul>
-<pre><code>jQuery 不能避免 layout thrashing （有人喜欢将其翻译为“布局颠簸”，会导致多余relayout/reflow），因为它的代码不仅仅用于动画，它还用于很多其他场景。 
-
-jQuery的内存消耗较大，经常会触发垃圾回收。而垃圾回收触发时很容易让动画卡住。
-
-jQuery使用了setInterval而不是 reqeustAnimationFrame(RAF)，因为 RAF 会在窗口失去焦点时停止触发，这会导致jQuery的bu    
-**setTimeOut和FAF（单人淋浴间和大澡堂）**    
-</code></pre><p>–</p>
-<pre><code>var startingTop = 0;
-        setInterval(function() {
-            element.style.top = (startingTop += 1/60);
-        }, 16);
-
-
-        function tick () {
-            element.style.top = (startingTop += 1/60);
-        }
-        window.requestAnimationFrame(tick);
-</code></pre><p>–<br>  requestAnimationFrame<br>  setTimeout间隔设置过小，显示器16.7ms刷新间隔之前发生了其他绘制请求(setTimeout)，导致所有第三帧丢失，继而导致动画断续显示（堵车的感觉），这就是过度绘制带来的问题。不仅如此，这种计时器频率的降低也会对电池使用寿命造成负面影响，并会降低其他应用的性能。    </p>
-<p>  而requestAnimationFrame就是为了这个而出现的。所做的事情很简单，跟着浏览器的绘制走，如果浏览设备绘制间隔是16.7ms，那我就这个间隔绘制；如果浏览设备绘制间隔是10ms, 我就10ms绘制。这样就不会存在过度绘制的问题，动画不会掉帧  </p>
-<p>  优势：向下兼容 、相比于css3动画应用更广、动画效果更多</p>
-<p>  CSS transition 的动画逻辑是由浏览器来执行，所以它的性能能够比 jQuery 动画好。它的优势体现在：</p>
-<p>通过优化 DOM 操作，避免内存消耗来减少卡顿<br>使用与 RAF 类似的机制<br>强制使用硬件加速 （通过 GPU 来提高动画性能）  </p>
-<ul>
-<li><p>异步JavaScript<br>js执行会阻塞DOM构建的过程，Js中可能存在dom操作 async异步  </p>
-<p>js可能会不断的重新布局，重新绘制  </p>
-<pre><code>1.访问元素的某些属性  
-2.通过JavaScript修改元素的CSS属性  
-3.在onScroll中做耗时的任务  
-4.在其他Event Handler中做耗时的任务  
-5.图片的预处理  
-6.过多的动画  
-7.过多的数据处理  
-</code></pre><p>元素的一些属性和方法，当被访问或调用的时候，会触发浏览器的布局和绘制，布局基本上会影响页面的大部分元素，导致耗时长  </p>
-<p>为了避免之前提到的布局颠簸，我们需要批量访问和更新DOM。</p>
-<pre><code>    var currentTop,
-    currentLeft;
-/* 有 layout thrashing. */
-currentTop = element.style.top; /* 访问 */
-element.style.top = currentTop + 1; /* 更新 */
-
-currentLeft = element.style.left; /* 访问 */
-element.style.left = currentLeft + 1; /* 更新 */
-
-/* 没有 layout thrashing. */
-currentTop = element.style.top; /* 访问 */
-currentLeft = element.style.left; /* 访问 */
-
-element.style.top = currentTop + 1; /* 更新 */
-element.style.left = currentLeft + 1; /* 更新 */
-</code></pre><p>计算offset 时，浏览器需要重新计算（重新布局），然后才能返回最新的值 </p>
-<pre><code>       for(var i = 0; i &lt; list.length; i++) {
-  list[i].style.width = parent.offsetWidth + &apos;px&apos;;
-}   
-</code></pre></li>
-</ul>
-<pre><code>var parentWidth = parent.offsetWidth;
-for(var i = 0; i &lt; list.length; i++) {
-  list[i].style.width = parentWidth + &apos;px&apos;;
-}
-</code></pre><ul>
-<li>css样式修改  </li>
-<li>修改布局相关属性，会触发Layout-Paint-Composite</li>
-<li>修改绘制相关属性，会触发Paint-Composite</li>
-<li><p>其他属性，某些特别属性可在不同层中单独绘制，在合并图层，就是直接Composite  （transform，opacity）</p>
-<p>在绑定 scroll 、resize 这类事件时，当它发生时，它被触发的频次非常高，如果事件中涉及到大量的位置计算、DOM 操作、元素重绘等工作且这些工作无法在下一个 scroll 事件触发前完成，就会造成浏览器掉帧。加之用户鼠标滚动往往是连续的，就会持续触发 scroll 事件导致掉帧扩大、浏览器 CPU 使用率增加、用户体验受到影响。</p>
-<p><strong>类比电梯</strong></p>
-<pre><code>// 防抖动函数
-</code></pre><p>   function debounce(func, wait, immediate) {</p>
-<pre><code>var timeout;
-return function() {
-    var context = this, args = arguments;
-    var later = function() {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-    };
-    var callNow = immediate &amp;&amp; !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-};
-</code></pre><p>   };</p>
-<p>   var myEfficientFn = debounce(function() {</p>
-<pre><code>// 滚动中的真正的操作
-</code></pre><p>   }, 250);</p>
-<p>   // 绑定监听</p>
-<h2 id="window-addEventListener-‘resize’-myEfficientFn"><a href="#window-addEventListener-‘resize’-myEfficientFn" class="headerlink" title="   window.addEventListener(‘resize’, myEfficientFn);"></a>   window.addEventListener(‘resize’, myEfficientFn);</h2><pre><code>   // 简单的节流函数
-function throttle(func, wait, mustRun) {
-    var timeout,
-        startTime = new Date();
-
-    return function() {
-        var context = this,
-            args = arguments,
-            curTime = new Date();
-
-        clearTimeout(timeout);
-        // 如果达到了规定的触发时间间隔，触发 handler
-        if(curTime - startTime &gt;= mustRun){
-            func.apply(context,args);
-            startTime = curTime;
-        // 没达到触发间隔，重新设定定时器
-        }else{
-            timeout = setTimeout(func, wait);
-        }
-    };
-</code></pre><p>   };<br>   // 实际想绑定在 scroll 事件上的 handler<br>   function realFunc(){</p>
-<pre><code>console.log(&quot;Success&quot;);
-</code></pre><p>   }<br>   // 采用了节流函数<br>   window.addEventListener(‘scroll’,throttle(realFunc,500,1000));</p>
-</li>
-</ul>
-<pre><code>pointer-events: none 可用来提高滚动时的帧频。的确，当滚动时，鼠标悬停在某些元素上，则触发其上的 hover 效果，然而这些影响通常不被用户注意，并多半导致滚动出现问题。
-</code></pre><p>will-change 为 web 开发者提供了一种告知浏览器该元素会有哪些变化的方法，这样浏览器可以在元素属性真正发生变化之前提前做好对应的优化准备工作。 这种优化可以将一部分复杂的计算工作提前准备好，使页面的反应更为快速灵敏。  </p>
-<p><strong>类比萨里机长</strong></p>
-<p>值得注意的是，用好这个属性并不是很容易：  </p>
-<p>不要将 will-change 应用到太多元素上：浏览器已经尽力尝试去优化一切可以优化的东西了。有一些更强力的优化，如果与 will-change 结合在一起的话，有可能会消耗很多机器资源，如果过度使用的话，可能导致页面响应缓慢或者消耗非常多的资源。  </p>
-<p>不要过早应用 will-change 优化：如果你的页面在性能方面没什么问题，则不要添加 will-change 属性来榨取一丁点的速度。 will-change 的设计初衷是作为最后的优化手段，用来尝试解决现有的性能问题。它不应该被用来预防性能问题。过度使用 will-change 会导致大量的内存占用，并会导致更复杂的渲染过程，因为浏览器会试图准备可能存在的变化过程。这会导致更严重的性能问题。  </p>
-<p>给它足够的工作时间：这个属性是用来让页面开发者告知浏览器哪些属性可能会变化的。然后浏览器可以选择在变化发生前提前去做一些优化工作。所以给浏览器一点时间去真正做这些优化工作是非常重要的。使用时需要尝试去找到一些方法提前一定时间获知元素可能发生的变化，然后为它加上 will-change 属性。</p>
-<p><strong>Unable to preventDefault inside passive event listener due to target being treated as passive</strong></p>
-<p>   window.addEventListener(“touchstart”, func, {passive: true} );</p>
-<p>   window, document , body</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wolfjyx.github.com/2018/12/03/浏览器渲染/" data-id="cjp8g36rk0000ntji9mvtv4cs" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1197,6 +1237,10 @@ function throttle(func, wait, mustRun) {
       <ul>
         
           <li>
+            <a href="/2018/12/27/threejs 解读 geometry/">threejs 解读  geometry</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/24/threejs 解读 light/">threejs 解读  camera</a>
           </li>
         
@@ -1210,10 +1254,6 @@ function throttle(func, wait, mustRun) {
         
           <li>
             <a href="/2018/12/11/threejs解读 webGLRender/">threejs解读 webGLRender</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/10/threejs 解读  scene/">threejs 解读  scene</a>
           </li>
         
       </ul>
