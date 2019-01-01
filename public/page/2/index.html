@@ -66,6 +66,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-freemark" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/04/freemark/" class="article-date">
+  <time datetime="2018-12-04T13:47:12.095Z" itemprop="datePublished">2018-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/04/freemark/">freemark</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="FreeMarker"><a href="#FreeMarker" class="headerlink" title="FreeMarker"></a>FreeMarker</h1><h2 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h2><p>  基于模板的，用来生成输出文本的通用工具<br>  适用于MVC模式，分离思想<br>  并非web的应用框架，只是框架中的一个组件，其引擎本身并不知道http协议或者servlet</p>
+<h2 id="freemark-模板"><a href="#freemark-模板" class="headerlink" title="freemark 模板"></a>freemark 模板</h2><ul>
+<li><code>${...}</code> interpolations 插值 </li>
+<li><code>&lt;#&gt; &lt;/#&gt;</code> tags 标签  （<code>&lt;@&gt; &lt;/@&gt;</code> 自定义标签)</li>
+<li><code>&lt;#--  --&gt;</code> comments 注释</li>
+<li><code>&lt;table&gt;&lt;/tabel&gt;</code> directives 指令  </li>
+</ul>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="if指令"><a href="#if指令" class="headerlink" title="if指令"></a>if指令</h3><p>条件<br><code>&lt;#if boolean&gt;&lt;#else&gt;&lt;/#if&gt;</code></p>
+<h3 id="list指令"><a href="#list指令" class="headerlink" title="list指令"></a>list指令</h3><p>循环<br><code>&lt;#list Array as array&gt;&lt;/#list&gt;</code></p>
+<h3 id="include指令"><a href="#include指令" class="headerlink" title="include指令"></a>include指令</h3><p>插入其他文件到当前模板<br><code>&lt;#include &quot;&quot;/&gt;</code></p>
+<h3 id="处理不存在的变量"><a href="#处理不存在的变量" class="headerlink" title="处理不存在的变量"></a>处理不存在的变量</h3><p>变量不存在时使用default代替  </p>
+<p><code>${...}!&quot;default&quot;</code>  </p>
+<p>使用？？和if指令，变量不存在忽略代码段  </p>
+<p><code>&lt;#if argument??&gt;&lt;/if&gt;</code></p>
+<p><code>argument1.argument2.argument3!0</code><br>若argument1或argument2不存在，则模板处理会以“未定义变量”错误停止<br>通过<code>（argument1.argument2.argument3）!0</code> 方式防止这种错误</p>
+<h3 id="用户自定义指令"><a href="#用户自定义指令" class="headerlink" title="用户自定义指令"></a>用户自定义指令</h3><p>如果能够实现，用自定义指令而不用函数/方法。<br>输出（返回值）的是标记（HTML,XML 等）。<br>主要原因是函数的返回结果可以自动进行 XML 转义<br>（这是因为${…}的特性），<br>而用户自定义指令的输出则不是<br>（这是<br>因为&lt;@…&gt;的特性所致，它的输出假定为是标记，因此就不再转义）。</p>
+<h3 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h3><p><strong>特殊字符</strong> 原生字符 <code>${r&quot;${foo}&quot;}</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2018/12/04/freemark/" data-id="cjp9ssssn000050ji7jo2pidl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/freemark-模板/">freemark 模板</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-浏览器渲染" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/03/浏览器渲染/" class="article-date">
@@ -951,7 +1006,7 @@ grid-auto-rows: 300px;
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemark-模板/">freemark 模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/head/">head</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-threejs/">js threejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemark-模板/">freemark 模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/head/">head</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-threejs/">js threejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstrom-IDE/">webstrom IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
     </div>
   </div>
 
@@ -961,7 +1016,7 @@ grid-auto-rows: 300px;
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/freemark-模板/" style="font-size: 10px;">freemark 模板</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/head/" style="font-size: 10px;">head</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js-threejs/" style="font-size: 20px;">js threejs</a> <a href="/tags/浏览器/" style="font-size: 15px;">浏览器</a>
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/freemark-模板/" style="font-size: 10px;">freemark 模板</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/head/" style="font-size: 10px;">head</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js-threejs/" style="font-size: 20px;">js threejs</a> <a href="/tags/webstrom-IDE/" style="font-size: 10px;">webstrom IDE</a> <a href="/tags/浏览器/" style="font-size: 15px;">浏览器</a>
     </div>
   </div>
 
@@ -970,7 +1025,7 @@ grid-auto-rows: 300px;
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
     </div>
   </div>
 
@@ -981,6 +1036,10 @@ grid-auto-rows: 300px;
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/01/01/webstrom- 快捷键/">webstrom 快捷键</a>
+          </li>
         
           <li>
             <a href="/2018/12/27/threejs 解读 geometry/">threejs 解读  geometry</a>
@@ -998,10 +1057,6 @@ grid-auto-rows: 300px;
             <a href="/2018/12/16/threejs 解读  camera/">threejs 解读  camera</a>
           </li>
         
-          <li>
-            <a href="/2018/12/11/threejs解读 webGLRender/">threejs解读 webGLRender</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1014,7 +1069,7 @@ grid-auto-rows: 300px;
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2018 wolfjyx<br>
+      &copy; 2019 wolfjyx<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
