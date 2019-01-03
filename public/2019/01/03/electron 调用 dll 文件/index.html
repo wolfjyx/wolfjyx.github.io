@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>electron 调用 dll 文件 | wolfjyx&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="electron 调用 dll 文件方案 使用node-ffi 使用C++编写node addon，通过LoadLibrary调用dll 把dll的操作封装成一个c# exe，然后通过node原生child_process模块去调用子程序exe。node和子程序直接通信  使用node-ffi什么是node-ffi   node-ffi是使用纯JavaScript加载和调用动态库的node add">
+<meta name="keywords" content="electron">
+<meta property="og:type" content="article">
+<meta property="og:title" content="electron 调用 dll 文件">
+<meta property="og:url" content="http://wolfjyx.github.com/2019/01/03/electron 调用 dll 文件/index.html">
+<meta property="og:site_name" content="wolfjyx&#39;s blog">
+<meta property="og:description" content="electron 调用 dll 文件方案 使用node-ffi 使用C++编写node addon，通过LoadLibrary调用dll 把dll的操作封装成一个c# exe，然后通过node原生child_process模块去调用子程序exe。node和子程序直接通信  使用node-ffi什么是node-ffi   node-ffi是使用纯JavaScript加载和调用动态库的node add">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-03T13:55:37.843Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="electron 调用 dll 文件">
+<meta name="twitter:description" content="electron 调用 dll 文件方案 使用node-ffi 使用C++编写node addon，通过LoadLibrary调用dll 把dll的操作封装成一个c# exe，然后通过node原生child_process模块去调用子程序exe。node和子程序直接通信  使用node-ffi什么是node-ffi   node-ffi是使用纯JavaScript加载和调用动态库的node add">
+  
+    <link rel="alternate" href="/atom.xml" title="wolfjyx&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">wolfjyx&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">博客的博，博客的客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://wolfjyx.github.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-electron 调用 dll 文件" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/03/electron 调用 dll 文件/" class="article-date">
+  <time datetime="2019-01-03T13:55:37.843Z" itemprop="datePublished">2019-01-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      electron 调用 dll 文件
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="electron-调用-dll-文件"><a href="#electron-调用-dll-文件" class="headerlink" title="electron 调用 dll 文件"></a>electron 调用 dll 文件</h1><h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><ol>
+<li>使用node-ffi</li>
+<li>使用C++编写node addon，通过LoadLibrary调用dll</li>
+<li>把dll的操作封装成一个c# exe，然后通过node原生child_process模块去调用子程序exe。node和子程序直接通信</li>
+</ol>
+<h2 id="使用node-ffi"><a href="#使用node-ffi" class="headerlink" title="使用node-ffi"></a>使用node-ffi</h2><h3 id="什么是node-ffi"><a href="#什么是node-ffi" class="headerlink" title="什么是node-ffi"></a><strong>什么是node-ffi</strong></h3><p>   node-ffi是使用纯JavaScript加载和调用动态库的node addon，可以不写任何C++代码的情况下调用动态链接库的API 接口。<br>它本质上还是一个编译后的Node addon,node_modules/ffi/build/Release/ffi_bindings.node， ffi_bindings.node就是一个addon,ffi充当了nodejs和动态链接库之间的桥梁。</p>
+<pre><code>*动态链接库后缀*  
+  &apos;linux&apos;:  &apos;.so&apos;  
+  &apos;linux2&apos;: &apos;.so&apos;  
+  &apos;sunos&apos;:  &apos;.so&apos;  
+  &apos;solaris&apos;:&apos;.so&apos;  
+  &apos;freebsd&apos;:&apos;.so&apos;  
+  &apos;openbsd&apos;:&apos;.so&apos;  
+  &apos;darwin&apos;: &apos;.dylib&apos;  
+  &apos;mac&apos;:    &apos;.dylib&apos;  
+  &apos;win32&apos;:  &apos;.dll&apos;  
+</code></pre><h3 id="如何调用用node-ffi"><a href="#如何调用用node-ffi" class="headerlink" title="如何调用用node-ffi"></a><strong>如何调用用node-ffi</strong></h3><pre><code>import ffi from &apos;ffi&apos;
+import path from &apos;path&apos;
+
+const libPath = path.join(__dirname, &apos;./add.dll&apos;)
+const lib = ffi.Library(libPath, {
+  &apos;add&apos;: [&apos;int&apos;, [&apos;int&apos;, &apos;int&apos;]],
+})
+
+lib.add(3,1) // 4
+</code></pre><h3 id="调用前的工作"><a href="#调用前的工作" class="headerlink" title="调用前的工作"></a><strong>调用前的工作</strong></h3>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">   npm install ffi</span><br><span class="line">   ```		</span><br><span class="line"> </span><br><span class="line">  安装过程中会调用 ```node-gyp rebuild ```   编译node addon   </span><br><span class="line">可能遇到的问题  </span><br><span class="line"></span><br><span class="line">* node-gyp 没有安装</span><br><span class="line">* 如果是windows  </span><br><span class="line">   （1） python 没有安装 需要安装python2.7</span><br><span class="line">    (2) python 环境变量没有配置或者配置不对  </span><br><span class="line">    (3）NET Framework 4.5.1 没有</span><br><span class="line">   （4） Visual C++编译工具 没有和node-gyp配置关联</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">  </span><br><span class="line"> **electron中使用ffi**</span><br><span class="line"> </span><br><span class="line"> electron支持node原生模块，由于和官方的node使用不同的 V8 引擎，如果你想编译原生模块，则需要手动设置electron的headers的位置</span><br><span class="line"></span><br><span class="line">**electron安装node原生模块**  </span><br><span class="line">如下三种方法教你安装原生模块</span><br><span class="line"></span><br><span class="line">1. 通过 npm 安装</span><br><span class="line">只要设置一些系统环境变量，你就可以通过 npm 直接安装原生模块。</span><br><span class="line">为 Electron 安装所有依赖项的一个例子:</span><br></pre></td></tr></table></figure>
+<h1 id="Electron-的版本。"><a href="#Electron-的版本。" class="headerlink" title="Electron 的版本。"></a>Electron 的版本。</h1><p>export npm_config_target=1.2.3</p>
+<h1 id="Electron-的系统架构-值为-ia32-或者-x64。"><a href="#Electron-的系统架构-值为-ia32-或者-x64。" class="headerlink" title="Electron 的系统架构, 值为 ia32 或者 x64。"></a>Electron 的系统架构, 值为 ia32 或者 x64。</h1><p>export npm_config_arch=x64<br>export npm_config_target_arch=x64</p>
+<h1 id="下载-Electron-的-headers。"><a href="#下载-Electron-的-headers。" class="headerlink" title="下载 Electron 的 headers。"></a>下载 Electron 的 headers。</h1><p>export npm_config_disturl=<a href="https://atom.io/download/electron" target="_blank" rel="noopener">https://atom.io/download/electron</a></p>
+<h1 id="告诉-node-pre-gyp-是为-Electron-构建。"><a href="#告诉-node-pre-gyp-是为-Electron-构建。" class="headerlink" title="告诉 node-pre-gyp 是为 Electron 构建。"></a>告诉 node-pre-gyp 是为 Electron 构建。</h1><p>export npm_config_runtime=electron</p>
+<h1 id="告诉-node-pre-gyp-从源代码构建模块。"><a href="#告诉-node-pre-gyp-从源代码构建模块。" class="headerlink" title="告诉 node-pre-gyp 从源代码构建模块。"></a>告诉 node-pre-gyp 从源代码构建模块。</h1><p>export npm_config_build_from_source=true</p>
+<h1 id="下载所有依赖，并缓存到-electron-gyp。"><a href="#下载所有依赖，并缓存到-electron-gyp。" class="headerlink" title="下载所有依赖，并缓存到 ~/.electron-gyp。"></a>下载所有依赖，并缓存到 ~/.electron-gyp。</h1><p>HOME=~/.electron-gyp npm install<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 为 Electron 安装并重新编译模块</span><br><span class="line">你可以也选择安装其他 Node 项目模块一样，然后用 electron-rebuild 包重建 Electron 模块 。 它可以识别当前 Electron 版本，帮你自动完成了下载 headers、编译原生模块等步骤。</span><br><span class="line"></span><br><span class="line">一个下载 electron-rebuild 并重新编译的例子：</span><br></pre></td></tr></table></figure></p>
+<p>npm install –save-dev electron-rebuild</p>
+<h1 id="每次运行”npm-install”时，也运行这条命令"><a href="#每次运行”npm-install”时，也运行这条命令" class="headerlink" title="每次运行”npm install”时，也运行这条命令"></a>每次运行”npm install”时，也运行这条命令</h1><p>./node_modules/.bin/electron-rebuild</p>
+<h1 id="在windows下如果上述命令遇到了问题，尝试这个："><a href="#在windows下如果上述命令遇到了问题，尝试这个：" class="headerlink" title="在windows下如果上述命令遇到了问题，尝试这个："></a>在windows下如果上述命令遇到了问题，尝试这个：</h1><p>.\node_modules.bin\electron-rebuild.cmd<br>为 Electron 手动编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 如果你是一个原生模块的开发人员，想在 Electron 中进行测试， 你可能要手动编译 Electron 模块。 你可以 使用 node-gyp 直接编译：</span><br></pre></td></tr></table></figure></p>
+<p>cd /path-to-module/<br>HOME=~/.electron-gyp node-gyp rebuild –target=1.2.3 –arch=x64 –dist-url=<a href="https://atom.io/download/electron" target="_blank" rel="noopener">https://atom.io/download/electron</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```HOME=~/.electron-gyp``` 设置去哪找开发时的 headers。 ```--target=1.2.3``` 设置了 Electron 的版本。``` --dist-url=...```设置了 Electron 的 headers 的下载地址。 ```--arch=x64``` 设置了该模块为适配64位操作系统而编译。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### node-ffi 使用详解</span><br></pre></td></tr></table></figure></p>
+<pre><code>import ffi from &apos;ffi&apos;
+import path from &apos;path&apos;
+
+const libPath = path.join(__dirname, &apos;./add.dll&apos;)
+const lib = ffi.Library(libPath, {
+  &apos;add&apos;: [&apos;int&apos;, [&apos;int&apos;, &apos;int&apos;]],
+})
+
+lib.add(3,1) // 4
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	</span><br><span class="line">ffi.Library方法，第一个参数传入dll路径，第二参数JSON对象配置相关接口。  </span><br><span class="line">key对应dll头文件中输出的接口，例如add()；  </span><br><span class="line">value array配置参数类型，array[0]注册接口函数返回值类型，array[1]注册接口函数传入形参类型。</span><br><span class="line"></span><br><span class="line">1、基础参数类型bool, char, short, int, long等。   </span><br><span class="line">2、指针类型，需要引入ref模块，举例如下：</span><br></pre></td></tr></table></figure>
+<p>var ref = require(‘ref’);<br>var intPointer = ref.refType(‘char’);<br>var doublePointer = ref.refType(‘short’);<br>var charPointer = ref.refType(‘int’);<br>var stringPointer = ref.refType(‘long’);<br>var boolPointer = ref.refType(‘bool’);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 常见错误</span><br><span class="line"></span><br><span class="line">**Dynamic Linking Error: Win32 error 126**</span><br><span class="line"></span><br><span class="line">这个错误有三种原因</span><br><span class="line"></span><br><span class="line">1. 通常是传入的DLL路径错误，找不到Dll文件，推荐使用绝对路径。  </span><br><span class="line">2. 如果是在x64的node/electron下引用32位的DLL，也会报这个错，反之亦然。要确保DLL要求的CPU架构和你的运行环境相同。</span><br><span class="line">3. DLL还有引用其他DLL文件，但是找不到引用的DLL文件，可能是VC依赖库或者多个DLL之间存在依赖关系。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">**Dynamic Linking Error: Win32 error 127**  </span><br><span class="line">DLL中没有找到对应名称的函数，需要检查头文件定义的函数名是否与DLL调用时写的函数名是否相同。</span><br><span class="line"></span><br><span class="line">### Path设置</span><br><span class="line"></span><br><span class="line">如果你的DLL是多个而且存在相互调用问题，会出现Dynamic Linking Error: Win32 error 126错误3。  </span><br><span class="line">这是由于默认的进程Path是二进制文件所在目录，即node.exe/electron.exe目录而不是DLL所在目录，导致找不到DLL同目录下的其他引用。可以通过如下方法解决：</span><br></pre></td></tr></table></figure></p>
+<p>//方法一， 调用winapi SetDllDirectoryA设置目录<br>const ffi = require(‘ffi’)</p>
+<p>const kernel32 = ffi.Library(“kernel32”, {<br>‘SetDllDirectoryA’: [“bool”, [“string”]]<br>})<br>kernel32.SetDllDirectoryA(“pathToAdd”)</p>
+<p>//方法二（推荐），设置Path环境环境<br>process.env.PATH = <code>${process.env.PATH}${path.delimiter}${pathToAdd}</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 实际中遇到的坑 </span><br><span class="line"></span><br><span class="line">1. 在mac上，node-ffi会给不是。dylib后缀的文件自动加上 .dylib 的后缀。 导致报找不到文件的错。  </span><br><span class="line">2. 打包后在windows机器上跑，报错，node不是32位（系统是32位的）</span><br><span class="line">3. electron相关的东西安装时下载卡卡卡</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 填坑历程</span><br><span class="line">**关于坑3**  </span><br><span class="line"></span><br><span class="line">1. .npmrc 文件中配置下载源</span><br></pre></td></tr></table></figure></p>
+<pre><code>ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
+
+registry=https://registry.npm.taobao.org
+sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
+phantomjs_cdnurl=http://npm.taobao.org/mirrors/phantomjs
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. electron-builder时 下载配置</span><br></pre></td></tr></table></figure>
+
+ &quot;build&quot;: {
+
+    &quot;electronDownload&quot;: {
+      &quot;mirror&quot;: &quot;http://npm.taobao.org/mirrors/electron/&quot;
+    }
+  },
+```
+</code></pre><p><strong>关于坑1，2</strong>  </p>
+<ol>
+<li>手打编译node-ffi 文件匹配windows 32 位文件<br> 结果：报错，node不是32位（系统是32位的）</li>
+<li>安装windows 32位虚拟机，在32位系统上打包<br>（配置一系列的编译环境）<br>结果： 编译的时候报一堆v8引擎的错，看不懂    </li>
+<li>网上找electron-ffi 的例子源码，去虚拟机上跑<br>结果： 竟然神奇的跑通了！！！  </li>
+<li>对比两个项目的差异，发现electron 版本不同，例子上1.7.11<br> ，工程项目2.0.11  </li>
+<li>对工程项目electron版本降级， success !!!    </li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2019/01/03/electron 调用 dll 文件/" data-id="cjqgob0n10000aijfxsm83p7x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/">electron</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/01/webstrom- 快捷键/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">webstrom 快捷键</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemark-模板/">freemark 模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/head/">head</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-threejs/">js threejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstrom-IDE/">webstrom IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/electron/" style="font-size: 10px;">electron</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/freemark-模板/" style="font-size: 10px;">freemark 模板</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/head/" style="font-size: 10px;">head</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js-threejs/" style="font-size: 20px;">js threejs</a> <a href="/tags/webstrom-IDE/" style="font-size: 10px;">webstrom IDE</a> <a href="/tags/浏览器/" style="font-size: 15px;">浏览器</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/03/electron 调用 dll 文件/">electron 调用 dll 文件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/01/webstrom- 快捷键/">webstrom 快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/27/threejs 解读 geometry/">threejs 解读  geometry</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/24/threejs 解读 light/">threejs 解读  camera</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/17/threejs 解读 materilas/">threejs 解读  material</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 wolfjyx<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
