@@ -66,6 +66,86 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-git简介" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/13/git简介/" class="article-date">
+  <time datetime="2019-01-13T15:07:09.435Z" itemprop="datePublished">2019-01-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/13/git简介/">git 简介</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="git简介"><a href="#git简介" class="headerlink" title="git简介"></a>git简介</h1><p>Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</p>
+<p>Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</p>
+<p>Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。</p>
+<h1 id="git配置"><a href="#git配置" class="headerlink" title="git配置"></a>git配置</h1><h2 id="用户名和电子邮件配置"><a href="#用户名和电子邮件配置" class="headerlink" title="用户名和电子邮件配置"></a>用户名和电子邮件配置</h2><p>通常：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;yourname&quot;    </span><br><span class="line">$ git config --global user.email &quot;youremail&quot;</span><br><span class="line"></span><br><span class="line">$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>–system</strong>配置全系统文件，文件位置/etc/gitconfig， 包含系统上每一个用户及他们仓库的通用配置<br><strong>–global</strong>配置当前用户全局文件，文件位置 ~/.gitconfig 或 ~/.config/git/config ，所有的项目都会默认使用这里配置的用户信息<br>去掉<strong>–global</strong>，文件位置：.git/config 只在当前项目配置</p>
+<h2 id="文本编辑器配置"><a href="#文本编辑器配置" class="headerlink" title="文本编辑器配置"></a>文本编辑器配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global core.editor emacs</span><br></pre></td></tr></table></figure>
+<h2 id="差异分析工具配置"><a href="#差异分析工具配置" class="headerlink" title="差异分析工具配置"></a>差异分析工具配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global merge.tool vimdiff</span><br></pre></td></tr></table></figure>
+<p>git支持 kdiff3，tkdiff，meld，xxdiff，emerge，vimdiff，gvimdiff，ecmerge，和 opendiff等工具</p>
+<h2 id="查看配置信息"><a href="#查看配置信息" class="headerlink" title="查看配置信息"></a>查看配置信息</h2><p>查看全部配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --list</span><br></pre></td></tr></table></figure>
+<p>查看单个配置(用户名）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config &lt;key&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="git-工作区、暂存区和版本库"><a href="#git-工作区、暂存区和版本库" class="headerlink" title="git 工作区、暂存区和版本库"></a>git 工作区、暂存区和版本库</h1><ul>
+<li>工作区：本地环境</li>
+<li>暂存区：英文叫stage, 或index。一般存放在 “.git目录下” 下的index文件（.git/index）中，所以我们把暂存区有时也叫作索引（index）</li>
+<li>版本库：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。</li>
+</ul>
+<p>补图</p>
+<h1 id="git-命令"><a href="#git-命令" class="headerlink" title="git 命令"></a>git 命令</h1><h2 id="基本，不解释"><a href="#基本，不解释" class="headerlink" title="基本，不解释"></a>基本，不解释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git clone &lt;repo&gt;&lt;directory&gt;</span><br><span class="line">git status</span><br><span class="line">git diff </span><br><span class="line">git add &lt;file&gt;</span><br><span class="line">git commit -m &quot;xxx&quot;</span><br><span class="line">git log</span><br></pre></td></tr></table></figure>
+<h2 id="基本命令加选项"><a href="#基本命令加选项" class="headerlink" title="基本命令加选项"></a>基本命令加选项</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git status --short</span><br><span class="line">git status -s  // 简短的结果输出</span><br><span class="line">git diff // 尚未缓存的改动</span><br><span class="line">git diff --cached // 查看已缓存的改动</span><br><span class="line">git diff HEAD  查看已缓存的与未缓存的所有改动</span><br><span class="line">git diff --stat 显示摘要而非整个diff</span><br><span class="line">git commit -a  //  git add 并且 git commit</span><br></pre></td></tr></table></figure>
+<h2 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h2><p>从 Git 中移除某个文件，就必须要从已跟踪文件清单中移除，然后提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git rm &lt;file&gt;</span><br><span class="line">git rm -f &lt;file&gt; // 如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项 -f</span><br><span class="line">git rm --cached &lt;file&gt; // 如果把文件从暂存区域移除，但仍然希望保留在当前工作目录中，换句话说，仅是从跟踪清单中删除，使用 --cached 选项即可</span><br><span class="line">git rm –r * // 递归删除，即如果后面跟的是一个目录做为参数，则会递归删除整个目录中的所有子目录和文件</span><br></pre></td></tr></table></figure>
+<h2 id="git-mv"><a href="#git-mv" class="headerlink" title="git mv"></a>git mv</h2><p>git mv 命令用于移动或重命名一个文件、目录、软连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mv &lt;filename&gt;  &lt;filename&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD  // 取消已缓存的内容</span><br></pre></td></tr></table></figure>
+<h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><pre><code>选项        |说明
+</code></pre><p>————-  | ————-<br>   -p          | 按补丁格式显示每个更新之间的差异。<br>–stat         | 显示每次更新的文件修改统计信息。<br>–shortstat    | 只显示 –stat 中最后的行数修改添加移除统计。<br>–name-only      | 仅在提交信息后显示已修改的文件清单。<br>–name-status      | 显示新增、修改、删除的文件清单。<br>–abbrev-commit | 仅显示 SHA-1 的前几个字符，而非所有的 40 个字符。<br>–relative-date | 使用较短的相对时间显示（比如，“2 weeks ago”）。<br>–graph            | 显示 ASCII 图形表示的分支合并历史。<br>–pretty            | 使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和 format（后跟指定格式）。<br>-(n)                | 仅显示最近的 n 条提交<br>–since, –after | 仅显示指定时间之后的提交。<br>–until, –before | 仅显示指定时间之前的提交。<br>–author            | 仅显示指定作者相关的提交。<br>–committer     | 仅显示指定提交者相关的提交。<br>–grep             | 仅显示含指定关键字的提交<br>-S                    | 仅显示添加或移除了某个关键字的提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git log -p -2 // 比较最近两次提交的差异</span><br><span class="line">git log --stat // 每次提交的简略的统计信息</span><br><span class="line">git log --pretty [online,short,full,fuller] //  指定使用不同于默认格式的方式展示提交历史</span><br><span class="line">git log --pretty=format:&quot;%h - %an, %ar : %s&quot; // 定制要显示的记录格式</span><br></pre></td></tr></table></figure>
+<h2 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff -m &quot;merge with no-ff&quot; dev</span><br></pre></td></tr></table></figure>
+<p>禁用fast-forward合并模式</p>
+<h2 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git stash // 储藏当前工作现场</span><br><span class="line">git stash list // 查看</span><br><span class="line">git stash apply // 只恢复储藏的内容</span><br><span class="line">git stash drop // 删除stash内容</span><br><span class="line">git stash pop // 恢复储藏的内容,并删除储藏</span><br></pre></td></tr></table></figure>
+<h2 id="git-撤销"><a href="#git-撤销" class="headerlink" title="git 撤销"></a>git 撤销</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> git commit --amend // 重新提交</span><br><span class="line"> git reset HEAD &lt;file&gt; // 取消指定文件暂存</span><br><span class="line"> git checkout -- &lt;file&gt; // 撤销指定文件修改</span><br><span class="line"> git reset --hard commit_id  // HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令。</span><br><span class="line">git reflog // 查看命令历史</span><br></pre></td></tr></table></figure>
+<p>HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，往上100个版本HEAD~100</p>
+<h2 id="git-远程仓库"><a href="#git-远程仓库" class="headerlink" title="git 远程仓库"></a>git 远程仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git remote add &lt;shortname&gt; &lt;url&gt;  // 添加远程仓库</span><br><span class="line">git fetch [remote-name] // 同步远程仓库信息</span><br><span class="line">git pull [remote-name] // 拉取远程仓库信息</span><br><span class="line">git push [remote-name] [branch-name] // 把信息推送到远程仓库</span><br><span class="line">git remote show [remote-name] // 查看远程仓库信息</span><br><span class="line">git remote rename [old-name] [new-name] // 远程仓库重命名</span><br><span class="line">git remote rm // 移除一个远程仓库</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"># git tag</span><br></pre></td></tr></table></figure>
+<p>git tag // 查看所有tag<br>git tag -l <n> // 查看n相关标签<br>git tag -a  <tag> // 创建附注标签<br>git tag <tag>  // 创建轻量标签<br>git tag -a <tag> <commit-hash> // 给历史提交打标签<br>git tag -d <tag> // 删除标签<br>git push origin :refs/tags/<tag> // 删除远程标签<br>git push origin [tagname] // 推送某次tag到远程<br>git push origin –tags // 推送所有标签<br>git checkout -b [branchname] [tagname] // 在特定的标签上创建一个新分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## git 别名</span><br><span class="line">常用</span><br></pre></td></tr></table></figure></tag></tag></commit-hash></tag></tag></tag></n></p>
+<p>git config –global alias.co checkout<br>git config –global alias.br branch<br>git config –global alias.ci commit<br>git config –global alias.st status<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">其他</span><br></pre></td></tr></table></figure></p>
+<p>git config –global alias.unstage ‘reset HEAD –’  // 取消暂存文件<br>git config –global alias.last ‘log -1 HEAD’  // 查看最后一次提交<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## git branch</span><br></pre></td></tr></table></figure></p>
+<p>git branch <branch-name> // 创建分支<br>git branch // 查看分支<br>git branch -v // 查看每一个分支的最后一次提交<br>git branch –merged // 查看已合并分支<br>git branch –no-merged // 查看未合并分支<br>git branch -d <branch-name> // 删除分支<br>git branch -vv // 将所有的本地分支列出来并且包含更多的信息，如每一个分支正在跟踪哪个远程分支与本地分支是否是领先、落后<br>git fetch –all; git branch -vv  // 抓取所有的远程仓库, 统计最新的领先与落后数字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## git 远程分支</span><br></pre></td></tr></table></figure></branch-name></branch-name></p>
+<p>git push origin –delete <branch-name> 删除远程分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## git 变基</span><br><span class="line">使用 rebase 命令将提交到某一分支上的所有修改都移至另一分支上，</span><br><span class="line"></span><br><span class="line">与合并的区别：  </span><br><span class="line">变基是将一系列提交按照原有次序依次应用到另一分支上，</span><br><span class="line">合并是把最终结果合在一起。</span><br></pre></td></tr></table></figure></branch-name></p>
+<p>git rebase –onto master server client<br><code>`</code><br>取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍</p>
+<p><strong>不要对在你的仓库外有副本的分支执行变基</strong> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2019/01/13/git简介/" data-id="cjqv1okqz0000qsjig6nnf7oi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-electron 调用 dll 文件" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/03/electron 调用 dll 文件/" class="article-date">
@@ -1193,130 +1273,6 @@ renderer.info.reset();
 
 
   
-    <article id="post-head-meta" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/06/head-meta/" class="article-date">
-  <time datetime="2018-12-06T15:30:01.296Z" itemprop="datePublished">2018-12-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/06/head-meta/">head-meta</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用 HTML5 doctype，不区分大小写 </p>
-<pre><code>&lt;!DOCTYPE html&gt; 
-</code></pre><p>单一的 zh 和 zh-CN 均属于废弃用法。<br>问题主要在于，zh 现在不是语言code了，而是macrolang，能作为语言code的是cmn（国语）、yue（粤语）、wuu（吴语）等。<br>通常建议写成 zh-cmn 而不是光写 cmn，主要是考虑兼容性（至少可匹配 zh），有不少软件和框架还没有据此更新。zh-CN 的问题还在于，其实多数情况下标记的是简体中文，但是不恰当的使用了地区<br>所以其实应该使用 zh-Hans / zh-Hant 来表示简体和繁体。</p>
-<pre><code>&lt;html lang=&quot;zh-cmn-Hans&quot;&gt;
-</code></pre><p>  声明文档使用的字符编码   </p>
-<pre><code>&lt;meta charset=&apos;utf-8&apos;&gt;
-</code></pre><p>  优先使用 IE 最新版本和 Chrome  </p>
-<pre><code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;/&gt;
-</code></pre><p>页面描述    </p>
-<pre><code>&lt;meta name=&quot;description&quot; content=&quot;不超过150个字符&quot;/&gt;
-</code></pre><p> 页面关键词 </p>
-<pre><code>&lt;meta name=&quot;keywords&quot; content=&quot;&quot;/&gt;
-</code></pre><p> 网页作者 </p>
-<pre><code>&lt;meta name=&quot;author&quot; content=&quot;name, email@gmail.com&quot;/&gt;
-</code></pre><p> 搜索引擎抓取</p>
-<pre><code>&lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot;/&gt;
-</code></pre><p> 为移动设备添加 viewport</p>
-<pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no&quot;&gt;
-</code></pre><p>  <code>width=device-width</code> 会导致 iPhone 5 添加到主屏后以 WebApp 全屏模式打开页面时出现黑边 <a href="http://bigc.at/ios-webapp-viewport-meta.orz" target="_blank" rel="noopener">http://bigc.at/ios-webapp-viewport-meta.orz</a> </p>
-<p>  iOS 设备 begin<br>   添加到主屏后的标题（iOS 6 新增）</p>
-<pre><code>&lt;meta name=&quot;apple-mobile-web-app-title&quot; content=&quot;标题&quot;&gt;
-</code></pre><p>   是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 </p>
-<pre><code>&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;/&gt;
-</code></pre><p> 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari）</p>
-<pre><code>&lt;meta name=&quot;apple-itunes-app&quot; content=&quot;app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL&quot;&gt;
-</code></pre><p>设置苹果工具栏颜色<br>    <meta name="apple-mobile-web-app-status-bar-style" content="black"></p>
-<p>忽略页面中的数字识别为电话，忽略email识别 </p>
-<pre><code>&lt;meta name=&quot;format-detection&quot; content=&quot;telphone=no, email=no&quot;/&gt;
-</code></pre><p> 启用360浏览器的极速模式(webkit)<br>    <meta name="renderer" content="webkit"></p>
-<p>避免IE使用兼容模式 </p>
-<pre><code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
-</code></pre><p>不让百度转码 </p>
-<pre><code>&lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;no-siteapp&quot; /&gt;
-</code></pre><p> 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓</p>
-<pre><code>&lt;meta name=&quot;HandheldFriendly&quot; content=&quot;true&quot;&gt;
-</code></pre><p>微软的老式浏览器 </p>
-<pre><code>&lt;meta name=&quot;MobileOptimized&quot; content=&quot;320&quot;&gt;
-</code></pre><p>   uc强制竖屏 </p>
-<pre><code>&lt;meta name=&quot;screen-orientation&quot; content=&quot;portrait&quot;&gt;
-</code></pre><p>  QQ强制竖屏</p>
-<pre><code>&lt;meta name=&quot;x5-orientation&quot; content=&quot;portrait&quot;&gt;
-</code></pre><p>   UC强制全屏</p>
-<pre><code>&lt;meta name=&quot;full-screen&quot; content=&quot;yes&quot;&gt;
-</code></pre><p> QQ强制全屏 </p>
-<pre><code>&lt;meta name=&quot;x5-fullscreen&quot; content=&quot;true&quot;&gt;
-</code></pre><p>   UC应用模式</p>
-<pre><code>&lt;meta name=&quot;browsermode&quot; content=&quot;application&quot;&gt;
-</code></pre><p>   QQ应用模式</p>
-<pre><code>&lt;meta name=&quot;x5-page-mode&quot; content=&quot;app&quot;&gt;
-</code></pre><p>  windows phone 点击无高光 </p>
-<pre><code>&lt;meta name=&quot;msapplication-tap-highlight&quot; content=&quot;no&quot;&gt;
-</code></pre><p> iOS 图标 begin<br> iPhone 和 iTouch，默认 57x57 像素，必须有 </p>
-<pre><code>&lt;link rel=&quot;apple-touch-icon-precomposed&quot; href=&quot;/apple-touch-icon-57x57-precomposed.png&quot;/&gt;
-</code></pre><p>Retina iPhone 和 Retina iTouch，114x114 像素，可以没有，但推荐有</p>
-<pre><code>&lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;114x114&quot; href=&quot;/apple-touch-icon-114x114-precomposed.png&quot;/&gt;
-</code></pre><p>Retina iPad，144x144 像素，可以没有，但推荐有 </p>
-<pre><code>&lt;link rel=&quot;apple-touch-icon-precomposed&quot; sizes=&quot;144x144&quot; href=&quot;/apple-touch-icon-144x144-precomposed.png&quot;/&gt;
-</code></pre><p>iOS 图标</p>
-<p>  iOS 启动画面 begin<br>  iPad 竖屏 768 x 1004（标准分辨率）</p>
-<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;768x1004&quot; href=&quot;/splash-screen-768x1004.png&quot;/&gt;
-</code></pre><p>iPad 竖屏 1536x2008（Retina）</p>
-<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;1536x2008&quot; href=&quot;/splash-screen-1536x2008.png&quot;/&gt;
-</code></pre><p>iPad 横屏 1024x748（标准分辨率）</p>
-<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;1024x748&quot; href=&quot;/Default-Portrait-1024x748.png&quot;/&gt;
-</code></pre><p>iPad 横屏 2048x1496（Retina） </p>
-<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;2048x1496&quot; href=&quot;/splash-screen-2048x1496.png&quot;/&gt;
-</code></pre><p> iPhone/iPod Touch 竖屏 320x480 (标准分辨率)</p>
-<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; href=&quot;/splash-screen-320x480.png&quot;/&gt;
-</code></pre><p>iPhone/iPod Touch 竖屏 640x960 (Retina) </p>
-<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;640x960&quot; href=&quot;/splash-screen-640x960.png&quot;/&gt;
-</code></pre><p>iPhone 5/iPod Touch 5 竖屏 640x1136 (Retina) </p>
-<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; sizes=&quot;640x1136&quot; href=&quot;/splash-screen-640x1136.png&quot;/&gt;
-</code></pre><p> Windows 8 磁贴颜色</p>
-<pre><code>&lt;meta name=&quot;msapplication-TileColor&quot; content=&quot;#000&quot;/&gt;
-</code></pre><p> Windows 8 磁贴图标 </p>
-<pre><code>&lt;meta name=&quot;msapplication-TileImage&quot; content=&quot;icon.png&quot;/&gt;
-</code></pre><p>  添加 RSS 订阅<br>    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml"></p>
-<p>添加 favicon icon<br>    <link rel="shortcut icon" type="image/ico" href="/favicon.ico"></p>
-<p> sns 社交标签 begin<br> 参考微博API </p>
-<pre><code>&lt;meta property=&quot;og:type&quot; content=&quot;类型&quot; /&gt;
-&lt;meta property=&quot;og:url&quot; content=&quot;URL地址&quot; /&gt;
-&lt;meta property=&quot;og:title&quot; content=&quot;标题&quot; /&gt;
-&lt;meta property=&quot;og:image&quot; content=&quot;图片&quot; /&gt;
-&lt;meta property=&quot;og:description&quot; content=&quot;描述&quot; /&gt;
-</code></pre><p>sns 社交标签 end</p>
-<pre><code>&lt;title&gt;标题&lt;/title&gt;
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wolfjyx.github.com/2018/12/06/head-meta/" data-id="cjou118i20000xijgczp7dy6a" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/head/">head</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1335,7 +1291,7 @@ renderer.info.reset();
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemark-模板/">freemark 模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/head/">head</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-threejs/">js threejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstrom-IDE/">webstrom IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flex/">flex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemark-模板/">freemark 模板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grid/">grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/head/">head</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-threejs/">js threejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webstrom-IDE/">webstrom IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a></li></ul>
     </div>
   </div>
 
@@ -1345,7 +1301,7 @@ renderer.info.reset();
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/electron/" style="font-size: 10px;">electron</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/freemark-模板/" style="font-size: 10px;">freemark 模板</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/head/" style="font-size: 10px;">head</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js-threejs/" style="font-size: 20px;">js threejs</a> <a href="/tags/webstrom-IDE/" style="font-size: 10px;">webstrom IDE</a> <a href="/tags/浏览器/" style="font-size: 15px;">浏览器</a>
+      <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/electron/" style="font-size: 10px;">electron</a> <a href="/tags/flex/" style="font-size: 10px;">flex</a> <a href="/tags/freemark-模板/" style="font-size: 10px;">freemark 模板</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/grid/" style="font-size: 10px;">grid</a> <a href="/tags/head/" style="font-size: 10px;">head</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js-threejs/" style="font-size: 20px;">js threejs</a> <a href="/tags/webstrom-IDE/" style="font-size: 10px;">webstrom IDE</a> <a href="/tags/浏览器/" style="font-size: 15px;">浏览器</a>
     </div>
   </div>
 
@@ -1367,6 +1323,10 @@ renderer.info.reset();
       <ul>
         
           <li>
+            <a href="/2019/01/13/git简介/">git 简介</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/03/electron 调用 dll 文件/">electron 调用 dll 文件</a>
           </li>
         
@@ -1380,10 +1340,6 @@ renderer.info.reset();
         
           <li>
             <a href="/2018/12/24/threejs 解读 light/">threejs 解读  camera</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/17/threejs 解读 materilas/">threejs 解读  material</a>
           </li>
         
       </ul>
