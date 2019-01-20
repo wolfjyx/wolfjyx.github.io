@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="wolfjyx&#39;s blog">
 <meta property="og:description" content="git简介Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。 git配置用户名和电子邮件配置通常： 1234$ git config --">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-13T15:17:08.128Z">
+<meta property="og:updated_time" content="2019-01-20T07:28:44.331Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 简介">
 <meta name="twitter:description" content="git简介Git是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。 Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。 git配置用户名和电子邮件配置通常： 1234$ git config --">
@@ -131,8 +131,8 @@
 <p>git config –global alias.unstage ‘reset HEAD –’  // 取消暂存文件<br>git config –global alias.last ‘log -1 HEAD’  // 查看最后一次提交<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## git branch</span><br></pre></td></tr></table></figure></p>
 <p>git branch <branch-name> // 创建分支<br>git branch // 查看分支<br>git branch -v // 查看每一个分支的最后一次提交<br>git branch –merged // 查看已合并分支<br>git branch –no-merged // 查看未合并分支<br>git branch -d <branch-name> // 删除分支<br>git branch -vv // 将所有的本地分支列出来并且包含更多的信息，如每一个分支正在跟踪哪个远程分支与本地分支是否是领先、落后<br>git fetch –all; git branch -vv  // 抓取所有的远程仓库, 统计最新的领先与落后数字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## git 远程分支</span><br></pre></td></tr></table></figure></branch-name></branch-name></p>
 <p>git push origin –delete <branch-name> 删除远程分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## git 变基</span><br><span class="line">使用 rebase 命令将提交到某一分支上的所有修改都移至另一分支上，</span><br><span class="line"></span><br><span class="line">与合并的区别：  </span><br><span class="line">变基是将一系列提交按照原有次序依次应用到另一分支上，</span><br><span class="line">合并是把最终结果合在一起。</span><br></pre></td></tr></table></figure></branch-name></p>
-<p>git rebase –onto master server client<br><code>`</code><br>取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍</p>
-<p><strong>不要对在你的仓库外有副本的分支执行变基</strong> </p>
+<p>git rebase –onto master server client<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍</span><br><span class="line"></span><br><span class="line">**不要对在你的仓库外有副本的分支执行变基** </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## git apply &amp; git am</span><br><span class="line"></span><br><span class="line">使用 apply 命令应用补丁</span><br><span class="line">```git apply --check```检查补丁是否可以顺利应用</span><br><span class="line"></span><br><span class="line">## rerere </span><br><span class="line">Rerere 是“重用已记录的冲突解决方案（reuse recorded resolution）”的意思——它是一种简化冲突解决的方法。</span><br></pre></td></tr></table></figure></p>
+<p> git config –global rerere.enabled true<br>  git rerere<br> <code>`</code></p>
 
       
     </div>
@@ -147,6 +147,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/01/20/vim 手册/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
   
     <a href="/2019/01/03/electron 调用 dll 文件/" id="article-nav-older" class="article-nav-link-wrap">
@@ -202,6 +211,10 @@
       <ul>
         
           <li>
+            <a href="/2019/01/20/vim 手册/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/13/git简介/">git 简介</a>
           </li>
         
@@ -215,10 +228,6 @@
         
           <li>
             <a href="/2018/12/27/threejs 解读 geometry/">threejs 解读  geometry</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/24/threejs 解读 light/">threejs 解读  camera</a>
           </li>
         
       </ul>
