@@ -248,3 +248,19 @@ git rebase --onto master server client
 取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍
 
 **不要对在你的仓库外有副本的分支执行变基** 
+
+
+## git apply & git am
+
+使用 apply 命令应用补丁
+```git apply --check```检查补丁是否可以顺利应用
+
+## rerere 
+Rerere 是“重用已记录的冲突解决方案（reuse recorded resolution）”的意思——它是一种简化冲突解决的方法。 
+
+```
+ git config --global rerere.enabled true
+  git rerere
+ ```
+
+
