@@ -66,6 +66,91 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vim 手册" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/vim 手册/" class="article-date">
+  <time datetime="2019-01-20T07:52:09.864Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vim-手册"><a href="#vim-手册" class="headerlink" title="vim 手册"></a>vim 手册</h1><h2 id="vim在normal模式下简单命令"><a href="#vim在normal模式下简单命令" class="headerlink" title="vim在normal模式下简单命令"></a>vim在normal模式下简单命令</h2><ul>
+<li><code>i</code>Insert 模式，按 ESC 回到 Normal 模式.</li>
+<li><code>x</code> 删当前光标所在的一个字符。</li>
+<li><code>:wq</code> 存盘 + 退出 (:w 存盘, :q 退出) （:w 后可以跟文件名）</li>
+<li><code>dd</code> 删除当前行，并把删除的行存到剪贴板里</li>
+<li><code>p</code> 粘贴剪贴板</li>
+<li><code>hjkl</code> 你也可以使用光标键 (←↓↑→). 注: j 就像下箭头</li>
+<li><code>help &lt;command&gt;</code> 显示相关命令的帮助。你也可以就输入 :help 而不跟命令</li>
+</ul>
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><ul>
+<li><code>a</code> 在光标后插入</li>
+<li><code>o</code> 在当前行后插入一个新行</li>
+<li><code>O</code> 在当前行前插入一个新行</li>
+<li><code>`</code>cw → 替换从光标所在位置后到一个单词结尾的字符</li>
+</ul>
+<h2 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h2><ul>
+<li><code>0</code>数字零，到行头</li>
+<li><code>^</code> 到本行第一个不是blank字符的位置（所谓blank字符就是空格，tab，换行，回车等）</li>
+<li><code>$</code> 到本行行尾</li>
+<li><code>g_</code>  到本行最后一个不是blank字符的位置。</li>
+<li><code>/pattern</code> 搜索 pattern 的字符串（陈皓注：如果搜索出多个匹配，可按n键到下一个）</li>
+</ul>
+<h2 id="拷贝-粘贴"><a href="#拷贝-粘贴" class="headerlink" title="拷贝/粘贴"></a>拷贝/粘贴</h2><ul>
+<li><code>P</code>  粘贴  p/P都可以，p是表示在当前位置之后，P表示在当前位置之前</li>
+<li><code>yy</code> 拷贝当前行当行于 ddP</li>
+</ul>
+<h2 id="撤销-撤回"><a href="#撤销-撤回" class="headerlink" title="撤销/撤回"></a>撤销/撤回</h2><ul>
+<li><code>u</code> 撤销</li>
+<li><code>&lt;C-r&gt;</code> 撤回</li>
+</ul>
+<h2 id="打开-保存-退出-改变文件"><a href="#打开-保存-退出-改变文件" class="headerlink" title="打开/保存/退出/改变文件"></a>打开/保存/退出/改变文件</h2><ul>
+<li><code>e &lt;path/to/file&gt;</code> 打开一个文件</li>
+<li><code>w</code> 存盘</li>
+<li><code>saveas &lt;path/to/file&gt;</code>另存为 &lt;path/to/file&gt;</li>
+<li><code>x</code>， <code>ZZ</code> 或 <code>:wq</code> 保存并退出 (:x 表示仅在需要时保存，ZZ不需要输入冒号并回车)</li>
+<li><code>:q!</code>退出不保存 <code>:qa!</code> 强行退出所有的正在编辑的文件，就算别的文件有更改。</li>
+<li><code>:bn</code> 和 <code>:bp</code> 你可以同时打开很多文件，使用这两个命令来切换下一个或上一个文件。（陈皓注：我喜欢使用:n到下一个文件）</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li><code>.</code> (小数点) 可以重复上一次的命令</li>
+<li><code>N&lt;command&gt;</code> 重复某个命令N次</li>
+<li><code>NG</code> 到第 N 行 </li>
+<li><code>gg</code>到第一行</li>
+<li><code>G</code> 到最后一行</li>
+<li><code>w</code> 到下一个单词的开头</li>
+<li><code>e</code> 到下一个单词的结尾</li>
+<li><code>%</code> 匹配括号移动，包括 (, {, [. </li>
+<li><code>*</code> 和 <code>#</code>  匹配光标当前所在的单词，移动光标到(*是下一个，#是上一个)</li>
+<li><code>0</code> 到行头</li>
+<li><code>^</code> 到本行的第一个非blank字符</li>
+<li><code>$</code> 到行尾</li>
+<li><code>g_</code> 到本行最后一个不是blank字符的位置。</li>
+<li><code>fa</code> 到下一个为a的字符处，你也可以fs到下一个为s的字符。</li>
+<li><code>t,</code> 到逗号前的第一个字符。逗号可以变成其它字符。</li>
+<li><code>3fa</code> 在当前行查找第三个出现的a。</li>
+<li><code>F</code> 和 <code>T</code> 和 <code>f</code> 和 <code>t</code> 一样，只不过是相反方向</li>
+<li><code>dt&quot;</code> 删除所有的内容，直到遇到双引号—— “</li>
+<li></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2019/01/20/vim 手册/" data-id="cjr4r0xho00009ojiiklmrwaf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-git简介" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/13/git简介/" class="article-date">
@@ -128,8 +213,8 @@
 <p>git config –global alias.unstage ‘reset HEAD –’  // 取消暂存文件<br>git config –global alias.last ‘log -1 HEAD’  // 查看最后一次提交<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## git branch</span><br></pre></td></tr></table></figure></p>
 <p>git branch <branch-name> // 创建分支<br>git branch // 查看分支<br>git branch -v // 查看每一个分支的最后一次提交<br>git branch –merged // 查看已合并分支<br>git branch –no-merged // 查看未合并分支<br>git branch -d <branch-name> // 删除分支<br>git branch -vv // 将所有的本地分支列出来并且包含更多的信息，如每一个分支正在跟踪哪个远程分支与本地分支是否是领先、落后<br>git fetch –all; git branch -vv  // 抓取所有的远程仓库, 统计最新的领先与落后数字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## git 远程分支</span><br></pre></td></tr></table></figure></branch-name></branch-name></p>
 <p>git push origin –delete <branch-name> 删除远程分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## git 变基</span><br><span class="line">使用 rebase 命令将提交到某一分支上的所有修改都移至另一分支上，</span><br><span class="line"></span><br><span class="line">与合并的区别：  </span><br><span class="line">变基是将一系列提交按照原有次序依次应用到另一分支上，</span><br><span class="line">合并是把最终结果合在一起。</span><br></pre></td></tr></table></figure></branch-name></p>
-<p>git rebase –onto master server client<br><code>`</code><br>取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍</p>
-<p><strong>不要对在你的仓库外有副本的分支执行变基</strong> </p>
+<p>git rebase –onto master server client<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍</span><br><span class="line"></span><br><span class="line">**不要对在你的仓库外有副本的分支执行变基** </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## git apply &amp; git am</span><br><span class="line"></span><br><span class="line">使用 apply 命令应用补丁</span><br><span class="line">```git apply --check```检查补丁是否可以顺利应用</span><br><span class="line"></span><br><span class="line">## rerere </span><br><span class="line">Rerere 是“重用已记录的冲突解决方案（reuse recorded resolution）”的意思——它是一种简化冲突解决的方法。</span><br></pre></td></tr></table></figure></p>
+<p> git config –global rerere.enabled true<br>  git rerere<br> <code>`</code></p>
 
       
     </div>
@@ -1130,149 +1215,6 @@ renderer.info.reset();
 
 
   
-    <article id="post-javascript &amp; ECMAScript &amp; es" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/09/javascript & ECMAScript & es/" class="article-date">
-  <time datetime="2018-12-09T13:44:41.036Z" itemprop="datePublished">2018-12-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/09/javascript & ECMAScript & es/">javascript &amp; ECMAScript &amp; es</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JavaScript-amp-ECMAScript-amp-ES2015…-amp-ES6…"><a href="#JavaScript-amp-ECMAScript-amp-ES2015…-amp-ES6…" class="headerlink" title="JavaScript &amp; ECMAScript &amp; ES2015… &amp; ES6…"></a>JavaScript &amp; ECMAScript &amp; ES2015… &amp; ES6…</h1><h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><p>JavaScript一种动态类型、弱类型、基于原型的客户端脚本语言，用来给HTML网页增加动态功能</p>
-<p>JavaScript由三部分组成  </p>
-<ol>
-<li>ECMAScript  </li>
-<li>DOM  </li>
-<li>BOM</li>
-</ol>
-<h2 id="ECMAScript"><a href="#ECMAScript" class="headerlink" title="ECMAScript"></a>ECMAScript</h2><p>一个由 ECMA International 进行标准化，TC39 委员会进行监督的语言。通常用于指代标准本身</p>
-<p><strong>ECMA</strong><br>Ecma国际（Ecma International）是一家国际性会员制度的信息和电信标准组织。1994年之前，名为欧洲计算机制造商协会（European Computer Manufacturers Association）。因为计算机的国际化，组织的标准牵涉到很多其他国家，因此组织决定改名表明其国际性。现名称已不属于首字母缩略字。</p>
-<p>Ecma国际是一家和企业密切相连的组织，所以 Ecma国际制定的规范都是由各类企业来做主要的制定和推广</p>
-<p><strong>TC39</strong><br>在ECMA国际，每个标准都会有一个 TC 来负责，而一个 TC 中可能会有不同的 TG 来负责不同的工作。而负责 ECMA262，也就是我们所说的 ECMAScript 的就是 TC39（以前叫 TC39-TG1）。<br><strong><em>TC（Technical Committees）</em></strong><br><strong><em>TG（Task Groups）</em></strong></p>
-<p>要讲清ECMAScript，回顾历史。<br>1996 年 11 月，JavaScript 的创造者 Netscape 公司，决定将 JavaScript 提交给标准化组织 ECMA，希望这种语言能够成为国际标准。次年，ECMA 发布 262 号标准文件（ECMA-262）的第一版，规定了浏览器脚本语言的标准，并将这种语言称为 ECMAScript，这个版本就是 1.0 版。<br>该标准从一开始就是针对 JavaScript 语言制定的，但是之所以不叫 JavaScript，有两个原因。一是商标，Java 是 Sun 公司的商标，根据授权协议，只有 Netscape 公司可以合法地使用 JavaScript 这个名字，且 JavaScript 本身也已经被 Netscape 公司注册为商标。二是想体现这门语言的制定者是 ECMA，不是 Netscape，这样有利于保证这门语言的开放性和中立性。</p>
-<p><strong>ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前者的一种实现</strong></p>
-<p>ECMAScript 作为一门脚本程序设计语言标准，并不只有 javascript 这一种实现，它也有很多的方言实现。比如有下面这些语言：</p>
-<p>JavaScript</p>
-<p>Ejscript</p>
-<p>JScript .NET</p>
-<p>ActionScript</p>
-<p>DMDScript</p>
-<p>CriScript</p>
-<p>InScript</p>
-<h2 id="ES2015…"><a href="#ES2015…" class="headerlink" title="ES2015…"></a>ES2015…</h2><p><strong>ES2015</strong><br><strong>ECMAScript 2015</strong><br>ECMAScript 的第六版修订，于 2015 年完成标准化。这个标准被部分实现于大部分现代浏览器。  </p>
-<p><strong>ECMAScript 2016</strong><br>第七版 ECMAScript 修订，只加了Array.prototype.includes、Exponentiation Operator(求冥运算)</p>
-<p><strong>ECMAScript 2017</strong><br>第八版 ECMAScript 修订<br>新增<br>Object.values/Object.entries<br>字符串填充    padStart()和padEnd()<br>Object.getOwnPropertyDescriptor<br>尾随逗号<br>异步函数async<br>共享内存和原子操作  </p>
-<p><strong>ECMAScript 2018</strong><br>异步迭代<br>Promise.finally()<br>Rest/Spread 属性: ES2018为对象解构提供了和数组一样的Rest参数（）和展开操作符<br>正则表达式命名捕获组（Regular Expression Named Capture Groups）<br>正则表达式反向断言（lookbehind）<br>正则表达式dotAll模式<br>正则表达式 Unicode 转义<br>非转义序列的模板字符串</p>
-<p><strong>ECMAScript Proposals</strong><br>被考虑加入未来版本 ECMAScript标准的特性与语法提案，他们需要经历五个阶段：</p>
-<table>
-<thead>
-<tr>
-<th>stage</th>
-<th>名称</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Stage 0</td>
-<td>strawman（稻草人）</td>
-<td>任何人都可以提交pull request到<a href="https://github.com/tc39/ecma262" target="_blank" rel="noopener">GitHub - tc39/ecma262: Status, process, and documents for ECMA262</a></td>
-</tr>
-<tr>
-<td>Stage 1</td>
-<td>Proposal（提议）</td>
-<td>TC39制定成员作为 champion，TC39审阅通过，有实现的 Demo 或者 Polyfill初步描写标准的语义语法算法复杂度解决的问题等</td>
-</tr>
-<tr>
-<td>Stage 2</td>
-<td>Draft（草案）</td>
-<td>有两个或两个以上的实现（包括babel这类的转译实现）使用正式的语言描述该语法，api等</td>
-</tr>
-<tr>
-<td>Stage 3</td>
-<td>Candidate（候选）</td>
-<td>至少2个实现，可以为实验性实现，ECMAScript spec editor 通过审核，TC39 review 通过，文本编写完成</td>
-</tr>
-<tr>
-<td>Stage 4</td>
-<td>Finished （完成）</td>
-<td>编写 test 262 测试用例，通过两个实现该特性的内核测试，ECMAScript spec editor 通过审核，开发者表示支持和认可</td>
-</tr>
-</tbody>
-</table>
-<p>对于有些人来说，前端的更新总是很突兀，很让人迷茫。</p>
-<p>但是其实不是的。变化总是一点一点发生的。</p>
-<p><a href="https://link.zhihu.com/?target=https://github.com/tc39/proposals" target="_blank" rel="noopener">GitHub - tc39/proposals: Tracking ECMAScript Proposals</a></p>
-<p>我们可以在 TC39 的 Github 仓库中找到完成了，废弃的，以及正在进行中的提案。</p>
-<p>多去关注这些东西，对于很多新事物的到来，我们也就不会有多惊讶了。</p>
-<p><strong>其他ECMA标准</strong><br>和 ECMAScript 有关的标准有 ECMA262，ECMA290，ECMA327，ECMA357，ECMA402，ECMA404，ECMA414等等。</p>
-<p>其中290，327，357等等没有推广开来，被废弃。</p>
-<p>ECMA 262 是语言规范本身。</p>
-<p>ECMA 402 则是制定一些基于 ECMAScript 5 或者之后版本的一些国际化 API 标准。</p>
-<p>ECMA 404 是 JSON 规范。</p>
-<p>ECMA 414 则规定了哪些规范是和 ECMAScript 有关的。目前内部就包含了 262，402和404。</p>
-<h2 id="ES6…"><a href="#ES6…" class="headerlink" title="ES6…"></a>ES6…</h2><table>
-<thead>
-<tr>
-<th>ES</th>
-<th>ECMAScript</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> ES6</td>
-<td>ECMAScript 2015</td>
-</tr>
-<tr>
-<td> ES7</td>
-<td>ECMAScript 2016</td>
-</tr>
-<tr>
-<td> ES8</td>
-<td>ECMAScript 2017</td>
-</tr>
-<tr>
-<td> ES9</td>
-<td>ECMAScript 2018</td>
-</tr>
-</tbody>
-</table>
-<p> ES1：1997 年 6 月  ——  <br> ES2：1998 年 6 月  ——<br> ES3：1999 年 12月  ——  <br> ES4： 2007 年 10月  <strong>未通过</strong>  ——<br> ES5： 2009年12月  ——<br> ES5.1  2011年6月  ——</p>
-<p><strong>ES4&amp;ES3.1</strong><br>在制定ES4的时候，是分成了两个工作组同时工作的。</p>
-<p>一边是以 Adobe, Mozilla, Opera 和 Google为主的 ECMAScript 4 工作组。</p>
-<p>一边是以 Microsoft 和 Yahoo 为主的 ECMAScript 3.1 工作组。</p>
-<p>ECMAScript 4 的很多主张比较激进，改动较大。而 ECMAScript 3.1 则主张小幅更新</p>
-<p>最终经过 TC39 的会议，决定将一部分不那么激进的改动保留发布为 ECMAScript 3.1，然后将一部分比较激进的部分放置到 ES.NEXT 中，命名为 Harmony（和谐），留待以后再进行商榷。接下来，ECMAScript  3.1 变成了 ECMAScript 5，而 ES.NEXT 中的那些特性，则有着相当一部分被ECMAScript 6，也就是 ECMAScript 2015 所吸收了。所以说虽然 ECMAScript 4 被废弃了，但是它终究还是通过另一种方式活了下来。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wolfjyx.github.com/2018/12/09/javascript & ECMAScript & es/" data-id="cjpgxwr8w00007gjizq4xa710" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1323,6 +1265,10 @@ renderer.info.reset();
       <ul>
         
           <li>
+            <a href="/2019/01/20/vim 手册/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/13/git简介/">git 简介</a>
           </li>
         
@@ -1336,10 +1282,6 @@ renderer.info.reset();
         
           <li>
             <a href="/2018/12/27/threejs 解读 geometry/">threejs 解读  geometry</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/24/threejs 解读 light/">threejs 解读  camera</a>
           </li>
         
       </ul>
