@@ -66,6 +66,139 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Json web token" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/27/Json web token/" class="article-date">
+  <time datetime="2019-01-27T12:31:04.394Z" itemprop="datePublished">2019-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/27/Json web token/">JOSN WEB TOKEN</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><a href="jwt.io Debugger">JSON Web Token（JWT)</a>是一种开放标准 <a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="noopener">RFC7519</a>。<br>它定义了一种紧凑的、自包含的方式，将信息作为JSON对象在各方之间安全地传输。<br>由于使用了数字签名，该信息是可以验证和信任的。<br>JWT可以使用密码（使用HMAC算法）或使用RSA或ECDSA的公钥/私钥对进行签名。<br>总之，JSON Web Token（JWT）是一个非常轻巧的规范。这个规范允许我们使用JWT在用户和服务器之间传递安全可靠的信息。</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>在其紧凑的形式中，JWT 由三个部分组成，由点（.）分隔，分别是：</p>
+<ul>
+<li>Header 头部</li>
+<li>Payload 载荷</li>
+<li>Signature 签名</li>
+</ul>
+<p>因此，JWT通常如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxxxx.yyyyy.zzzzz</span><br></pre></td></tr></table></figure>
+<h3 id="头部-header"><a href="#头部-header" class="headerlink" title="头部 (header)"></a>头部 (header)</h3><p>头通常由两部分组成：令牌的类型（JWT）和正在使用的签名算法（如HMAC SHA256或RSA）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;alg&quot;: &quot;HS256&quot;,</span><br><span class="line">  &quot;typ&quot;: &quot;JWT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将JSON转为base64url编码，以形成JWT的第一部分</p>
+<h3 id="载荷（payload"><a href="#载荷（payload" class="headerlink" title="载荷（payload)"></a>载荷（payload)</h3><p>载荷包含声明。声明是关于实体（通常是用户）和附加数据的语句。<br>声明有三种类型：注册声明、公开声明和私有声明</p>
+<p><strong>注册声明</strong><br>这是一组预定义的声明，这些声明是建议但不必需的<br>该声明提供一组有用的、可交换操作的声明</p>
+<ul>
+<li>iss:(Issuer)  该JWT的签发者  </li>
+<li>sub:(Subject) 该JWT所面向的用户  </li>
+<li>aud: (Audience)接收该JWT的一方  </li>
+<li>exp(expires): 什么时候过期，这里是一个Unix时间戳  </li>
+<li>nbf (Not Before) 该JWT到什么时间有效  </li>
+<li>iat(issued at): 在什么时候签发的  </li>
+<li>jti(JWT ID)：该JWT唯一标识  </li>
+</ul>
+<p><strong>公开声明</strong><br>这些可以由使用JWT的人员随意定义。但是为了避免冲突，应该是在 <a href="https://www.iana.org/assignments/jwt/jwt.xhtml" target="_blank" rel="noopener">IANA JSON Web Token Registry</a>中定义的<br>或者将它们定义为包含防冲突命名空间的URI。</p>
+<p><strong>私有声明</strong><br>自定义声明，用来在各方间共享信息，区别于注册声明和公开声明 </p>
+<p>这是载荷的一个实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;sub&quot;: &quot;1234567890&quot;,</span><br><span class="line">  &quot;name&quot;: &quot;John Doe&quot;,</span><br><span class="line">  &quot;admin&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将JSON转为base64url编码，以形成JWT的第二部分</p>
+<h3 id="签名-Signature"><a href="#签名-Signature" class="headerlink" title="签名 (Signature)"></a>签名 (Signature)</h3><p>签名部分，包含 编码过的头部、编码过的载荷、密码、头部中指定的算法，并对这些此进行签名计算。</p>
+<p>例如，如果要使用hmac sha256算法，将按以下方式创建签名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line">  base64UrlEncode(header) + &quot;.&quot; +</span><br><span class="line">  base64UrlEncode(payload),</span><br><span class="line">  secret)</span><br></pre></td></tr></table></figure>
+<p>签名用于验证消息是否在过程中发生了更改，对于使用私钥签名的令牌，它还可以验证JWT的发送者是它所说的人。</p>
+<h2 id="jWT如何工作"><a href="#jWT如何工作" class="headerlink" title="jWT如何工作"></a>jWT如何工作</h2><p>在身份验证中，当用户使用其凭据成功登录时，将返回JWT。因为令牌是凭证，所以必须非常小心地防止安全问题。一般来说，您不应该将令牌保留超过所需的时间。</p>
+<p>每当用户想要访问受保护的路由或资源时，用户代理应该使用承载模式发送JWT，通常是在授权头中。标题的内容应如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authorization: Bearer &lt;token&gt;</span><br></pre></td></tr></table></figure>
+<p>在某些情况下，这可以是无状态授权机制。服务器的受保护路由将检查授权头中是否存在有效的JWT，如果存在，则允许用户访问受保护的资源。如果JWT包含必要的数据，那么查询数据库进行某些操作的需求可能会减少，尽管情况并非总是如此。</p>
+<p>如果token设置在Authorization，Cross-Origin Resource Sharing (CORS) 将不再是问题，因为这不适用cookie</p>
+<p>如何获取和使用JWT来访问API或资源：</p>
+<ol>
+<li>应用程序或客户端向授权服务器请求授权。这是通过一个不同的授权流执行的。例如，典型的<a href="https://openid.net/connect/" target="_blank" rel="noopener"> OpenID Connect</a>兼容Web应用程序将使用<a href="https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth" target="_blank" rel="noopener">authorization code flow</a>通过 /oauth/authorize端点。  </li>
+<li>授予授权后，授权服务器将向应用程序返回访问令牌。  </li>
+<li>应用程序使用访问令牌访问受保护的资源（如API）。 </li>
+</ol>
+<p>ps: 对于签名的令牌，令牌中包含的所有信息都将向用户或其他方公开，即无法更改它。这意味着不应该将秘密信息放在令牌中。</p>
+<h2 id="jwt优势"><a href="#jwt优势" class="headerlink" title="jwt优势"></a>jwt优势</h2><ol>
+<li>传输数据量小</li>
+<li>安全方面，SWT只能使用HMAC算法由共享机密对称签名。但是，JWT和SAML令牌可以使用X.509证书形式的公钥/私钥对进行签名。与简单的JSON签名相比，用XML数字签名来签名XML而不引入模糊的安全漏洞是非常困难的。 </li>
+<li>JSON解析器在大多数编程语言中很常见，因为它们直接映射到对象。相反，XML没有一个自然的文档到对象的映射。这使得使用JWT比使用SAML断言更容易。</li>
+</ol>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><ul>
+<li>用于向Web应用传递一些非敏感信息。例如完成加好友、下订单的操作等等。</li>
+<li>用于设计用户认证和授权系统。</li>
+<li>实现Web应用的单点登录。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2019/01/27/Json web token/" data-id="cjrevv3nr0000dvjipvoql51v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux  命令" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/linux  命令/" class="article-date">
+  <time datetime="2019-01-20T10:29:22.714Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r--</span><br></pre></td></tr></table></figure>
+<p>第一位表示文件类型（-文件 d目录 l软连接文件）<br>后面九位，三位一组，分别控制所有者（u）、所属组（g）、其他人（o）对该文件的权限<br>r读 w写 x执行</p>
+<h2 id="ls-options-file-dir"><a href="#ls-options-file-dir" class="headerlink" title="ls [options] [file|dir]"></a>ls [options] [file|dir]</h2><p>-a 显示所有文件，包括隐藏文件<br>-l 显示详细信息<br>-d 查看目录属性<br>-i 显示inode<br>-h h表示字节大小显示为人可读的形式，即human缩写，很多命令都可以用h修饰<br>-r 将文件以相反次序显示(原定依英文字母次序)<br>-t 将文件依建立时间之先后次序列出<br>-A 同 -a ，但不列出 “.” (目前目录) 及 “..” (父目录)<br>-F 在列出的文件名称后加一符号；例如可执行档则加 “*”, 目录则加 “/“<br>-R 若目录下有文件，则以下之文件亦皆依序列出</p>
+<h2 id="mkdir-p-dirname"><a href="#mkdir-p-dirname" class="headerlink" title="mkdir -p [dirname]"></a>mkdir -p [dirname]</h2><p>创建目录<br>p 递归建立,确保目录名称存在，不存在的就建一个</p>
+<h2 id="cd-dirname"><a href="#cd-dirname" class="headerlink" title="cd [dirname]"></a>cd [dirname]</h2><p>切换目录<br><code>cd ~</code> 回到当前用户家目录<br><code>cd</code> 直接回车同上<br><code>cd ..</code> 上级目录<br><code>cd -</code>进入上次所在目录  </p>
+<h2 id="rmdir-dirname"><a href="#rmdir-dirname" class="headerlink" title="rmdir [dirname]"></a>rmdir [dirname]</h2><p>删除空目录<br>-p 是当子目录被删除后使它也成为空目录的话，则顺便一并删除</p>
+<h2 id="rm-filename-删除目录或文件"><a href="#rm-filename-删除目录或文件" class="headerlink" title="rm [filename]   #删除目录或文件"></a>rm [filename]   #删除目录或文件</h2><p>-i 删除前逐一询问确认<br>-r 删除目录<br>-f 强制删除</p>
+<h2 id="cp-options-source-dest"><a href="#cp-options-source-dest" class="headerlink" title="cp [options] source dest"></a>cp [options] source dest</h2><p>复制 [目标目录]<br>-a：此选项通常在复制目录时使用，它保留链接、文件属性，并复制目录下的所有内容。其作用等于dpR参数组合。<br>-d：复制时保留链接。这里所说的链接相当于Windows系统中的快捷方式。<br>-f：覆盖已经存在的目标文件而不给出提示。<br>-i：与-f选项相反，在覆盖目标文件之前给出提示，要求用户确认是否覆盖，回答”y”时目标文件将被覆盖。<br>-p：除复制文件的内容外，还把修改时间和访问权限也复制到新文件中。<br>-r：若给出的源文件是一个目录文件，此时将复制该目录下所有的子目录和文件。<br>-l：不复制文件，只是生成链接文件。  </p>
+<h2 id="mv-options-source-dest"><a href="#mv-options-source-dest" class="headerlink" title="mv [options] source dest"></a>mv [options] source dest</h2><p>改名和剪切<br>-i: 若指定目录已有同名文件，则先询问是否覆盖旧文件;<br>-f: 在mv操作要覆盖某已有的目标文件时不给任何指示;</p>
+<h2 id="ln-options-source-dest"><a href="#ln-options-source-dest" class="headerlink" title="ln [options][source][dest]"></a>ln [options][source][dest]</h2><p>为某一个文件在另外一个位置建立一个同步的链接<br>-b 删除，覆盖以前建立的链接<br>-d 允许超级用户制作目录的硬链接<br>-f 强制执行<br>-i 交互模式，文件存在则提示用户是否覆盖<br>-n 把符号链接视为一般目录<br>-s 软链接(符号链接)<br>-v 显示详细的处理过程<br>-S “-S&lt;字尾备份字符串&gt; “或 “–suffix=&lt;字尾备份字符串&gt;”<br>-V “-V&lt;备份方式&gt;”或”–version-control=&lt;备份方式&gt;”<br>–help 显示帮助信息<br>–version 显示版本信息  </p>
+<h2 id="locate-d-–help-–version-范本样式…"><a href="#locate-d-–help-–version-范本样式…" class="headerlink" title="locate [-d ][–help][–version][范本样式…]"></a>locate [-d ][–help][–version][范本样式…]</h2><p>查找符合条件的文档，他会去保存文档和目录名称的数据库内，查找合乎范本样式条件的文档或目录<br>-d或–database= 配置locate指令使用的数据库。locate指令预设的数据库位于/var/lib/slocate目录里，文档名为slocate.db，您可使用 这个参数另行指定。<br>–help 　在线帮助。<br>–version 　显示版本信息。  </p>
+<h2 id="whereis-命令名"><a href="#whereis-命令名" class="headerlink" title="whereis [命令名]"></a>whereis [命令名]</h2><p>命令的搜索命令<br>搜索命令所在路径及帮助文档所在位置<br>该指令只能用于查找二进制文件、源代码文件和man手册页<br>-b 　只查找二进制文件<br>-B&lt;目录&gt; 　只在设置的目录下查找二进制文件<br>-f 　不显示文件名前的路径名称<br>-m 　只查找说明文件<br>-M&lt;目录&gt; 　只在设置的目录下查找说明文件<br>-s 　只查找原始代码文件<br>-S&lt;目录&gt; 　只在设置的目录下查找原始代码文件<br>-u 　查找不包含指定类型的文件  </p>
+<h2 id="which-文件名"><a href="#which-文件名" class="headerlink" title="which [文件名]"></a>which [文件名]</h2><p>命令的搜索命令<br>which指令会在环境变量$PATH设置的目录里查找符合条件的文件<br>-n&lt;文件名长度&gt; 　指定文件名长度，指定的长度必须大于或等于所有文件中最长的文件名<br>-p&lt;文件名长度&gt; 　与-n参数相同，但此处的&lt;文件名长度&gt;包括了文件的路径<br>-w 　指定输出时栏位的宽度<br>-V 　显示版本信息  </p>
+<h2 id="find-搜索范围-搜索条件"><a href="#find-搜索范围-搜索条件" class="headerlink" title="find [搜索范围] [搜索条件]"></a>find [搜索范围] [搜索条件]</h2><p>文件搜索命令</p>
+<p>搜索的是文件名，必须一模一样，也支持通配符搜索<br>使用通配符的时候，需要用双引号引住整个字符串<br>*匹配任意字符<br>？匹配任意一个字符<br>[]匹配任意一个中括号内的字符<br>find /root -iname install.log #不区分大小写<br>find /root -user root #按照所有者搜查<br>find /root -nouser #查找没有所有者的文件<br>find /var/log/ -mtime +10 #查找10天前修改的文件<br>-10 10天内修改的文件<br>10 10天前当天修改的文件<br>+10 10天前修改的文件<br>atime 文件访问时间<br>ctime 改变文件属性<br>mtime 修改文件内容<br>find . -size 25k #查找文件大小是25k的文件<br>-25k 小于25k的文件<br>25k 等于25k的文件<br>25k 大于25k的文件<br>k是小写，M是大写<br>find -inum 265797 #查找i节点是265797的文件<br>find /etc -size +20k -a -size -50k<br>查找大于20k小于50k的文件<br>-a and 逻辑与，两个条件都满足<br>-o or 逻辑或，两个条件满足一个<br>find /etc -size +20k -a -size -50k -exec ls -lh {} \<br>-exec 第一条命令产生的结果，交给第二条命令来处理<br>本条命令是对找到的文件列出详细信息<br>{} \; 是标准格式要求  </p>
+<h2 id="grep-选项-字符串-文件名"><a href="#grep-选项-字符串-文件名" class="headerlink" title="grep [选项] 字符串 文件名"></a>grep [选项] 字符串 文件名</h2><p>搜索字符串命令<br>在文件当中匹配符合条件的字符串，包含式匹配<br>-i 忽略大小写<br>-v 排除指定字符串<br>grep -v “shuan” aaa.txt<br>可以使用正则表达式  </p>
+<h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><p>cat 命令用于连接文件并打印到标准输出设备上</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://wolfjyx.github.com/2019/01/20/linux  命令/" data-id="cjrevv3nv0001dvji4wpo94cj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-vim 手册" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/20/vim 手册/" class="article-date">
@@ -993,233 +1126,11 @@ light.target = targetObject;
 
 
   
-    <article id="post-threejs解读 webGLRender" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/11/threejs解读 webGLRender/" class="article-date">
-  <time datetime="2018-12-11T14:58:14.720Z" itemprop="datePublished">2018-12-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/11/threejs解读 webGLRender/">threejs解读 webGLRender</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="WebGLRender"><a href="#WebGLRender" class="headerlink" title="WebGLRender"></a>WebGLRender</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>使用WebGL渲染场景</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebGLRenderer( parameters : Object )</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><strong>canvas</strong> - 绘制输出的canvas。这对应于下面的domElement属性。如果没有传值，则将创建新的canvas元素。</p>
-</li>
-<li><p><strong>context</strong> - 可用于将渲染器添加到现有的RenderingContext。默认值为null</p>
-</li>
-<li><strong>precision</strong> - 着色器精度。可以是“highp”，“mediump”或“lowp”。如果设备支持，则默认为“highp”</li>
-<li><strong>alpha</strong> 画布是否包含alpha（透明度）缓冲区。默认值为false</li>
-<li><strong>premultipliedAlpha</strong> 渲染器是否会假设颜色具有预乘alpha。默认为true</li>
-<li><strong>antialias</strong> 是否执行抗锯齿,默认值为false</li>
-<li><strong>stencil</strong> 绘图缓冲区是否具有至少8位的模板缓冲区。默认为true</li>
-<li><strong>preserveDrawingBuffer</strong> 在手动清除或覆盖之前是否保留缓冲区。默认值为false</li>
-<li><strong>powerPreference</strong> 向用户代理提供一个提示，指示适用于此WebGL上下文的GPU配置。可以是“high-performance”，“low-power”或“default”。默认为“default”</li>
-<li><strong>depth</strong> 绘图缓冲区是否具有至少16位的深度缓冲区。 默认为true</li>
-<li><strong>logarithmicDepthBuffer</strong> 是否使用对数深度缓冲区。 如果在单个场景中处理规模的巨大差异，则可能需要使用它。 默认值为false</li>
-</ul>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="autoClear-Boolean"><a href="#autoClear-Boolean" class="headerlink" title="autoClear: Boolean"></a>autoClear: Boolean</h3><p>定义渲染器是否应在渲染帧之前自动清除其输出</p>
-<h3 id="autoClearColor-Boolean"><a href="#autoClearColor-Boolean" class="headerlink" title="autoClearColor: Boolean"></a>autoClearColor: Boolean</h3><p>如果<strong>autoClear</strong>为true，则定义渲染器是否应清除颜色缓冲区, 默认为true</p>
-<h3 id="autoClearDepth-Boolean"><a href="#autoClearDepth-Boolean" class="headerlink" title="autoClearDepth: Boolean"></a>autoClearDepth: Boolean</h3><p>如果<strong>autoClear</strong>为true，则定义渲染器是否应清除深度缓冲区, 默认为true</p>
-<h3 id="autoClearStencil-Boolean"><a href="#autoClearStencil-Boolean" class="headerlink" title="autoClearStencil: Boolean"></a>autoClearStencil: Boolean</h3><p>如果autoClear为true，则定义渲染器是否应清除模板缓冲区, 默认为true</p>
-<h3 id="capabilities-Object"><a href="#capabilities-Object" class="headerlink" title="capabilities: Object"></a>capabilities: Object</h3><p>包含当前RenderingContext功能详细信息d的对象<br>// TODO 对象属性待补充  </p>
-<h3 id="clippingPlanes-Array"><a href="#clippingPlanes-Array" class="headerlink" title="clippingPlanes : Array"></a>clippingPlanes : Array</h3><p>用户定义的在世界坐标系的裁剪平面对象。这些平面全局可用。空间中的点和该平面的点积为负将被裁剪掉。默认为 [].</p>
-<h3 id="context-WebGLRenderingContext"><a href="#context-WebGLRenderingContext" class="headerlink" title="context : WebGLRenderingContext"></a>context : WebGLRenderingContext</h3><p>渲染器默认通过HTMLCanvasElement.getContext（）方法其domElement获取RenderingContext上下文。<br>您可以手动创建它，但它必须与domElement对应才能渲染到屏幕</p>
-<h3 id="domElement：DOMElement"><a href="#domElement：DOMElement" class="headerlink" title="domElement：DOMElement"></a>domElement：DOMElement</h3><p>canvas元素。<br>这是由构造函数中的渲染器自动创建的（如果调用WebGLRenderer没有传入canvas）; 你只需将它添加到你的页面就像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.body.appendChild（renderer.domElement）;</span><br></pre></td></tr></table></figure></p>
-<h3 id="extensions-Object"><a href="#extensions-Object" class="headerlink" title="extensions : Object"></a>extensions : Object</h3><p><strong>extensions.get</strong>方法的封装，用于检查是否支持各种WebGL扩展。</p>
-<h3 id="gammaFactor-Float"><a href="#gammaFactor-Float" class="headerlink" title="gammaFactor: Float"></a>gammaFactor: Float</h3><p> 默认是</p>
-<h3 id="gammaInput：Boolean"><a href="#gammaInput：Boolean" class="headerlink" title="gammaInput：Boolean"></a>gammaInput：Boolean</h3><p>如果设置，则所有纹理和颜色都是预乘伽马因子值。 默认值为false</p>
-<h3 id="gammaOutput：Boolean"><a href="#gammaOutput：Boolean" class="headerlink" title="gammaOutput：Boolean"></a>gammaOutput：Boolean</h3><p>如果设置，则所有纹理和颜色需要以预乘伽马输出。 默认值为false</p>
-<h3 id="info-Object"><a href="#info-Object" class="headerlink" title="info: Object"></a>info: Object</h3><p>一个关于显卡内存和渲染过程统计信息的对象。便于调试和分析。该对象包含如下字段</p>
-<ul>
-<li>memory:<ul>
-<li>geometries</li>
-<li>textures</li>
-</ul>
-</li>
-<li>render:<ul>
-<li>calls</li>
-<li>vertices</li>
-<li>faces</li>
-<li>points</li>
-</ul>
-</li>
-<li>programs</li>
-</ul>
-<p>默认情况下，这些数据会在每次渲染调用时重置，但在使用一个或多个镜像时，最好使用自定义模式重置它们：</p>
-<pre><code>renderer.info.autoReset = false;
-renderer.info.reset();
-</code></pre><h3 id="localClippingEnabled-Boolean"><a href="#localClippingEnabled-Boolean" class="headerlink" title="localClippingEnabled : Boolean"></a>localClippingEnabled : Boolean</h3><p>定义渲染器是否遵循对象级剪切平面。 默认值为false</p>
-<h3 id="maxMorphTargets-Integer"><a href="#maxMorphTargets-Integer" class="headerlink" title="maxMorphTargets : Integer"></a>maxMorphTargets : Integer</h3><p>着色器中允许的最大变形目标数。标准材料仅允许8个变形目标。默认值为8</p>
-<h3 id="maxMorphNormals-Integer"><a href="#maxMorphNormals-Integer" class="headerlink" title="maxMorphNormals : Integer"></a>maxMorphNormals : Integer</h3><p>着色器中允许的最大变形法线数。标准材料仅允许4个变形法线。默认值为4</p>
-<h3 id="physicallyCorrectLights-Boolean"><a href="#physicallyCorrectLights-Boolean" class="headerlink" title="physicallyCorrectLights : Boolean"></a>physicallyCorrectLights : Boolean</h3><p>是否使用物理上正确的照明模式。 默认值为false</p>
-<h3 id="properties-Object"><a href="#properties-Object" class="headerlink" title="properties : Object"></a>properties : Object</h3><p>由渲染器在内部使用，以跟踪各种子对象属性</p>
-<h3 id="renderLists-WebGLRenderLists"><a href="#renderLists-WebGLRenderLists" class="headerlink" title="renderLists : WebGLRenderLists"></a>renderLists : WebGLRenderLists</h3><p>在内部用于处理场景对象渲染的排序</p>
-<p>shadowMap : WebGLShadowMap<br>如果使用，它包含阴影贴图的引用</p>
-<h3 id="shadowMap-enabled-Boolean"><a href="#shadowMap-enabled-Boolean" class="headerlink" title="shadowMap.enabled : Boolean"></a>shadowMap.enabled : Boolean</h3><p>如果为true,在场景中使用阴影贴图。 默认值为false</p>
-<h3 id="shadowMap-autoUpdate-Boolean"><a href="#shadowMap-autoUpdate-Boolean" class="headerlink" title="shadowMap.autoUpdate : Boolean"></a>shadowMap.autoUpdate : Boolean</h3><p>启用场景中阴影的自动更新。 默认为true<br>如果不需要动态光照/阴影，则可以在实例化渲染器时将其设置为false</p>
-<h3 id="shadowMap-needsUpdate-Boolean"><a href="#shadowMap-needsUpdate-Boolean" class="headerlink" title="shadowMap.needsUpdate : Boolean"></a>shadowMap.needsUpdate : Boolean</h3><p>设置为true时，场景中的阴影贴图将在下一个渲染调用中更新,默认值为false<br>如果禁用了阴影贴图的自动更新<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">则需要将其设置为true，然后进行渲染调用以更新场景中的阴影</span><br><span class="line"></span><br><span class="line">### shadowMap.type : Integer</span><br><span class="line">定义阴影贴图类型  </span><br><span class="line">选项有**THREE.BasicShadowMap**，**THREE.PCFShadowMap**（默认），**THREE.PCFSoftShadowMap**</span><br><span class="line"></span><br><span class="line">### sortObjects : Boolean</span><br><span class="line">定义渲染器是否应对对象进行排序。 默认为true  </span><br><span class="line">注意：排序用于尝试正确渲染具有一定透明度的对象。 根据定义，排序对象可能无法在所有情况下使用。 根据应用的需要，可能需要关闭排序并使用其他方法来处理透明度渲染，例如， 手动确定每个对象的渲染顺序</span><br><span class="line"></span><br><span class="line">### state : Object</span><br><span class="line">包含用于设置WebGLRenderer.context状态的各种属性的函数</span><br><span class="line"></span><br><span class="line">### toneMapping: Constant</span><br><span class="line">默认为**LinearToneMapping**</span><br><span class="line"></span><br><span class="line">### toneMappingExposur： Number</span><br><span class="line">色调映射的曝光级别。 默认值为1</span><br><span class="line"></span><br><span class="line">### toneMappingWhitePoint : Number</span><br><span class="line">色调映射白点。 默认值为1</span><br><span class="line"></span><br><span class="line">## 方法</span><br><span class="line">### allocTextureUnit : Integer</span><br><span class="line">尝试分配纹理单元以供着色器使用。 如果尝试分配比GPU支持更多的纹理单元，则会发出警告。 这主要用于内部</span><br><span class="line"></span><br><span class="line">### clear ( color : Boolean, depth : Boolean, stencil : Boolean ) : null</span><br><span class="line"></span><br><span class="line">告诉渲染器清除其颜色，深度或模板绘制缓冲区。 此方法将颜色缓冲区初始化为当前的清除色。</span><br><span class="line">参数默认为true</span><br><span class="line"></span><br><span class="line">### clearColor ( ) : null</span><br><span class="line">清除颜色缓冲区。 相当于调用```clear（true，false，false）</span><br></pre></td></tr></table></figure></p>
-<h3 id="clearDepth-null"><a href="#clearDepth-null" class="headerlink" title="clearDepth(): null"></a>clearDepth(): null</h3><p>清除深度缓冲区。相当于调用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### clearStencil ( ) : null</span><br><span class="line">清除模板缓冲区。相当于调用```clear（false，false，true）</span><br></pre></td></tr></table></figure></p>
-<h3 id="compile-scene-Scene-camera-Camera-null"><a href="#compile-scene-Scene-camera-Camera-null" class="headerlink" title="compile ( scene : Scene, camera : Camera ) : null"></a>compile ( scene : Scene, camera : Camera ) : null</h3><p>使用相机编译场景中的所有材质。 这对于在第一次渲染之前预编译着色器很有用</p>
-<h3 id="copyFramebufferToTexture-position-Vector2-texture-Texture-level-Number-null"><a href="#copyFramebufferToTexture-position-Vector2-texture-Texture-level-Number-null" class="headerlink" title="copyFramebufferToTexture ( position : Vector2, texture : Texture, level : Number ) : null"></a>copyFramebufferToTexture ( position : Vector2, texture : Texture, level : Number ) : null</h3><p>将当前WebGLFramebuffer中的像素复制到2D纹理中</p>
-<h3 id="copyTextureToTexture-position-Vector2-srcTexture-Texture-dstTexture-Texture-level-Number-null"><a href="#copyTextureToTexture-position-Vector2-srcTexture-Texture-dstTexture-Texture-level-Number-null" class="headerlink" title="copyTextureToTexture ( position : Vector2, srcTexture : Texture, dstTexture : Texture, level : Number ) : null"></a>copyTextureToTexture ( position : Vector2, srcTexture : Texture, dstTexture : Texture, level : Number ) : null</h3><p>将纹理的所有像素复制到从给定位置开始的现有纹理</p>
-<h3 id="dispose-null"><a href="#dispose-null" class="headerlink" title="dispose(): null"></a>dispose(): null</h3><p>处理当前渲染上下文</p>
-<h3 id="extensions-get-extensionName-String-Object"><a href="#extensions-get-extensionName-String-Object" class="headerlink" title="extensions.get ( extensionName : String ) : Object"></a>extensions.get ( extensionName : String ) : Object</h3><p>用于检查是否支持各种扩展，并返回一个对象，其中包含扩展的详细信息（如果可用）。 此方法可以检查以下扩展名：</p>
-<pre><code>- WEBGL_depth_texture
-- EXT_texture_filter_anisotropic
-- WEBGL_compressed_texture_s3tc
-- WEBGL_compressed_texture_pvrtc
-- WEBGL_compressed_texture_etc1
-</code></pre><h3 id="forceContextLoss-null"><a href="#forceContextLoss-null" class="headerlink" title="forceContextLoss ( ) : null"></a>forceContextLoss ( ) : null</h3><p>模拟WebGL上下文的丢失。 这需要支持WEBGL_lose_context扩展</p>
-<h3 id="getClearAlpha-Float"><a href="#getClearAlpha-Float" class="headerlink" title="getClearAlpha () : Float"></a>getClearAlpha () : Float</h3><p>返回具有当前clear alpha的float。 范围从0到1</p>
-<h3 id="getClearColor-Color"><a href="#getClearColor-Color" class="headerlink" title="getClearColor () : Color"></a>getClearColor () : Color</h3><p>返回具有当前清除色的THREE.Color实例</p>
-<h3 id="getContext-WebGLRenderingContext"><a href="#getContext-WebGLRenderingContext" class="headerlink" title="getContext () : WebGLRenderingContext"></a>getContext () : WebGLRenderingContext</h3><p>返回当前WebGL上下文</p>
-<h3 id="getContextAttributes-WebGLContextAttributes"><a href="#getContextAttributes-WebGLContextAttributes" class="headerlink" title="getContextAttributes () : WebGLContextAttributes"></a>getContextAttributes () : WebGLContextAttributes</h3><p>返回描述在创建WebGL上下文时设置的属性的对象</p>
-<h3 id="getRenderTarget-RenderTarget"><a href="#getRenderTarget-RenderTarget" class="headerlink" title="getRenderTarget () : RenderTarget"></a>getRenderTarget () : RenderTarget</h3><p>返回当前的RenderTarget（如果有）</p>
-<h3 id="getCurrentViewport-RenderTarget"><a href="#getCurrentViewport-RenderTarget" class="headerlink" title="getCurrentViewport () : RenderTarget"></a>getCurrentViewport () : RenderTarget</h3><p>返回当前视口</p>
-<h3 id="getDrawingBufferSize-Object"><a href="#getDrawingBufferSize-Object" class="headerlink" title="getDrawingBufferSize () : Object"></a>getDrawingBufferSize () : Object</h3><p>返回包含渲染器绘图缓冲区宽度和高度的对象，单位px</p>
-<h3 id="getPixelRatio-number"><a href="#getPixelRatio-number" class="headerlink" title="getPixelRatio () : number"></a>getPixelRatio () : number</h3><p>返回当前设备像素比率</p>
-<h3 id="getSize-Object"><a href="#getSize-Object" class="headerlink" title="getSize () : Object"></a>getSize () : Object</h3><p>返回包含渲染器输出画布的宽度和高度的对象（单位px)</p>
-<h3 id="resetGLState-null"><a href="#resetGLState-null" class="headerlink" title="resetGLState ( ) : null"></a>resetGLState ( ) : null</h3><p>将GL状态重置为默认值。 如果WebGL上下文丢失，则在内部调用</p>
-<h3 id="readRenderTargetPixels-renderTarget-WebGLRenderTarget-x-Float-y-Float-width-Float-height-Float-buffer-null"><a href="#readRenderTargetPixels-renderTarget-WebGLRenderTarget-x-Float-y-Float-width-Float-height-Float-buffer-null" class="headerlink" title="readRenderTargetPixels ( renderTarget : WebGLRenderTarget, x : Float, y : Float, width : Float, height : Float, buffer ) : null"></a>readRenderTargetPixels ( renderTarget : WebGLRenderTarget, x : Float, y : Float, width : Float, height : Float, buffer ) : null</h3><p>将renderTarget中的像素数据读入的缓冲区。这是WebGLRenderingContext.readPixels（）的封装函数</p>
-<h3 id="render-scene-Scene-camera-Camera-renderTarget-WebGLRenderTarget-forceClear-Boolean-null"><a href="#render-scene-Scene-camera-Camera-renderTarget-WebGLRenderTarget-forceClear-Boolean-null" class="headerlink" title="render ( scene : Scene, camera : Camera, renderTarget : WebGLRenderTarget, forceClear : Boolean ) : null"></a>render ( scene : Scene, camera : Camera, renderTarget : WebGLRenderTarget, forceClear : Boolean ) : null</h3><p>使用相机渲染场景<br>渲染到r<strong>enderTarget</strong>或canvas<br>如果<strong>forceClear</strong>为true，则即使<strong>autoClear</strong>属性为false，也会在渲染之前清除深度，模板和颜色缓冲区<br>即使将<strong>forceClear</strong>设置为true，也可以通过将<strong>autoClearColor</strong>，<strong>autoClearStencil</strong>或<strong>autoClearDepth</strong>属性设置为false来阻止清除某些缓冲区</p>
-<h3 id="renderBufferDirect-camera-Camera-fog-Fog-geometry-Geometry-material-Material-object-Object3D-group-Object-null"><a href="#renderBufferDirect-camera-Camera-fog-Fog-geometry-Geometry-material-Material-object-Object3D-group-Object-null" class="headerlink" title="renderBufferDirect ( camera : Camera, fog : Fog, geometry : Geometry, material : Material, object : Object3D, group : Object ) : null"></a>renderBufferDirect ( camera : Camera, fog : Fog, geometry : Geometry, material : Material, object : Object3D, group : Object ) : null</h3><p>使用相机和指定材质渲染缓冲几何集合</p>
-<h3 id="renderBufferImmediate-object-Object3D-program-shaderprogram-shading-Material-null"><a href="#renderBufferImmediate-object-Object3D-program-shaderprogram-shading-Material-null" class="headerlink" title="renderBufferImmediate ( object : Object3D, program : shaderprogram, shading : Material ) : null"></a>renderBufferImmediate ( object : Object3D, program : shaderprogram, shading : Material ) : null</h3><p>object - Object3D实例<br>program - shaderProgram实例<br>着色 -  Material实例   </p>
-<p>渲染立即缓冲区。 由renderImmediateObject调用</p>
-<h3 id="setAnimationLoop-callback-Function-null"><a href="#setAnimationLoop-callback-Function-null" class="headerlink" title="setAnimationLoop ( callback : Function ) : null"></a>setAnimationLoop ( callback : Function ) : null</h3><p>callback - 将在每个可用帧中调用该函数。 如果传递<code>null</code>，它将停止任何已经在进行的动画   </p>
-<p>可以用来代替requestAnimationFrame的内置函数。 对于WebVR项目，必须使用此功能</p>
-<h3 id="setClearAlpha-alpha-Float-null"><a href="#setClearAlpha-alpha-Float-null" class="headerlink" title="setClearAlpha ( alpha : Float ) : null"></a>setClearAlpha ( alpha : Float ) : null</h3><p>设置清除的alpha。 有效输入是介于0.0和1.0之间的浮点数</p>
-<h3 id="setClearColor-color-Color-alpha-Float-null"><a href="#setClearColor-color-Color-alpha-Float-null" class="headerlink" title="setClearColor ( color : Color, alpha : Float ) : null"></a>setClearColor ( color : Color, alpha : Float ) : null</h3><p>设置清除色和不透明度</p>
-<h3 id="setPixelRatio-value-number-null"><a href="#setPixelRatio-value-number-null" class="headerlink" title="setPixelRatio ( value : number ) : null"></a>setPixelRatio ( value : number ) : null</h3><p>设置设备像素比率。 这通常用于HiDPI设备，以防止画面模糊。</p>
-<h3 id="setRenderTarget-renderTarget-WebGLRenderTarget-null"><a href="#setRenderTarget-renderTarget-WebGLRenderTarget-null" class="headerlink" title="setRenderTarget ( renderTarget : WebGLRenderTarget ) : null"></a>setRenderTarget ( renderTarget : WebGLRenderTarget ) : null</h3><p>renderTarget - 需要激活的renderTarget（可选）</p>
-<p>此方法设置活动的rendertarget。 如果省略该参数，则将画布设置为活动的rendertarget</p>
-<h3 id="setScissor-x-Integer-y-Integer-width-Integer-height-Integer-null"><a href="#setScissor-x-Integer-y-Integer-width-Integer-height-Integer-null" class="headerlink" title="setScissor ( x : Integer, y : Integer, width : Integer, height : Integer ) : null"></a>setScissor ( x : Integer, y : Integer, width : Integer, height : Integer ) : null</h3><p>将裁剪区域设置为（x，y）到（x + width，y + height）</p>
-<h3 id="setScissorTest-boolean-Boolean-null"><a href="#setScissorTest-boolean-Boolean-null" class="headerlink" title="setScissorTest ( boolean : Boolean ) : null"></a>setScissorTest ( boolean : Boolean ) : null</h3><p>启用或禁用裁剪测试。 启用此选项后，只有定义的裁剪区域内的像素才会受到其他渲染器操作的影响</p>
-<h3 id="setSize-width-Integer-height-Integer-updateStyle-Boolean-null"><a href="#setSize-width-Integer-height-Integer-updateStyle-Boolean-null" class="headerlink" title="setSize ( width : Integer, height : Integer, updateStyle : Boolean ) : null"></a>setSize ( width : Integer, height : Integer, updateStyle : Boolean ) : null</h3><p>将输出画布的大小调整为（width，height），并考虑设备像素比率，将视口调整为从（0,0）开始适应该尺寸的大小。 将updateStyle设置为false可防止对输出画布进行任何样式更改</p>
-<h3 id="setTexture2D-texture-Texture-slot-number-null"><a href="#setTexture2D-texture-Texture-slot-number-null" class="headerlink" title="setTexture2D ( texture : Texture, slot : number ) : null"></a>setTexture2D ( texture : Texture, slot : number ) : null</h3><p>texture - 需要设置的纹理<br>slot - 指示纹理应使用哪个槽的数字  </p>
-<p>此方法将正确的纹理设置为WebGL着色器的正确插槽。 可以找到槽号作为采样器的均匀值</p>
-<h3 id="setTextureCube-cubeTexture-CubeTexture-slot-Number-null"><a href="#setTextureCube-cubeTexture-CubeTexture-slot-Number-null" class="headerlink" title="setTextureCube ( cubeTexture : CubeTexture, slot : Number ) : null"></a>setTextureCube ( cubeTexture : CubeTexture, slot : Number ) : null</h3><p>texture - 需要设置的cubeTexture。<br>slot - 指示纹理应使用哪个槽的数字。</p>
-<p>此方法将正确的纹理设置为WebGL着色器的正确插槽， 可以找到槽号作为采样器的均匀值</p>
-<p>setViewport ( x : Integer, y : Integer, width : Integer, height : Integer ) : null<br>将视口设置为从（x，y）到（x + width，y + height）</p>
-<h1 id="WebGLRenderTarget"><a href="#WebGLRenderTarget" class="headerlink" title="WebGLRenderTarget"></a>WebGLRenderTarget</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>显卡为后台渲染场景的缓冲区，它用于不同的效果，例如在渲染图像显示在屏幕进行后期处理</p>
-<h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebGLRenderTarget(width : Number, height : Number, options : Object)</span><br></pre></td></tr></table></figure>
-<p>width – renderTarget的宽度<br>height – renderTarget的高度<br>options是可选的对象，保存一个自动生成的目标纹理的纹理参数以及depthBuffer / stencilBuffer布尔值<br>wrapS - 默认为ClampToEdgeWrapping<br>wrapT - 默认为ClampToEdgeWrapping<br>magFilter - 默认为LinearFilter<br>minFilter - 默认为LinearFilter<br>format - 默认为RGBAFormat<br>type - 默认为UnsignedByteType<br>anisotropy - 默认值为1<br>encoding - 默认为LinearEncoding<br>depthBuffer - 默认为true。 如果您不需要，请将此设置为false<br>stencilBuffer - 默认为true。 如果您不需要，请将此设置为false  </p>
-<h2 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h2><h3 id="width-number"><a href="#width-number" class="headerlink" title="width : number"></a>width : number</h3><p>渲染目标的宽度</p>
-<h3 id="height-number"><a href="#height-number" class="headerlink" title="height : number"></a>height : number</h3><p>渲染目标的高度</p>
-<h3 id="scissor-Vector4"><a href="#scissor-Vector4" class="headerlink" title="scissor : Vector4"></a>scissor : Vector4</h3><p>渲染目标视口内的矩形区域。 区域外的部分将被裁剪</p>
-<h3 id="scissorTest-boolean"><a href="#scissorTest-boolean" class="headerlink" title="scissorTest : boolean"></a>scissorTest : boolean</h3><p>是否激活裁剪测试</p>
-<h3 id="viewport-Vector4"><a href="#viewport-Vector4" class="headerlink" title="viewport : Vector4"></a>viewport : Vector4</h3><p>渲染目标的视口</p>
-<h3 id="texture"><a href="#texture" class="headerlink" title="texture"></a>texture</h3><p>此纹理实例保存渲染的像素,将其用作输入以进行进一步处理</p>
-<h3 id="depthBuffer-boolean"><a href="#depthBuffer-boolean" class="headerlink" title="depthBuffer : boolean"></a>depthBuffer : boolean</h3><p>渲染到深度缓冲区。 默认为true</p>
-<h3 id="stencilBuffer"><a href="#stencilBuffer" class="headerlink" title="stencilBuffer"></a>stencilBuffer</h3><p>渲染到深度缓冲区。 默认为true</p>
-<h3 id="depthTexture-DepthTexture"><a href="#depthTexture-DepthTexture" class="headerlink" title="depthTexture : DepthTexture"></a>depthTexture : DepthTexture</h3><p>如果设置，则场景深度将呈现给此纹理。 默认值为null</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="setSize-width-Number-height-Number-null"><a href="#setSize-width-Number-height-Number-null" class="headerlink" title="setSize ( width : Number, height : Number ) : null"></a>setSize ( width : Number, height : Number ) : null</h3><p>设置渲染目标的尺寸</p>
-<h3 id="clone-WebGLRenderTarget"><a href="#clone-WebGLRenderTarget" class="headerlink" title="clone () : WebGLRenderTarget"></a>clone () : WebGLRenderTarget</h3><p>创建渲染目标的克隆</p>
-<h3 id="copy-source-WebGLRenderTarget-WebGLRenderTarget"><a href="#copy-source-WebGLRenderTarget-WebGLRenderTarget" class="headerlink" title="copy ( source : WebGLRenderTarget ) : WebGLRenderTarget"></a>copy ( source : WebGLRenderTarget ) : WebGLRenderTarget</h3><p>采用source中渲染目标的设置到该渲染目标</p>
-<h3 id="dispose-null-1"><a href="#dispose-null-1" class="headerlink" title="dispose () : null"></a>dispose () : null</h3><p>调用dispose事件</p>
-<h1 id="WebGLRenderTargetCube"><a href="#WebGLRenderTargetCube" class="headerlink" title="WebGLRenderTargetCube"></a>WebGLRenderTargetCube</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>使用立方体相机(CubeCamera)对象来作为WebGL渲染器目标(WebGLRenderTarget)</p>
-<h2 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebGLRenderTargetCube(width : Number, height : Number, options : Object)</span><br></pre></td></tr></table></figure>
-<p>width – renderTarget的宽度<br>height – renderTarget的高度<br>options是可选的对象，保存一个自动生成的目标纹理的纹理参数以及depthBuffer / stencilBuffer布尔值<br>wrapS - 默认为ClampToEdgeWrapping<br>wrapT - 默认为ClampToEdgeWrapping<br>magFilter - 默认为LinearFilter<br>minFilter - 默认为LinearFilter<br>format - 默认为RGBAFormat<br>type - 默认为UnsignedByteType<br>anisotropy - 默认值为1<br>encoding - 默认为LinearEncoding<br>depthBuffer - 默认为true。 如果您不需要，请将此设置为false<br>stencilBuffer - 默认为true。 如果您不需要，请将此设置为false  </p>
-<h2 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h2><h3 id="activeCubeFace-integer"><a href="#activeCubeFace-integer" class="headerlink" title="activeCubeFace : integer"></a>activeCubeFace : integer</h3><p>对应于立方体侧（PX 0，NX 1，PY 2，NY 3，PZ 4，NZ 5），由CubeCamera内部使用和设置</p>
-<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承自<strong>WebGLRenderTarget</strong></p>
-<h2 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h2><p>继承自<strong>WebGLRenderTarget</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wolfjyx.github.com/2018/12/11/threejs解读 webGLRender/" data-id="cjpjvf0e500005yjihv9nn3h4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-threejs/">js threejs</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-threejs 解读  scene" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/10/threejs 解读  scene/" class="article-date">
-  <time datetime="2018-12-10T14:03:28.637Z" itemprop="datePublished">2018-12-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/10/threejs 解读  scene/">threejs 解读  scene</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Scene"><a href="#Scene" class="headerlink" title="Scene"></a>Scene</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>scene用来创建场景</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用:"></a>使用:</h2><p>创建一个scene对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Scence()</span><br></pre></td></tr></table></figure></p>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="fog"><a href="#fog" class="headerlink" title="fog"></a>fog</h3><p>fog实例，定义场景中的雾状背景。默认是null</p>
-<h3 id="overrideMaterial"><a href="#overrideMaterial" class="headerlink" title="overrideMaterial"></a>overrideMaterial</h3><p>如果不为null,它将使用其材质强制覆盖场景中所有对象。默认为null</p>
-<h3 id="autoUpdate"><a href="#autoUpdate" class="headerlink" title="autoUpdate"></a>autoUpdate</h3><p>如果是ture,则每一帧自动检测矩阵更新.如果false,则需要手动维护矩阵更新。默认为true</p>
-<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>如果不为null，则设置渲染场景时使用的背景，并始终先渲染。 可以设置为<strong>Color</strong>，<strong>Texture</strong>或<strong>CubeTexture</strong>。 默认为null</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="toJSON"><a href="#toJSON" class="headerlink" title="toJSON"></a>toJSON</h3><p>以JSON格式返回场景数据</p>
-<h1 id="Fog"><a href="#Fog" class="headerlink" title="Fog"></a>Fog</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>此类包含定义线性雾的参数，即密度随着距离的增加呈线性增长</p>
-<h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><p>创建Fog对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fog( color : Integer, near : Float, far : Float )</span><br></pre></td></tr></table></figure></p>
-<p>color参数被传递给<strong>Color</strong>来设置颜色属性，color可以是一个十六进制整数或CSS样式的字符串</p>
-<h1 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h1><h3 id="name"><a href="#name" class="headerlink" title="name"></a>name</h3><p>对象的可选名称（不必是唯一的),默认值为空字符串</p>
-<h3 id="color"><a href="#color" class="headerlink" title="color"></a>color</h3><p>雾的颜色，例如：如果设置为黑色，远处的物体将被渲染为黑色</p>
-<h3 id="near"><a href="#near" class="headerlink" title="near"></a>near</h3><p>开始施雾的最小距离。距离当前相机小于near单位的对象，将不会受到雾的影响。默认为1</p>
-<h3 id="far"><a href="#far" class="headerlink" title="far"></a>far</h3><p>结束施雾的最大距离。距离当前相机大于far单位的对象，将不会受到雾的影响。默认为1000</p>
-<h1 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h1><h3 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h3><p>返回具有与此雾有相同的参数的新雾实例</p>
-<h3 id="toJSON-1"><a href="#toJSON-1" class="headerlink" title="toJSON"></a>toJSON</h3><p>以JSON格式返回线性雾数据</p>
-<h1 id="FogExp2"><a href="#FogExp2" class="headerlink" title="FogExp2"></a>FogExp2</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>此类包含定义指数雾的参数，即密度随着距离的增加呈指数增长</p>
-<h2 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h2><p>创建FogExp2对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FogExp2( color : Integer, density : Float )</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
-<p>color参数被传递给<strong>Color</strong>来设置颜色属性，color可以是一个十六进制整数或CSS样式的字符串</p>
-<h2 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h2><h2 id="name-1"><a href="#name-1" class="headerlink" title="name"></a>name</h2><p>对象的可选名称（不必是唯一的),默认值为空字符串</p>
-<h2 id="color-1"><a href="#color-1" class="headerlink" title="color"></a>color</h2><p>雾的颜色，例如：如果设置为黑色，远处的物体将被渲染为黑色</p>
-<h2 id="density"><a href="#density" class="headerlink" title="density"></a>density</h2><p>定义雾密度增加的速度，默认0.00025</p>
-<h2 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h2><h3 id="clone-1"><a href="#clone-1" class="headerlink" title="clone"></a>clone</h3><p>返回具有与此雾有相同的参数的新雾实例</p>
-<h3 id="toJSON-2"><a href="#toJSON-2" class="headerlink" title="toJSON"></a>toJSON</h3><p>以JSON格式返回线性雾数据</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://wolfjyx.github.com/2018/12/10/threejs 解读  scene/" data-id="cjpie0t5i0000rsjinaoc4c3g" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-threejs/">js threejs</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1265,6 +1176,14 @@ renderer.info.reset();
       <ul>
         
           <li>
+            <a href="/2019/01/27/Json web token/">JOSN WEB TOKEN</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/20/linux  命令/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/20/vim 手册/">(no title)</a>
           </li>
         
@@ -1274,14 +1193,6 @@ renderer.info.reset();
         
           <li>
             <a href="/2019/01/03/electron 调用 dll 文件/">electron 调用 dll 文件</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/01/webstrom- 快捷键/">webstrom 快捷键</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/27/threejs 解读 geometry/">threejs 解读  geometry</a>
           </li>
         
       </ul>
